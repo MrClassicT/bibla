@@ -1,0 +1,56 @@
+article:
+  # An article from a journal or magazine.
+  required: [ author, title, journal, year, volume ]
+  optional: [ number, pages, month, doi, note, key, file, abstract ]
+book:
+  # A book with an explicit publisher.
+  required: [ author, title, publisher, year ]
+  optional: [ editor, volume, number, series, address, edition, month, note, key, url, file ]
+booklet:
+  # A work that is printed and bound, but without a named publisher or sponsoring institution.
+  required: [ title ]
+  optional: [ author, howpublished, address, month, year, note, key, file ]
+conference:
+  # The same as inproceedings, included for Scribe compatibility.
+  required: [ author, title, booktitle, year ]
+  optional: [ editor, volume, number, series, pages, address, month, organization, publisher, note, key, file, abstract ]
+inbook:
+  # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
+  required: [ author, title, chapter/pages, publisher, year ]
+  optional: [ editor, volume, number, series, type, address, edition, month, note, key, file ]
+incollection:
+  # A part of a book having its own title.
+  required: [ author, title, booktitle, publisher, year ]
+  optional: [ editor, volume, number, series, type, chapter, pages, address, edition, month, note, key, file ]
+inproceedings:
+  # An article in a conference proceedings.
+  required: [ author, title, booktitle, year ]
+  optional: [ editor, volume, number, series, pages, address, month, organization, publisher, note, key, file, abstract ]
+manual:
+  # Technical documentation.
+  required: [ title ]
+  optional: [ author, organization, address, edition, month, year, note, key, file ]
+mastersthesis:
+  # A Master's thesis.
+  required: [ author, title, school, year ]
+  optional: [ type, address, month, note, key, file, abstract ]
+misc:
+  # For use when nothing else fits.
+  required: [ none ]
+  optional: [ author, title, howpublished, month, year, note, key, file ]
+phdthesis:
+  # A Ph.D. thesis.
+  required: [ author, title, school, year ]
+  optional: [ type, address, month, note, key, file, abstract ]
+proceedings:
+  # The proceedings of a conference.
+  required: [ title, year ]
+  optional: [ editor, volume, number, series, address, month, publisher, organization, note, key, file, abstract ]
+techreport:
+  # A report published by a school or other institution, usually numbered within a series.
+  required: [ author, title, institution, year ]
+  optional: [ type, number, address, month, note, key, file ]
+unpublished:
+  # A document having an author and title, but not formally published.
+  required: [ author, title, note ]
+  optional: [ month, year, key, file ]
