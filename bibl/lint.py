@@ -9,7 +9,7 @@ from bibl.rule import load_rules, Rule
 from bibl.text_utils import find_entry_line_number, MONTH_NAMES
 
 
-def lint(bibliography):
+def lint(bibliography, output=True):
     bib_data = parse_file(bibliography, macros=MONTH_NAMES)
     bib_data.file = bibliography
     with open(bibliography, 'r') as bib_file:
@@ -24,8 +24,10 @@ def lint(bibliography):
 
     warnings.sort(key=lambda w: w.rule.id)
     warnings.sort(key=lambda w: w.line)
-    for warning in warnings:
-        warning.log()
+    if output:
+        for warning in warnings:
+            warning.log()
+    return warnings
 
 
 def _apply_text_rules(bibliography, bib_text, text_rules, warnings):

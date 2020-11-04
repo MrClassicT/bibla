@@ -1,0 +1,28 @@
+image: "python:3.7"
+
+before_script:
+  - python --version
+  - pip install .
+
+stages:
+  - Static Analysis
+  - Test
+  - Documentation
+
+flake8:
+  stage: Static Analysis
+  script:
+    - flake8 --max-line-length=120 bild/*.py
+
+unit_test:
+  stage: Test
+  script:
+    - python -m unittest discover
+
+rule_list:
+  stage: Documentation
+  script:
+    - bibl list-all -m > all_rules.md
+  artifacts:
+    paths:
+      - all_rules.md
