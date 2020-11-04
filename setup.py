@@ -4,9 +4,16 @@ setup(
     name='bibl',
     version='0.1',
     description='A minimalistic bibtex linter',
+    url='https://gitlab.com/arne.vandenkerchove/biblint',
     author='Arne Van Den Kerchove',
     author_email='arne@vandenkerchove.com',
-    packages=['bibl'],
+    packages=['bibl', 'bibl.rules'],
+    license="MIT",
+    classifiers=[
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+    ],
     install_requires=[
         'click',
         'fuzzywuzzy',
@@ -15,4 +22,7 @@ setup(
         'pyyaml',
         'unidecode',
     ],
+    entry_points={
+        "console_scripts": ["bibl=bibl.__main__:cli"],
+    },
 )

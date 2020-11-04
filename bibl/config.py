@@ -1,15 +1,9 @@
 import yaml
 import os
 
-_DEFAULT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), '../.bibl.yml')
-_config = {
-    'select': [],
-    'ignore': [],
-    'indent_spaces': 0,
-    'max_line_length': 0,
-    'abbreviation_dot': False,
-    'type_spec': dict(),
-}
+_DEFAULT_CONFIG_PATH = '.bibl.yml'
+_config = dict()
+
 
 def load_config(config_file_path):
     global _config
@@ -24,7 +18,7 @@ def get_config():
 
 def set_config(key, value):
     global _config
-    if not value is None and key in _config.keys():
+    if not value is None:
         _config[key] = value
         if key in {'select', 'ignore'} and _config[key] is None:
             _config[key] = []

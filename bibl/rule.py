@@ -1,7 +1,7 @@
-import bisect
 import fnmatch
+import os
 from typing import Callable, Dict, List
-
+from importlib import import_module
 from pybtex.database import Entry
 
 from bibl.config import get_config
@@ -97,5 +97,9 @@ def register_text_rule(id: str, description: str):
 
 
 def load_rules() -> RuleStore:
-    from bibl.rules import entry_rules, field_rules, text_rules, database_rules, specification_rules
+    for module in os.listdir(os.path.join(os.path.dirname(__file__), 'rules')):
+        if module == '__init__.py' or module[-3:] != '.py':
+            continue
+        __import__('bibl.rules.' + module[:-3], locals(), globals())
+    del module
     return _ALL_RULES
