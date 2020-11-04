@@ -12,6 +12,7 @@ stages:
 flake8:
   stage: Static Analysis
   script:
+    - pip install flake8
     - flake8 --max-line-length=120 bild/*.py
 
 unit_test:
