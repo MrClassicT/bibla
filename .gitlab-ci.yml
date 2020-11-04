@@ -35,7 +35,7 @@ unit_test:
     - python -m unittest discover
 
 rule_list:
-  stage: Generate Documentation
+  stage: Documentation
   script:
     - pip install markdown
     - bibl list-all -m | python -m markdown > all_rules.html
