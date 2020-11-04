@@ -2,8 +2,14 @@ import yaml
 import os
 
 _DEFAULT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), '../.bibl.yml')
-_config = dict()
-
+_config = {
+    'select': [],
+    'ignore': [],
+    'indent_spaces': 0,
+    'max_line_length': 0,
+    'abbreviation_dot': False,
+    'type_spec': dict(),
+}
 
 def load_config(config_file_path):
     global _config
@@ -18,10 +24,11 @@ def get_config():
 
 def set_config(key, value):
     global _config
-    _config[key] = value
-    if key in {'include', 'exclude'} and _config[key] is None:
-        _config[key] = []
-    _validate_config(_config)
+    if not value is None and key in _config.keys():
+        _config[key] = value
+        if key in {'select', 'ignore'} and _config[key] is None:
+            _config[key] = []
+        _validate_config(_config)
 
 
 def _load_config_file(path):
@@ -31,12 +38,11 @@ def _load_config_file(path):
 
 
 def _validate_config(config):
-    if config['include'] and config['exclude']:
+    if config['select'] and config['ignore']:
         raise ValueError(
-            "Configuration cannot contain both included and excluded rules. Use either include or exclude to select"
+            "Configuration cannot contain both included and selected and ignored rules. Use either include or exclude to select"
             "enabled rules."
         )
-
 
 
 load_config(_DEFAULT_CONFIG_PATH)

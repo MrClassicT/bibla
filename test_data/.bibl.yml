@@ -1,5 +1,5 @@
-include:
+select:
   - D*
-exclude:
+ignore:
 indent_spaces: 3        # number of trailing whitespaces for indented line, used by TO1
 max_line_length: 40     # max line length before wrap recommended, used by T03

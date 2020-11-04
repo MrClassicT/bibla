@@ -11,7 +11,7 @@ def keys_alphabetical(key, entry, database):
     if entry_num == len(keys) -1:
         return True
     else:
-        return entry.key <= keys[entry_num+1]
+        return entry.key.lower() <= keys[entry_num+1].lower()
 
 @register_text_rule('D01', 'Preamble should begin at first line of document')
 def line_length(line_number, line, text):

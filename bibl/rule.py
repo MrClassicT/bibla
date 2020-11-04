@@ -22,13 +22,17 @@ class Rule():
 
     @property
     def enabled(self):
-        for pattern in get_config()['include']:
-            if fnmatch.fnmatch(self.id, pattern):
-                return True
-        for pattern in get_config()['exclude']:
-            if fnmatch.fnmatch(self.id, pattern):
-                return False
-        return False
+        if get_config()['select']:
+            for pattern in get_config()['select']:
+                if fnmatch.fnmatch(self.id, pattern):
+                    return True
+            return False
+        if get_config()['ignore']:
+            for pattern in get_config()['ignore']:
+                if fnmatch.fnmatch(self.id, pattern):
+                    return False
+            return True
+        return True
 
 
 class EntryRule(Rule):
