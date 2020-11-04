@@ -38,7 +38,7 @@ rule_list:
   stage: Documentation
   script:
     - pip install markdown
-    - bibl list-all -m | python -m markdown > all_rules.html
+    - bibl list-all -m | python -m markdown -x tables > all_rules.html
   only:
     - master
   artifacts:
