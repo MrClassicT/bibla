@@ -12,6 +12,7 @@ stages:
 flake8:
   stage: Static Analysis
   script:
+    - pip install flake8
     - mkdir out
     - $(flake8 --append-config .flake8 | tee out/lint_result.txt)  > /dev/null 2>&1 || FAILED=true
     - num_warnings=$(wc -l < out/lint_result.txt)
