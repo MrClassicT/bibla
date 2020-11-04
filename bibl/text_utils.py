@@ -46,8 +46,8 @@ def format_rules_markdown_tables(rules):
             result += markdown_table.render(headers, matrix)
             result += "\n\n"
             matrix = []
-        matrix.append([rule.id, rule.description])
-    result += "## " + rule.id[0]
+        matrix.append([f'`{rule.id}`', rule.description])
+    result += "## {}" + rule.id[0]
     result += "\n"
     result += markdown_table.render(headers, matrix)
     return result

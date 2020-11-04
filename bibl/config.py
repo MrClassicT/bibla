@@ -1,18 +1,20 @@
 import yaml
-import os
 
-_DEFAULT_CONFIG_PATH = '.bibl.yml'
+DEFAULT_CONFIG_PATH = '.bibl.yml'
 _config = dict()
 
 
-def load_config(config_file_path):
+def load_config(file):
     global _config
-    config = _load_config_file(config_file_path)
-    for k, v in config.items():
-        set_config(k, v)
+    if not _config:
+        _load_config(DEFAULT_CONFIG_PATH)
+    _load_config(file)
 
 
 def get_config():
+    global _config
+    if not _config:
+        _load_config(DEFAULT_CONFIG_PATH)
     return _config
 
 
@@ -25,10 +27,12 @@ def set_config(key, value):
         _validate_config(_config)
 
 
-def _load_config_file(path):
-    with open(path) as config_file:
+def _load_config(file):
+    global _config
+    with open(file) as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
-    return config
+    for k, v in config.items():
+        set_config(k, v)
 
 
 def _validate_config(config):
@@ -37,6 +41,3 @@ def _validate_config(config):
             "Configuration cannot contain both included and selected and ignored rules. Use either include or exclude to select"
             "enabled rules."
         )
-
-
-load_config(_DEFAULT_CONFIG_PATH)

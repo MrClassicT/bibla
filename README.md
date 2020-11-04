@@ -10,7 +10,62 @@ pip install git+https://gitlab.com/arne.vandenkerchove/biblint.git
 ```
 ## Usage
 
-### Command
+Run bibl on your BibTeX files with the following command
+```shell script
+bibl lint bibliography1.bib bibliography2.bib ... 
+```
+or as a python module with
+```shell script
+python -m bibl lint bibliography1.bib bibliography2.bib ... 
+```
+
+bibl will check these files for a variety of style issues and deviations from the BibTeX spec (http://www.bibtex.org/Format/, https://en.wikipedia.org/wiki/BibTeX).
+Each possible type of issue is formulated as a rule. Each rule is identified by a unique code. Some examples of rules are 
+
+Rule ID|Rule description
+-|-
+`D00`|Entry not in alphabetical order by ke
+`T00`|Non-ascii character
+`E00`|Keys of published works should have format AuthorYEARa
+`E06`|Incorrect doi format
+`T01`|Non-standard whitespace at beginning of line (indents should be 4 spaces)
+`M01ArticleYear`|Missing required field `year` for entry type `article`
+...|...
+
+This link provides a [list of all available rules](http://gitlab.com/arne.vandenkerchove/bibl/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+
+
+The first character of a rule id refers to a rules category, e.g. `E` for issues with entry values, `T` for textual
+issues with the `.bib` file, etc.
+You can specify which rules to check by using `--select` or `--ignore`. Wildcards are allowed. `--select` will only
+enable the specified rules, disabling all other rules, while `--ignore` will disable all rules except the ones specified.
+`--select` and `--ignore` may not be specified simultaneously.
+```shell script
+bibl --select "D*,E06,T01" lint bibliography.lint
+```
+will only check all rules starting with D, rule E06 and rule T01
+```
+bibl --ignore "D*,E06,T01" lint bibliography.lint
+```
+will check all rules except all rules starting with D, rule E06 and rule T01
+
+## Configuration
+
+Aside from `--select` and `--ignore`, other configuration options can be provided via the cli, like `--max_line_length`
+to specify the line length for which an issue should be reported if exceeded. See below for a full list.
+
+Configuration can also be specified in a yaml format configuration file, provided by the `--config` option.
+If no configuration file is provided and a `.bibl.yml` file is present in the current working directory, this file will
+be used as a configuration file.
+Command line option configuration will override configuration provided by a file.
+See the default configuration [.bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/bibl) for all values that can be overwritten in a configuration file.
+
+Some rules, like the various `M01*`, `M02*` and `U01*` rules, are procedurally generated based on the `type_spec` setting.
+This setting specifies which entry and field types should be present and can be modified to more easily ignore generated
+rules for specific entry types or fields, or to add custom fields or entry types for which warnings should be given
+while linting.
+
+## CLI
 ```shell script
 Usage: bibl [OPTIONS] COMMAND [ARGS]...
 
@@ -36,13 +91,29 @@ Commands:
   list-all      Show all available rules.
   list-enabled  Show all rules enabled by the configuration.
 ```
-
 ```shell script
-bibl --ignore "F01*,E07,D0*" lint bibliography.lint 
+Usage: bibl lint [OPTIONS] [BIBLIOGRAPHY]...
+
+  Lint a BibTeX bibliography file.
+
+Options:
+  --help  Show this message and exit.
 ```
+```shell script
+Usage: bibl list-all [OPTIONS]
 
-### Rules
+  Show all available rules.
 
-[list of all available rules](http://gitlab.com/arne.vandenkerchove/bibl/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+Options:
+  -m      Format rules as markdown table.
+  --help  Show this message and exit.
+```
+```shell script
+Usage: bibl list-enabled [OPTIONS]
 
-## Configuration
+  Show all rules enabled by the configuration.
+
+Options:
+  -m      Format rules as markdown table.
+  --help  Show this message and exit.
+```
