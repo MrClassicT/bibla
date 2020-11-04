@@ -21,6 +21,7 @@ flake8:
     - anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
     - if test $num_warnings -gt 0; then exit 1; fi
   artifacts:
+    when: always
     paths:
       - out/flake8.svg
       - out/lint_result.txt
