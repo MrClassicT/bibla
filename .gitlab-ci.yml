@@ -12,8 +12,20 @@ stages:
 flake8:
   stage: Static Analysis
   script:
-    - pip install flake8
-    - flake8 --max-line-length=120 bild/*.py
+    - mkdir out
+    - $(flake8 --append-config .flake8 | tee out/lint_result.txt)  > /dev/null 2>&1 || FAILED=true
+    - num_warnings=$(wc -l < out/lint_result.txt)
+    - cat out/lint_result.txt
+    - echo "$num_warnings warnings!"
+    - anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+    - if test $num_warnings -gt 0; then exit 1; fi
+  artifacts:
+    when: always
+    paths:
+      - out/flake8.svg
+      - out/lint_result.txt
+  allow_failure: true
+
 
 unit_test:
   stage: Test
