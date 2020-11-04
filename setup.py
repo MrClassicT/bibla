@@ -9,6 +9,8 @@ setup(
     packages=['bibl'],
     install_requires=[
         'click',
+        'fuzzywuzzy',
+        'markdown-table',
         'pybtex',
         'pyyaml',
         'unidecode',

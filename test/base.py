@@ -1,18 +1,18 @@
 import unittest
 
-from bibl.lint import bibl
+from bibl.lint import lint
 
 
 class TestBase(unittest.TestCase):
 
     def test_run(self):
-        bibl("resources/mit.bib", None)
+        lint("resources/mit.bib")
 
     def test_jabref(self):
-        bibl("resources/bci.bib", None)
+        lint("resources/bci.bib")
 
     def test_incorrect_syntax(self):
-        bibl("resources/syntax.bib", None)
+        lint("resources/syntax.bib")
 
 
 if __name__ == '__main__':

@@ -1,0 +1,48 @@
+include: []
+exclude: []
+indent_spaces: 4        # number of trailing whitespaces for indented line, used by TO1
+max_line_length: 120    # max line length before wrap recommended, used by T03
+abbreviation_dot: True  # abbreviate middle names with dot (John F. Kennedy) as opposed to without (John F Kennedy), used by E05
+type_spec:              # Specification from https://en.wikipedia.org/wiki/BibTeX with some additions for JabRef, used to generate O and R rules
+  article:              # An article from a journal or magazine.
+    required: [ title, journal, year, volume ]
+    optional: [ number, pages, month, doi, note, key, file, abstract ]
+  book:                 # A book with an explicit publisher.
+    required: [ author, title, publisher, year ]
+    optional: [ volume, number, series, address, edition, month, note, key, url, file, isbn ]
+  booklet:              # A work that is printed and bound, but without a named publisher or sponsoring institution.
+    required: [ title ]
+    optional: [ howpublished, address, month, year, note, key, file ]
+  conference:           # The same as inproceedings, included for Scribe compatibility.
+    required: [ title, booktitle, year ]
+    optional: [ volume, number, series, pages, address, month, organization, publisher, note, key, file, abstract ]
+  inbook:               # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
+    required: [ title, chapter/pages, publisher, year ]
+    optional: [ volume, number, series, type, address, edition, month, note, key, file ]
+  incollection:         # A part of a book having its own title.
+    required: [ title, booktitle, publisher, year ]
+    optional: [ volume, number, series, type, chapter, pages, address, edition, month, note, key, file ]
+  inproceedings:        # An article in a conference proceedings.
+    required: [ title, booktitle, year ]
+    optional: [ volume, number, series, pages, address, month, organization, publisher, note, key, file, abstract ]
+  manual:               # Technical documentation.
+    required: [ title ]
+    optional: [ organization, address, edition, month, year, note, key, file ]
+  mastersthesis:        # A Master's thesis.
+    required: [ title, school, year ]
+    optional: [ type, address, month, note, key, file, abstract ]
+  misc:                 # For use when nothing else fits.
+    required: [ none ]
+    optional: [ title, howpublished, month, year, note, key, file ]
+  phdthesis:            # A Ph.D. thesis.
+    required: [ title, school, year ]
+    optional: [ type, address, month, note, key, file, abstract ]
+  proceedings:        # The proceedings of a conference.
+    required: [ title, year ]
+    optional: [ volume, number, series, address, month, publisher, organization, note, key, file, abstract ]
+  techreport:         # A report published by a school or other institution, usually numbered within a series.
+    required: [ title, institution, year ]
+    optional: [ type, number, address, month, note, key, file ]
+  unpublished:        # A document having an author and title, but not formally published.
+    required: [ title, note ]
+    optional: [ month, year, key, file ]
