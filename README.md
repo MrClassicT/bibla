@@ -43,4 +43,6 @@ bibl --ignore "F01*,E07,D0*" lint bibliography.lint
 
 ### Rules
 
+[list of all available rules](http://gitlab.com/arne.vandenkerchove/bibl/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+
 ## Configuration
