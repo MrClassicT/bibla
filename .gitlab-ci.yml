@@ -8,6 +8,7 @@ stages:
   - Static Analysis
   - Test
   - Documentation
+  - Deploy
 
 flake8:
   stage: Static Analysis
@@ -34,11 +35,15 @@ unit_test:
     - python -m unittest discover
 
 rule_list:
-  stage: Documentation
+  stage: Generate Documentation
   script:
-    - bibl list-all -m | tee all_rules.md
+    - pip install markdown
+    - bibl list-all -m | python -m markdown > all_rules.html
   only:
     - master
   artifacts:
     paths:
-      - all_rules.md
+      - all_rules.html
+
+
+
