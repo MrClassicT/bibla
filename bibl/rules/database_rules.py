@@ -6,6 +6,7 @@ from unidecode import unidecode
 from bibl.rule import register_entry_rule, register_text_rule
 
 
+
 @register_entry_rule('D00', 'Entry not in alphabetical order by key')
 def keys_alphabetical(key, entry, database):
 
