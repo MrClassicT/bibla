@@ -5,9 +5,6 @@ from unidecode import unidecode
 
 from bibl.config import get_config
 from bibl.rule import register_entry_rule
-
-from fuzzywuzzy import fuzz
-
 from bibl.text_utils import MONTH_NAMES
 
 
@@ -31,22 +28,7 @@ def key_format(key, entry, database):
     return bool(regex.match(key))
 
 
-# TODO fuzzy match on entire entry
-@register_entry_rule('E02', 'Possible duplicate entry based on similar titles')
-def title_duplicate(key, entry, database):
-    if not 'title' in entry.fields:
-        return True
-    for e in database.entries.values():
-        if not 'title' in e.fields:
-            continue
-        t1 = unidecode(entry.fields['title']).lower()
-        t2 = unidecode(e.fields['title']).lower()
-        if e != entry and fuzz.partial_ratio(t1, t2) > 90:
-            return False
-    return True
-
-
-@register_entry_rule('E03', f'Author first names should not be abbreviated')
+@register_entry_rule('E02', f'Author first names should not be abbreviated')
 def author_first_name_abbr(key, entry, database):
     for person in itertools.chain(*entry.persons.values()):
         for name in person.first_names:
@@ -61,7 +43,7 @@ else:
     author_middle_name_abbr_desc = "Author middle names should be abbreviated without ."
 
 
-@register_entry_rule('E04', author_middle_name_abbr_desc)
+@register_entry_rule('E03', author_middle_name_abbr_desc)
 def author_middle_name_abbr(key, entry, database):
     for person in itertools.chain(*entry.persons.values()):
         for name in person.middle_names:
@@ -72,7 +54,7 @@ def author_middle_name_abbr(key, entry, database):
     return True
 
 
-@register_entry_rule('E05', 'The usage of `et al.` in the author field should be replaced by a list of all authors')
+@register_entry_rule('E04', 'The usage of `et al.` in the author field should be replaced by a list of all authors')
 def author_et_al(key, entry, database):
     if 'author' in entry.fields:
         return not entry.fields['author'].lower().contains('et al')
@@ -87,7 +69,7 @@ def _process_file_path(file):
         return file
 
 
-@register_entry_rule('E06', 'Files should be linked with relative path')
+@register_entry_rule('E05', 'Files should be linked with relative path')
 def file_relative_path(key, entry, database):
     if 'file' in entry.fields:
         path = _process_file_path(entry.fields['file'])
@@ -96,7 +78,7 @@ def file_relative_path(key, entry, database):
         return True
 
 
-@register_entry_rule('E07', 'Linked file is not present')
+@register_entry_rule('E06', 'Linked file is not present')
 def file_present(key, entry, database):
     if 'file' in entry.fields:
         path = _process_file_path(entry.fields['file'])
@@ -109,7 +91,7 @@ def file_present(key, entry, database):
         return True
 
 
-@register_entry_rule('E08', 'Incorrect doi format')
+@register_entry_rule('E07', 'Incorrect doi format')
 def doi_format(key, entry, database):
     if 'doi' in entry.fields:
         regex = re.compile(r'^10.\d{4,9}/[-._;()/:a-z0-9]+$')
@@ -118,7 +100,7 @@ def doi_format(key, entry, database):
         return True
 
 
-@register_entry_rule('E09', 'Incorrect ISBN format')
+@register_entry_rule('E08', 'Incorrect ISBN format')
 def isbn_format(key, entry, database):
     if 'isbn' in entry.fields:
         regex = re.compile(r'^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$')
@@ -127,7 +109,7 @@ def isbn_format(key, entry, database):
         return True
 
 
-@register_entry_rule('E10', 'Page numbers should have format xx--yy')
+@register_entry_rule('E09', 'Page numbers should have format xx--yy')
 def page_format(key, entry, database):
     if 'page' in entry.fields:
         regex = re.compile(r'^\d+(--\d+)?$')
@@ -136,7 +118,7 @@ def page_format(key, entry, database):
         return True
 
 
-@register_entry_rule('E11', 'End page larger than start page. Page numbers in aaaa--bb should be written as aaaa--aabb')
+@register_entry_rule('E10', 'End page larger than start page. Page numbers in aaaa--bb should be written as aaaa--aabb')
 def page_format_ascending(key, entry, database):
     if 'page' in entry.fields:
         regex = re.compile(r'^\d+--\d+$')
@@ -149,7 +131,7 @@ def page_format_ascending(key, entry, database):
         return True
 
 
-@register_entry_rule('E12', 'Month should be in 3-letter lowercase format')
+@register_entry_rule('E11', 'Month should be in 3-letter lowercase format')
 def month_format(key, entry, database):
     if 'month' in entry.fields:
         return entry.fields['month'] in MONTH_NAMES.keys()
