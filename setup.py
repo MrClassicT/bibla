@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='bibl',
-    version='0.1',
+    name='bibL',
+    version='1.0',
     description='A minimalistic bibtex linter',
     url='https://gitlab.com/arne.vandenkerchove/biblint',
     author='Arne Van Den Kerchove',

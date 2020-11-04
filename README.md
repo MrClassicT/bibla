@@ -1,7 +1,7 @@
-# bibl
+# bibL
 
-bibl is a minimalistic linter for BibTeX files.
-bibl does not come with its own BibTeX parser, but leverages the [pybtex](https://pybtex.org/) parser.
+bibL is a minimalistic linter (style checker) for BibTeX files.
+bibL does not come with its own BibTeX parser, but leverages the [pybtex](https://pybtex.org/) parser.
 
 ## Installation
 
@@ -51,7 +51,7 @@ will check all rules except all rules starting with D, rule E06 and rule T01
 
 ## Configuration
 
-Aside from `--select` and `--ignore`, other configuration options can be provided via the cli, like `--max_line_length`
+Aside from `--select` and `--ignore`, other configuration options can be provided via the cli, like `--max-line-length`
 to specify the line length for which an issue should be reported if exceeded. See below for a full list.
 
 Configuration can also be specified in a yaml format configuration file, provided by the `--config` option.

@@ -36,7 +36,7 @@ def find_entry_line_number(text, key):
 
 
 def format_rules_markdown_tables(rules):
-    result = "# `bibl` rules\n"
+    result = "# bibL rules\n"
     headers = ["Rule ID", "Rule description"]
     matrix = []
     for i, rule in enumerate(rules):
