@@ -35,7 +35,6 @@ unit_test:
 rule_list:
   stage: Deploy
   script:
-    - pip install markdown
     - bibl list-all -m | python -m markdown -x tables > all_rules.html
   only:
     - master
