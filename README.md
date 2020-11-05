@@ -58,7 +58,7 @@ Configuration can also be specified in a yaml format configuration file, provide
 If no configuration file is provided and a `.bibl.yml` file is present in the current working directory, this file will
 be used as a configuration file.
 Command line option configuration will override configuration provided by a file.
-See the default configuration [.bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/.bibl.yml) for all values that can be overwritten in a configuration file.
+See the default configuration [.bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/bibl/.bibl.yml) for all values that can be overwritten in a configuration file.
 
 Some rules, like the various `M01*`, `M02*` and `U01*` rules, are procedurally generated based on the `type_spec` setting.
 This setting specifies which entry and field types should be present and can be modified to more easily ignore generated

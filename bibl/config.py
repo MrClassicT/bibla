@@ -3,7 +3,7 @@ import os
 import yaml
 import os
 
-_DEFAULT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), '../.bibl.yml')
+_DEFAULT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), '.bibl.yml')
 _config = dict()
 
 

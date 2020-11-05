@@ -9,3 +9,4 @@ include .idea/biblint.iml
 recursive-include test *.py
 recursive-include test_data *.bib
 recursive-include test_data *.yml
+recursive-include bibl *.yml
