@@ -43,4 +43,5 @@ setup(
     entry_points={
         "console_scripts": ["bibl=bibl.__main__:cli"],
     },
+    package_data={'': ['bibl/.bibl.yml']}
 )
