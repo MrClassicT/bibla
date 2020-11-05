@@ -8,6 +8,13 @@ from pybtex.database import parse_file
 from bibl.rule import load_rules, Rule
 from bibl.text_utils import find_entry_line_number, MONTH_NAMES
 
+logger = logging.getLogger()
+logger.setLevel(logging.WARNING)
+
+handler = logging.StreamHandler(sys.stdout)
+handler.setLevel(logging.WARNING)
+logger.addHandler(handler)
+
 
 def lint(bibliography, output=True):
     bib_data = parse_file(bibliography, macros=MONTH_NAMES)
@@ -55,6 +62,5 @@ class LintWarning:
     rule: Rule
 
     def log(self):
-        logger = logging.getLogger()
-        msg = "{}:{} {}".format(self.file, self.line,str(self.rule))
+        msg = "{}:{} {}".format(self.file, self.line, str(self.rule))
         logger.warning(msg)
