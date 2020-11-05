@@ -90,6 +90,7 @@ Commands:
   lint          Lint a BibTeX bibliography file.
   list-all      Show all available rules.
   list-enabled  Show all rules enabled by the configuration.
+  version       Show the package version.
 ```
 ```shell script
 Usage: bibl lint [OPTIONS] [BIBLIOGRAPHY]...

@@ -3,9 +3,11 @@ from setuptools import setup
 with open("README.md", 'r') as readme:
     long_description = readme.read()
 
+from bibl import __version__
+
 setup(
     name='bibL',
-    version='1.0.1',
+    version=__version__,
     description='A minimalistic bibtex linter',
     long_description=long_description,
     long_description_content_type='text/markdown',

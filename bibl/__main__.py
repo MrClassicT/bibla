@@ -2,6 +2,7 @@ import os
 import warnings
 
 import click
+from bibl import __version__
 from bibl.lint import lint as bibl_lint
 from bibl.config import load_config, set_config
 from bibl.rule import load_rules
@@ -59,6 +60,9 @@ def list_enabled(markdown):
         for rule in rules:
             click.echo(rule)
 
+@cli.command(help="Show the package version.")
+def version():
+    click.echo('bibL version: ' + __version__)
 
 if __name__ == '__main__':
     cli(prog_name='bibl')
