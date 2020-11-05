@@ -44,5 +44,5 @@ setup(
         "console_scripts": ["bibl=bibl.__main__:cli"],
     },
     include_package_data=True,
-    package_data={'': ['bibl/.bibl.yml']}
+    package_data={'': ['.bibl.yml']}
 )
