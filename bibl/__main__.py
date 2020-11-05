@@ -15,8 +15,7 @@ from bibl.text_utils import format_rules_markdown_tables
 @click.option('--ignore', help='Comma separated list of disabled rules, all other rules will be enabled.', type=str)
 @click.option('--indent-spaces', help='Number of trailing whitespaces for indented line, used by TO1.', type=int)
 @click.option('--max-line-length', help='Max line length before wrap recommended, used by T03.', type=int)
-@click.option('--abbreviation-dot', help='Abbreviate middle names with dot.', is_flag=True)
-def cli(config, select, ignore, indent_spaces, max_line_length, abbreviation_dot):
+def cli(config, select, ignore, indent_spaces, max_line_length):
     if not config is None:
         load_config(config)
     elif os.path.isfile('.bibl.yml'):
@@ -28,7 +27,6 @@ def cli(config, select, ignore, indent_spaces, max_line_length, abbreviation_dot
         set_config('ignore', ignore.split(','))
     set_config('indent_spaces', indent_spaces)
     set_config('max_line_length', max_line_length)
-    set_config('abbreviation_dot', abbreviation_dot)
 
 
 @cli.command(help="Lint a BibTeX bibliography file.")
