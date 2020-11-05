@@ -4,7 +4,7 @@ import warnings
 import click
 from bibl import __version__
 from bibl.lint import lint as bibl_lint
-from bibl.config import load_config, set_config
+from bibl.config import load_config_file, set_config
 from bibl.rule import load_rules
 from bibl.text_utils import format_rules_markdown_tables
 
@@ -17,9 +17,9 @@ from bibl.text_utils import format_rules_markdown_tables
 @click.option('--max-line-length', help='Max line length before wrap recommended, used by T03.', type=int)
 def cli(config, select, ignore, indent_spaces, max_line_length):
     if not config is None:
-        load_config(config)
+        load_config_file(config)
     elif os.path.isfile('.bibl.yml'):
-        load_config('.bibl.yml')
+        load_config_file('.bibl.yml')
 
     if not select is None:
         set_config('select', select.split(','))
