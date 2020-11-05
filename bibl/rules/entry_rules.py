@@ -18,7 +18,7 @@ def key_format(key, entry, database):
         return True
     author = entry.persons['author'][0]
     names = author.rich_prelast_names + author.rich_last_names
-    correct_key_unicode = "".join([str(name.capitalize()) for name in names]) + entry.fields['year']
+    correct_key_unicode = "".join([str(name) for name in names]) + entry.fields['year']
     correct_key_ascii = unidecode(correct_key_unicode)
     regex = re.compile(correct_key_ascii + r'[a-zA-Z]?')
     return bool(regex.match(key))

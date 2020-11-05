@@ -33,7 +33,7 @@ type_spec:              # Specification from https://en.wikipedia.org/wiki/BibTe
     required: [ title, school, year ]
     optional: [ type, address, month, key, file ]
   misc:                 # For use when nothing else fits.
-    required: [ none ]
+    required: [ ]
     optional: [ title, howpublished, month, year, key, file ]
   phdthesis:            # A Ph.D. thesis.
     required: [ title, school, year ]
