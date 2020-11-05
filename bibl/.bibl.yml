@@ -9,7 +9,7 @@ type_spec:              # Specification from https://en.wikipedia.org/wiki/BibTe
     required: [ title, journal, year, volume ]
     optional: [ number, pages, month, doi, key, file ]
   book:                 # A book with an explicit publisher.
-    required: [ author, title, publisher, year ]
+    required: [ title, publisher, year ]
     optional: [ volume, number, series, address, edition, month, key, url, file, isbn ]
   booklet:              # A work that is printed and bound, but without a named publisher or sponsoring institution.
     required: [ title ]
@@ -25,7 +25,7 @@ type_spec:              # Specification from https://en.wikipedia.org/wiki/BibTe
     optional: [ volume, number, series, type, chapter, pages, address, edition, month, key, file ]
   inproceedings:        # An article in a conference proceedings.
     required: [ title, booktitle, year ]
-    optional: [ volume, number, series, pages, address, month, organization, publisher, key, file ]
+    optional: [ volume, number, series, pages, address, month, organization, publisher, key, file, doi ]
   manual:               # Technical documentation.
     required: [ title ]
     optional: [ organization, address, edition, month, year, key, file ]
