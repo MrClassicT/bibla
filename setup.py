@@ -5,7 +5,7 @@ with open("README.md", 'r') as readme:
 
 setup(
     name='bibL',
-    version='1.0',
+    version='1.0.1',
     description='A minimalistic bibtex linter',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -24,7 +24,7 @@ setup(
     install_requires=[
         'click>=7,<8',
         'fuzzywuzzy>=0.10,<1',
-        'markdown-table==0.0.0',
+        'markdown-table',
         'pybtex==0.23.0',
         'pyyaml>=5,<6',
         'unidecode>=1,<2',
