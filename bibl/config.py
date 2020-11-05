@@ -8,13 +8,15 @@ _DEFAULT_CONFIG_FILE = '.bib.yml'
 
 def get_config():
     global _config
-    _load_default_config()
+    if not _config:
+        _load_default_config()
     return _config
 
 
 def set_config(key, value):
     global _config
-    _load_default_config()
+    if not _config:
+        _load_default_config()
     if not value is None:
         _config[key] = value
         if key in {'select', 'ignore'} and _config[key] is None:
@@ -23,12 +25,9 @@ def set_config(key, value):
 
 
 def load_config_file(file):
-    global _config
-    _load_default_config()
     with open(file) as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
         _load_config(config)
-    _load_config(file)
 
 
 def _load_config(config):
@@ -37,11 +36,9 @@ def _load_config(config):
 
 
 def _load_default_config():
-    global _config
-    if not _config:
-        with open(pkg_resources.resource_filename(_DEFAULT_CONFIG_FILE, "resourcefile")) as default_config_file:
-            default_config = yaml.load(default_config_file, Loader=yaml.FullLoader)
-            _load_config(default_config)
+    with open(pkg_resources.resource_filename(_DEFAULT_CONFIG_FILE, "resourcefile")) as default_config_file:
+        default_config = yaml.load(default_config_file, Loader=yaml.FullLoader)
+        _load_config(default_config)
 
 
 def _validate_config(config):
