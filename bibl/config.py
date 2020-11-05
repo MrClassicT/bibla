@@ -36,7 +36,7 @@ def _load_config(file):
 
 
 def _validate_config(config):
-    if config['select'] and config['ignore']:
+    if 'select' in config and 'ignore' in config and config['select'] and config['ignore']:
         raise ValueError(
             "Configuration cannot contain both included and selected and ignored rules. Use either include or exclude to select"
             "enabled rules."
