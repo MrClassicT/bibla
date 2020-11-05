@@ -2,18 +2,16 @@ image: "python:3.7"
 
 before_script:
   - python --version
-  - pip install .
+  - pip install -e .[dev]
 
 stages:
   - Static Analysis
   - Test
-  - Documentation
   - Deploy
 
 flake8:
   stage: Static Analysis
   script:
-    - pip install flake8 anybadge
     - mkdir out
     - $(flake8 --append-config .flake8 | tee out/lint_result.txt)  > /dev/null 2>&1 || FAILED=true
     - num_warnings=$(wc -l < out/lint_result.txt)
@@ -35,7 +33,7 @@ unit_test:
     - python -m unittest discover
 
 rule_list:
-  stage: Documentation
+  stage: Deploy
   script:
     - pip install markdown
     - bibl list-all -m | python -m markdown -x tables > all_rules.html

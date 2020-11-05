@@ -1,0 +1,11 @@
+include *.yml
+include LICENSE
+include .idea/modules.xml
+include .flake8
+include .idea/inspectionProfiles/profiles_settings.xml
+include .idea/vcs.xml
+include .idea/misc.xml
+include .idea/biblint.iml
+recursive-include test *.py
+recursive-include test_data *.bib
+recursive-include test_data *.yml

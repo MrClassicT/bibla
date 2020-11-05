@@ -6,7 +6,7 @@ bibL does not come with its own BibTeX parser, but leverages the [pybtex](https:
 ## Installation
 
 ```shell script
-pip install git+https://gitlab.com/arne.vandenkerchove/biblint.git
+pip install bibl
 ```
 ## Usage
 
