@@ -40,14 +40,14 @@ def format_rules_markdown_tables(rules):
     headers = ["Rule ID", "Rule description"]
     matrix = []
     for i, rule in enumerate(rules):
-        if i != 0 and rule.id[0] != rules[i - 1].id[0]:
-            result += "## " + rules[i - 1].id[0]
+        if i != 0 and rule.rule_id[0] != rules[i - 1].rule_id[0]:
+            result += "## " + rules[i - 1].rule_id[0]
             result += "\n"
             result += markdown_table.render(headers, matrix)
             result += "\n\n"
             matrix = []
-        matrix.append([f'`{rule.id}`', rule.description])
-    result += "## " + rule.id[0]
+        matrix.append([f'`{rule.rule_id}`', rule.description])
+    result += "## " + rule.rule_id[0]
     result += "\n"
     result += markdown_table.render(headers, matrix)
     return result

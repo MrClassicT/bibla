@@ -56,7 +56,7 @@ class RuleStore:
 
     def register(self, rule: Rule):
         position = 0
-        while position < len(self._rules) and self._rules[position].id < rule.id:
+        while position < len(self._rules) and self._rules[position].rule_id < rule.id:
             position += 1
         self._rules.insert(position, rule)
 

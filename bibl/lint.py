@@ -29,7 +29,7 @@ def lint(bibliography, output=True):
     _apply_text_rules(bibliography, bib_text, rules.enabled_text_rules, warnings)
     _apply_entry_rules(bibliography, bib_data, bib_text, rules.enabled_entry_rules, warnings)
 
-    warnings.sort(key=lambda w: w.rule.id)
+    warnings.sort(key=lambda w: w.rule.rule_id)
     warnings.sort(key=lambda w: w.line)
     if output:
         for warning in warnings:
