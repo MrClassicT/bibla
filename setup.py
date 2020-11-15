@@ -6,7 +6,7 @@ with open("README.md", 'r') as readme:
 from bibl import __version__
 
 setup(
-    name='bibL',
+    name='bibl',
     version=__version__,
     description='A minimalistic bibtex linter',
     long_description=long_description,
@@ -34,6 +34,8 @@ setup(
     extras_require={
         'dev': [
             'flake8',
+            'pep8-naming',
+            'flake8-docstrings',
             'anybadge',
             'markdown',
             'check-manifest',

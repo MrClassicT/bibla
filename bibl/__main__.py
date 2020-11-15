@@ -60,7 +60,7 @@ def list_enabled(markdown):
 
 @cli.command(help="Show the package version.")
 def version():
-    click.echo('bibL version: ' + __version__)
+    click.echo('bibl version: ' + __version__)
 
 if __name__ == '__main__':
     cli(prog_name='bibl')
