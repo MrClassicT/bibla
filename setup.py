@@ -1,3 +1,7 @@
+"""`bibl` is a minimalistic linter (style checker) for BibTeX files.
+More information at https://gitlab.com/arne.vandenkerchove/bibl
+"""
+
 from setuptools import setup
 
 with open("README.md", 'r') as readme:

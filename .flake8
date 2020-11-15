@@ -8,6 +8,8 @@ exclude =
 	env,
 	test_data,
 	__pycache__,
+	test,
+	test_data,
 
 
 select = E,F,W,D,N

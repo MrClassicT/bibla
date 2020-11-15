@@ -1,7 +1,7 @@
 # bibl
 
-bibl is a minimalistic linter (style checker) for BibTeX files.
-bibl does not come with its own BibTeX parser, but leverages the [pybtex](https://pybtex.org/) parser.
+`bibl` is a minimalistic linter (style checker) for BibTeX files.
+`bibl` does not come with its own BibTeX parser, but leverages the [pybtex](https://pybtex.org/) parser.
 
 ## Installation
 
