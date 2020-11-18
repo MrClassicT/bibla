@@ -9,13 +9,13 @@ from bibl.config import get_config
 
 class Rule():
 
-    def __init__(self, id: str, description: str):
-        self.id = id
+    def __init__(self, rule_id: str, description: str):
+        self.rule_id = rule_id
         self.description = description
         self._rule = None
 
     def __str__(self):
-        return "{}: {}".format(self.id, self.description)
+        return "{}: {}".format(self.rule_id, self.description)
 
     def __call__(self, *args, **kwargs):
         return self._rule(*args, **kwargs)
@@ -24,12 +24,12 @@ class Rule():
     def enabled(self):
         if get_config()['select']:
             for pattern in get_config()['select']:
-                if fnmatch.fnmatch(self.id, pattern):
+                if fnmatch.fnmatch(self.rule_id, pattern):
                     return True
             return False
         if get_config()['ignore']:
             for pattern in get_config()['ignore']:
-                if fnmatch.fnmatch(self.id, pattern):
+                if fnmatch.fnmatch(self.rule_id, pattern):
                     return False
             return True
         return True
@@ -37,15 +37,15 @@ class Rule():
 
 class EntryRule(Rule):
 
-    def __init__(self, id, description, rule: Callable[[str, Entry, Dict[str, Entry]], bool], **kwargs):
-        super().__init__(id, description)
+    def __init__(self, rule_id, description, rule: Callable[[str, Entry, Dict[str, Entry]], bool], **kwargs):
+        super().__init__(rule_id, description)
         self._rule = rule
 
 
 class TextRule(Rule):
 
-    def __init__(self, id, description, rule: Callable[[int, str, str], bool], **kwargs):
-        super().__init__(id, description)
+    def __init__(self, rule_id, description, rule: Callable[[int, str, str], bool], **kwargs):
+        super().__init__(rule_id, description)
         self._rule = rule
 
 
@@ -56,7 +56,7 @@ class RuleStore:
 
     def register(self, rule: Rule):
         position = 0
-        while position < len(self._rules) and self._rules[position].rule_id < rule.id:
+        while position < len(self._rules) and self._rules[position].rule_id < rule.rule_id:
             position += 1
         self._rules.insert(position, rule)
 
@@ -80,17 +80,17 @@ class RuleStore:
 _ALL_RULES: RuleStore = RuleStore()
 
 
-def register_entry_rule(id, description: str):
+def register_entry_rule(rule_id, description: str):
     def decorator(f: Callable[[str, Entry, Dict[str, Entry]], bool]):
-        rule = EntryRule(id, description, f)
+        rule = EntryRule(rule_id, description, f)
         _ALL_RULES.register(rule)
 
     return decorator
 
 
-def register_text_rule(id: str, description: str):
+def register_text_rule(rule_id: str, description: str):
     def decorator(f: Callable[[int, str, str], bool]):
-        rule = TextRule(id, description, f)
+        rule = TextRule(rule_id, description, f)
         _ALL_RULES.register(rule)
 
     return decorator
