@@ -6,13 +6,13 @@ from bibl.lint import lint
 class TestBase(unittest.TestCase):
 
     def test_run(self):
-        lint("test_data/mit.bib", output=False)
+        lint("test_data/mit.bib", verbose=False)
 
     def test_jabref(self):
-        lint("test_data/bci.bib", output=False)
+        lint("test_data/bci.bib", verbose=False)
 
     def test_incorrect_syntax(self):
-        lint("test_data/syntax.bib", output=False)
+        lint("test_data/syntax.bib", verbose=False)
 
 
 if __name__ == '__main__':

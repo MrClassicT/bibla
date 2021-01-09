@@ -1,4 +1,5 @@
 """`bibl` is a minimalistic linter (style checker) for BibTeX files.
+
 More information at https://gitlab.com/arne.vandenkerchove/bibl
 """
 
@@ -15,7 +16,7 @@ setup(
     description='A minimalistic bibtex linter',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://gitlab.com/arne.vandenkerchove/biblint',
+    url='https://gitlab.com/arnevdk/biblint',
     author='Arne Van Den Kerchove',
     author_email='arne@vandenkerchove.com',
     packages=['bibl', 'bibl.rules'],
@@ -50,5 +51,5 @@ setup(
         "console_scripts": ["bibl=bibl.__main__:cli"],
     },
     include_package_data=True,
-    package_data={'': ['.bibl.yml']}
+    package_data={'': ['bibl.yml']}
 )
