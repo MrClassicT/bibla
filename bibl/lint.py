@@ -1,9 +1,8 @@
 """Main linter logic."""
 import logging
 import sys
-from collections import Iterable
 from dataclasses import dataclass
-from typing import List
+from typing import List, Iterable
 
 import pybtex
 from pybtex.database import parse_file
