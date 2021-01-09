@@ -24,7 +24,6 @@ for entry_type, spec in get_config()['type_spec'].items():
     rule_id = 'U01{}'.format(entry_type.capitalize())
     message = 'Unrecognized field type for entry type `{}`'.format(entry_type)
 
-
     @register_entry_rule(rule_id, message)
     def recognized_field_type(key, entry, database, entry_type=entry_type):
         """Raise a linter warning when field is not recognized for entry type.
@@ -38,8 +37,8 @@ for entry_type, spec in get_config()['type_spec'].items():
         :param key: The key of the current bibliography entry
         :param entry: The current bibliography entry
         :param database: All bibliography entries
-        :param entry_type: Anchor variable to pass the entry_type local
-        variable from outer scope
+        :param entry_type: Anchor variable to pass the local variable
+        `entry_type` from outer scope
         :return: True if the types of all fields in the current bibliography
         entry are present in the required or optional fields of the
         specification of the type of that entry, False otherwise.
