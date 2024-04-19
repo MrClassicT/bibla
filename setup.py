@@ -1,6 +1,6 @@
-"""`bibl` is a minimalistic linter (style checker) for BibTeX files.
+"""`bibla` is a minimalistic linter (style checker) for BibLaTeX files. This is a fork of the original `bibl` by Arne Van Den Kerchove.
 
-More information at https://gitlab.com/arne.vandenkerchove/bibl
+More information about BibL at https://gitlab.com/arne.vandenkerchove/bibl
 """
 
 from setuptools import setup
@@ -11,15 +11,15 @@ with open("README.md", 'r') as readme:
 from bibl import __version__
 
 setup(
-    name='bibl',
+    name='bibla',
     version=__version__,
-    description='A minimalistic bibtex linter',
+    description='A minimalistic bibLaTeX linter based on Bibl by Arne Van Den Kerchove.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://gitlab.com/arnevdk/biblint',
-    author='Arne Van Den Kerchove',
-    author_email='arne@vandenkerchove.com',
-    packages=['bibl', 'bibl.rules'],
+    author='Tristan Cuvelier',
+    author_email='tristan.cuvelier@student.hogent.be',
+    packages=['bibla', 'bibla.rules'],
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
@@ -48,8 +48,8 @@ setup(
         ]
     },
     entry_points={
-        "console_scripts": ["bibl=bibl.__main__:cli"],
+        "console_scripts": ["bibla=bibla.__main__:cli"],
     },
     include_package_data=True,
-    package_data={'': ['bibl.yml']}
+    package_data={'': ['bibla.yml']}
 )

@@ -57,12 +57,12 @@ def find_entry_line_number(text: str, key: str) -> (int, int):
 
 
 def format_rules_markdown_tables(rules: List[Rule]) -> str:
-    """Format a list of bibl rules as a Markdown table.
+    """Format a list of bibla rules as a Markdown table.
 
     :param: rules: a list of Rule instances
     :return: A string containing a markdown table of human readable rules
     """
-    result = "# bibl rules\n"
+    result = "# bibla rules\n"
     headers = ["Rule ID", "Rule description"]
     matrix = []
     for i, rule in enumerate(rules):

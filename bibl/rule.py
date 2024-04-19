@@ -149,10 +149,10 @@ def register_text_rule(rule_id: str, description: str) -> Callable:
 
 
 def load_rules() -> RuleStore:
-    """Import all modules in the `bibl/rules` package."""
+    """Import all modules in the `bibla/rules` package."""
     for module in os.listdir(os.path.join(os.path.dirname(__file__), 'rules')):
         if module == '__init__.py' or module[-3:] != '.py':
             continue
-        __import__('bibl.rules.' + module[:-3], locals(), globals())
+        __import__('bibla.rules.' + module[:-3], locals(), globals())
     del module
     return _ALL_RULES
