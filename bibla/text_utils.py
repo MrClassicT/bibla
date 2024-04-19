@@ -1,4 +1,4 @@
-"""Text processing helper functions for linter rules and bibl commands."""
+"""Text processing helper functions for linter rules and bibla commands."""
 
 import re
 from typing import List
@@ -6,7 +6,7 @@ from typing import List
 import markdown_table
 
 # Month name dictionary for pybtex
-from bibl.rule import Rule
+from bibla.rule import Rule
 
 MONTH_NAMES = {
     'jan': 'jan',
@@ -47,7 +47,7 @@ def find_match_line_number(text: str, pattern: str, group: int) -> (int, int):
 def find_entry_line_number(text: str, key: str) -> (int, int):
     r"""Find the file line number of a pybtex entry.
 
-    :param text: BibTeX file string
+    :param text: biblatex file string
     :param key: Entry key
     :return: Line number (based on \n characters) of first occurrence of the
     entry key, offset of the first occurrence of the key in the line

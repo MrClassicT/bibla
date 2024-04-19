@@ -1,8 +1,8 @@
-"""Linter rules checking the consistency of the entire BibTeX file."""
+"""Linter rules checking the consistency of the entire BibLaTeX file."""
 import re
 from fuzzywuzzy import fuzz
 from unidecode import unidecode
-from bibl.rule import register_entry_rule, register_text_rule
+from bibla.rule import register_entry_rule, register_text_rule
 
 
 @register_entry_rule('D00', 'Entry not in alphabetical order by key')
@@ -31,7 +31,7 @@ def line_length(line_number, line, text):
     :param line: The content of the current line in the bibliography
     :param text: The entire bibliography
     :return: True if no preamble is present or the preambel starts at line 1 of
-    the BibTeX file, False otherwise.
+    the biblatex file, False otherwise.
     """
     regex = re.compile(r'^\s*@preamble')
     return not regex.match(line.lower()) or line_number == 0

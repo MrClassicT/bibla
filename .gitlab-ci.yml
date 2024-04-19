@@ -35,7 +35,7 @@ unit_test:
 rule_list:
   stage: Deploy
   script:
-    - bibl list-all -m | python -m markdown -x tables > all_rules.html
+    - bibla list-all -m | python -m markdown -x tables > all_rules.html
   only:
     - master
   artifacts:

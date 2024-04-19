@@ -6,8 +6,8 @@ from typing import List, Iterable
 
 import pybtex
 from pybtex.database import parse_file
-from bibl.rule import load_rules, Rule, EntryRule, TextRule
-from bibl.text_utils import find_entry_line_number, MONTH_NAMES
+from bibla.rule import load_rules, Rule, EntryRule, TextRule
+from bibla.text_utils import find_entry_line_number, MONTH_NAMES
 
 logger = logging.getLogger()
 logger.setLevel(logging.WARNING)

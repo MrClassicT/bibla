@@ -7,7 +7,7 @@ import yaml
 _config = dict()
 _read_default = False
 
-_DEFAULT_CONFIG_FILE = 'bibl.yml'
+_DEFAULT_CONFIG_FILE = 'bibla.yml'
 
 
 def get_config() -> Dict:

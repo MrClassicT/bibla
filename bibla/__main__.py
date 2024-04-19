@@ -3,11 +3,11 @@ import os
 import warnings
 
 import click
-from bibl import __version__
-from bibl.lint import lint as bibl_lint
-from bibl.config import load_config_file, set_config
-from bibl.rule import load_rules
-from bibl.text_utils import format_rules_markdown_tables
+from bibla import __version__
+from bibla.lint import lint as bibl_lint
+from bibla.config import load_config_file, set_config
+from bibla.rule import load_rules
+from bibla.text_utils import format_rules_markdown_tables
 
 
 @click.group()
@@ -29,26 +29,26 @@ from bibl.text_utils import format_rules_markdown_tables
               help='Max line length before wrap recommended, used by T03.',
               type=int)
 def cli(config, select, ignore, indent_spaces, max_line_length):
-    """`bibl` base command line script.
+    """`bibla` base command line script.
 
     Extra configuration options can be specified with command line arguments.
     Hierarchy of configuration options is as follows (higher supersedes lower):
 
         Configuration options specified as command line options (e.g. --ignore)
         Configuration file specified with --config
-        `bibl.yml` configuration file in the current directory
-        `.bibl.yml` configuration file in the current directory
-        The default configuration file (in bibl/bibl.yml)
+        `bibla.yml` configuration file in the current directory
+        `.bibla.yml` configuration file in the current directory
+        The default configuration file (in bibla/bibla.yml)
 
 
     :param see help strings above
     """
     if config is not None:
         load_config_file(config)
-    elif os.path.isfile('bibl.yml'):
-        load_config_file('bibl.yml')
-    elif os.path.isfile('.bibl.yml'):
-        load_config_file('.bibl.yml')
+    elif os.path.isfile('bibla.yml'):
+        load_config_file('bibla.yml')
+    elif os.path.isfile('.bibla.yml'):
+        load_config_file('.bibla.yml')
 
     if select is not None:
         set_config('select', select.split(','))
@@ -58,12 +58,12 @@ def cli(config, select, ignore, indent_spaces, max_line_length):
     set_config('max_line_length', max_line_length)
 
 
-@cli.command(help="Lint a BibTeX bibliography file.")
+@cli.command(help="Lint a biblatex bibliography file.")
 @click.argument('bibliography', type=str, nargs=-1)
 def lint(bibliography):
-    """CLI command to lint a BibTeX file.
+    """CLI command to lint a BibLaTeX file.
 
-     Use with `bibl lint`.
+     Use with `bibla lint`.
 
     :param see help strings above
     """
@@ -78,7 +78,7 @@ def lint(bibliography):
 def list_all(markdown):
     """CLI command to list all rules generated with de current config.
 
-    Use with `bibl list-all`.
+    Use with `bibla list-all`.
 
     :param see help strings above
     """
@@ -96,7 +96,7 @@ def list_all(markdown):
 def list_enabled(markdown):
     """CLI command to list all enabled rules generated with de current config.
 
-    Use with `bibl list-enabled`.
+    Use with `bibla list-enabled`.
 
     :param see help strings above
     """
@@ -112,10 +112,10 @@ def list_enabled(markdown):
 def version():
     """CLI command to print the version number.
 
-    Use with `bibl version`.
+    Use with `bibla version`.
     """
-    click.echo('bibl version: ' + __version__)
+    click.echo('bibla version: ' + __version__)
 
 
 if __name__ == '__main__':
-    cli(prog_name='bibl')
+    cli(prog_name='bibla')

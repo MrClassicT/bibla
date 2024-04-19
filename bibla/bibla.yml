@@ -1,5 +1,5 @@
 ---
-## DEFAULT BIBL CONFIG
+## DEFAULT bibla CONFIG
 select: [ ]             # List of enabled rules, all other rules will be disabled
 ignore: [ ]             # List of disabled rules, all other rules will be enabled
 # Specify max 1 of the two options above. If none are specified, all rules will be enabled
@@ -7,7 +7,7 @@ indent_spaces: 4        # number of trailing whitespaces for indented line, used
 max_line_length: 120    # max line length before wrap recommended, used by T03
 abbreviation_dot: True  # abbreviate middle names with dot (John F. Kennedy) as opposed to without (John F Kennedy), used by E02
 
-# Specification from https://en.wikipedia.org/wiki/BibTeX extended with fields used in JabRef.
+# Specification from https://en.wikipedia.org/wiki/biblatex extended with fields used in JabRef.
 # This specification is used to generate M01 and U01 rules
 type_spec:
   article: # An article from a journal or magazine.

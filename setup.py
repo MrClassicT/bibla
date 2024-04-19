@@ -1,6 +1,6 @@
-"""`bibla` is a minimalistic linter (style checker) for BibLaTeX files. This is a fork of the original `bibl` by Arne Van Den Kerchove.
+"""`bibla` is a minimalistic linter (style checker) for BibLaTeX files. This is a fork of the original `bibla` by Arne Van Den Kerchove.
 
-More information about BibL at https://gitlab.com/arne.vandenkerchove/bibl
+More information about bibla at https://gitlab.com/arne.vandenkerchove/bibla
 """
 
 from setuptools import setup
@@ -8,12 +8,12 @@ from setuptools import setup
 with open("README.md", 'r') as readme:
     long_description = readme.read()
 
-from bibl import __version__
+from bibla import __version__
 
 setup(
     name='bibla',
     version=__version__,
-    description='A minimalistic bibLaTeX linter based on Bibl by Arne Van Den Kerchove.',
+    description='A minimalistic bibLaTeX linter based on bibla by Arne Van Den Kerchove.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://gitlab.com/arnevdk/biblint',

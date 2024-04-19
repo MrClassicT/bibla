@@ -3,7 +3,7 @@ import fnmatch
 import os
 from typing import Callable, Dict, List
 from pybtex.database import Entry
-from bibl.config import get_config
+from bibla.config import get_config
 
 
 class Rule:

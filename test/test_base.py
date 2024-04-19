@@ -1,6 +1,6 @@
 import unittest
 
-from bibl.lint import lint
+from bibla.lint import lint
 
 
 class TestBase(unittest.TestCase):

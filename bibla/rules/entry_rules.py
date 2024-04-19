@@ -5,9 +5,9 @@ import os
 import re
 from unidecode import unidecode
 
-from bibl.config import get_config
-from bibl.rule import register_entry_rule
-from bibl.text_utils import MONTH_NAMES
+from bibla.config import get_config
+from bibla.rule import register_entry_rule
+from bibla.text_utils import MONTH_NAMES
 
 
 # TODO: use of undefined string
