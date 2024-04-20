@@ -16,7 +16,7 @@ from bibla.text_utils import MONTH_NAMES
 @register_entry_rule(
     'E00',
     'Keys of published works should have format `AuthorYEARa`')
-def key_format(key, entry, database):
+def key_format(key, entry, database): # TODO - Change so it uses date field instead of year!
     """Raise a linter warning when entry key is not of format `AuthorYEARa`.
 
     E.g. an entry with values
@@ -240,6 +240,9 @@ def page_format_ascending(key, entry, database):
     return int(groups[1]) >= int(groups[0])
 
 
+# TODO - Rework date checking so it checks if the date is:
+# 1. Present
+# 2. Contains either year, month, day or just the year.
 @register_entry_rule('E09', 'Month should be in 3-letter lowercase format')
 def month_format(key, entry, database):
     """Raise a linter warning when the month name is incorrectly abbreviated.
