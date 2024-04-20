@@ -59,35 +59,35 @@ type_spec:
     required: [author, title, journaltitle, date]
     optional: [doi, volume, number, pages]
   book:
-    required: [author, editor, title, date, publisher]
-    optional: [isbn]
+    required: [author, title, date, publisher]
+    optional: [isbn, editor]
   inbook:
-    required: [author, editor, title, booktitle, date, publisher]
-    optional: [isbn, doi, pages]
+    required: [author, title, booktitle, date, publisher]
+    optional: [isbn, editor,doi, pages]
   booklet:
-    required: [author, editor, title, date, publisher]
-    optional: [isbn, doi, url, howpublished]
+    required: [author, title, date, publisher]
+    optional: [isbn, editor, doi, url, howpublished]
   dataset:
-    required: [author, editor, title, date, url, urldate]
-    optional: []
+    required: [author, title, date, url, urldate]
+    optional: [editor]
   manual:
-    required: [author, editor, title, date]
-    optional: [organization, publisher, isbn, doi, url]
+    required: [author,  title, date]
+    optional: [organization, publisher, isbn, doi, url, editor]
   software:
-    required: [author, editor, title, date]
-    optional: []
+    required: [author,  title, date]
+    optional: [editor]
   misc:
-    required: [author, editor, title, date]
-    optional: []
+    required: [author,  title, date]
+    optional: [editor]
   online:
-    required: [author, editor, title, date, url, urldate]
-    optional: []
+    required: [author,  title, date, url, urldate]
+    optional: [editor]
   electronic:
-    required: [author, editor, title, date, url, urldate]
-    optional: []
+    required: [author,  title, date, url, urldate]
+    optional: [editor]
   www:
-    required: [author, editor, title, date, url, urldate]
-    optional: []
+    required: [author,  title, date, url, urldate]
+    optional: [editor]
   inproceedings:
     required: [author, title, booktitle, date]
     optional: [editor, eventtitle, isbn, doi, url]
