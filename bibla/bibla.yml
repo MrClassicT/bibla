@@ -3,52 +3,109 @@
 select: [ ]             # List of enabled rules, all other rules will be disabled
 ignore: [ ]             # List of disabled rules, all other rules will be enabled
 # Specify max 1 of the two options above. If none are specified, all rules will be enabled
-indent_spaces: 4        # number of trailing whitespaces for indented line, used by TO1
-max_line_length: 120    # max line length before wrap recommended, used by T03
+indent_spaces: 2        # number of trailing whitespaces for indented line, used by TO1
+max_line_length: 120    # max line length before wrap optional, used by T03
 abbreviation_dot: True  # abbreviate middle names with dot (John F. Kennedy) as opposed to without (John F Kennedy), used by E02
 
-# Specification from https://en.wikipedia.org/wiki/biblatex extended with fields used in JabRef.
+# Specification from https://en.wikipedia.org/wiki/bibtex extended with fields used in JabRef.
 # This specification is used to generate M01 and U01 rules
+# These have been further adapted to work with BibLaTeX entry types.
 type_spec:
-  article: # An article from a journal or magazine.
-    required: [ title, journal, year, volume ]
-    optional: [ number, pages, month, doi, key, file ]
-  book: # A book with an explicit publisher.
-    required: [ title, publisher, year ]
-    optional: [ volume, number, series, address, edition, month, key, url, file, isbn ]
-  booklet: # A work that is printed and bound, but without a named publisher or sponsoring institution.
-    required: [ title ]
-    optional: [ howpublished, address, month, year, key, file ]
-  conference: # The same as inproceedings, included for Scribe compatibility.
-    required: [ title, booktitle, year ]
-    optional: [ volume, number, series, pages, address, month, organization, publisher, key, file ]
-  inbook: # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
-    required: [ title, chapter, pages, publisher, year ]
-    optional: [ volume, number, series, type, address, edition, month, key, file ]
+  # article: # An article from a journal or magazine.
+  #   required: [ title, journal, year, volume ]
+  #   optional: [ number, pages, month, doi, key, file ]
+  # book: # A book with an explicit publisher.
+  #   required: [ title, publisher, year ]
+  #   optional: [ volume, number, series, address, edition, month, key, url, file, isbn ]
+  # booklet: # A work that is printed and bound, but without a named publisher or sponsoring institution.
+  #   required: [ title ]
+  #   optional: [ howpublished, address, month, year, key, file ]
+  # conference: # The same as inproceedings, included for Scribe compatibility.
+  #   required: [ title, booktitle, year ]
+  #   optional: [ volume, number, series, pages, address, month, organization, publisher, key, file ]
+  # inbook: # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
+  #   required: [ title, chapter, pages, publisher, year ]
+  #   optional: [ volume, number, series, type, address, edition, month, key, file ]
   incollection: # A part of a book having its own title.
     required: [ title, booktitle, publisher, year ]
     optional: [ volume, number, series, type, chapter, pages, address, edition, month, key, file ]
-  inproceedings: # An article in a conference proceedings.
-    required: [ title, booktitle, year ]
-    optional: [ volume, number, series, pages, address, month, organization, publisher, key, file, doi ]
-  manual: # Technical documentation.
-    required: [ title ]
-    optional: [ organization, address, edition, month, year, key, file ]
-  mastersthesis: # A Master's thesis.
-    required: [ title, school, year ]
-    optional: [ type, address, month, key, file ]
-  misc: # For use when nothing else fits.
-    required: [ ]
-    optional: [ title, howpublished, month, year, key, file ]
-  phdthesis: # A Ph.D. thesis.
-    required: [ title, school, year ]
-    optional: [ type, address, month, key, file ]
-  proceedings: # The proceedings of a conference.
-    required: [ title, year ]
-    optional: [ volume, number, series, address, month, publisher, organization, key, file ]
-  techreport: # A report published by a school or other institution, usually numbered within a series.
-    required: [ title, institution, year ]
-    optional: [ type, number, address, month, key, file ]
+  # inproceedings: # An article in a conference proceedings.
+  #   required: [ title, booktitle, year ]
+  #   optional: [ volume, number, series, pages, address, month, organization, publisher, key, file, doi ]
+  # manual: # Technical documentation.
+  #   required: [ title ]
+  #   optional: [ organization, address, edition, month, year, key, file ]
+  # mastersthesis: # A Master's thesis.
+  #   required: [ title, school, year ]
+  #   optional: [ type, address, month, key, file ]
+  # misc: # For use when nothing else fits.
+  #   required: [ ]
+  #   optional: [ title, howpublished, month, year, key, file ]
+  # phdthesis: # A Ph.D. thesis.
+  #   required: [ title, school, year ]
+  #   optional: [ type, address, month, key, file ]
+  # proceedings: # The proceedings of a conference.
+  #   required: [ title, year ]
+  #   optional: [ volume, number, series, address, month, publisher, organization, key, file ]
+  # techreport: # A report published by a school or other institution, usually numbered within a series.
+  #   required: [ title, institution, year ]
+  #   optional: [ type, number, address, month, key, file ]
   unpublished: # A document having an author and title, but not formally published.
-    required: [ title, ]
-    optional: [ month, year, key, file ]
+    required: [title]
+    optional: [month, year, key, file]
+  
+ # For HOGENT students. - previously used ones have been disabled above.
+  article:
+    required: [author, title, journaltitle, date]
+    optional: [doi, volume, number, pages]
+  book:
+    required: [author, editor, title, date, publisher]
+    optional: [isbn]
+  inbook:
+    required: [author, editor, title, booktitle, date, publisher]
+    optional: [isbn, doi, pages]
+  booklet:
+    required: [author, editor, title, date, publisher]
+    optional: [isbn, doi, url, howpublished]
+  dataset:
+    required: [author, editor, title, date, url, urldate]
+    optional: []
+  manual:
+    required: [author, editor, title, date]
+    optional: [organization, publisher, isbn, doi, url]
+  software:
+    required: [author, editor, title, date]
+    optional: []
+  misc:
+    required: [author, editor, title, date]
+    optional: []
+  online:
+    required: [author, editor, title, date, url, urldate]
+    optional: []
+  electronic:
+    required: [author, editor, title, date, url, urldate]
+    optional: []
+  www:
+    required: [author, editor, title, date, url, urldate]
+    optional: []
+  inproceedings:
+    required: [author, title, booktitle, date]
+    optional: [editor, eventtitle, isbn, doi, url]
+  conference:
+    required: [author, title, booktitle, date]
+    optional: [editor, eventtitle, isbn, doi, url]
+  report:
+    required: [author, title, date, type, institution]
+    optional: [doi, url]
+  techreport:
+    required: [author, title, date, type, institution]
+    optional: [doi, url]
+  thesis:
+    required: [author, title, date, type, institution]
+    optional: [url]
+  mastersthesis:
+    required: [author, title, date, type, institution]
+    optional: [url]
+  phdthesis:
+    required: [author, title, date, type, institution]
+    optional: [url]
