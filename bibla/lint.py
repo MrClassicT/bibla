@@ -4,6 +4,7 @@ import sys
 from dataclasses import dataclass
 from typing import List, Iterable
 from pybtex.database import BibliographyDataError
+import re
 
 import pybtex
 from pybtex.database import parse_file
@@ -50,7 +51,13 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
     try:
         bib_data = parse_file(bibliography, macros=MONTH_NAMES)
     except BibliographyDataError as e:
-        logger.error(f"Error parsing bibliography file -> {e}")
+        # Extract the key from the error message
+        match = re.search(r'repeated bibliograhpy entry: (.*)', str(e))
+        if match:
+            duplicate_key = match.group(1)
+            print(f"{bibliography} D03: Duplicate entry with key '{duplicate_key}'")
+        else:
+            print(f"Warning: {e}")
         return []
     
     bib_data.file = bibliography
