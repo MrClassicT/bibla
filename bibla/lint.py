@@ -3,6 +3,7 @@ import logging
 import sys
 from dataclasses import dataclass
 from typing import List, Iterable
+from pybtex.database import BibliographyDataError
 
 import pybtex
 from pybtex.database import parse_file
@@ -46,7 +47,12 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
     :return: a list of LintWarning objects representing the linter violations
     found while running
     """
-    bib_data = parse_file(bibliography, macros=MONTH_NAMES)
+    try:
+        bib_data = parse_file(bibliography, macros=MONTH_NAMES)
+    except BibliographyDataError as e:
+        logger.error(f"Error parsing bibliography file -> {e}")
+        return []
+    
     bib_data.file = bibliography
     with open(bibliography, 'r') as bib_file:
         bib_text = bib_file.read()
@@ -84,7 +90,7 @@ def _apply_text_rules(bibliography: str, bib_text: str,
         for rule in text_rules:
             result = rule(line_number, line, bib_text)
             if not result:
-                warnings.append(LintWarning(bibliography, line_number, rule))
+                warnings.appen(LintWarning(bibliography, line_number, rule))
     return warnings
 
 
