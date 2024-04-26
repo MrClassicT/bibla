@@ -60,7 +60,7 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
             print(f"Warning: {e}")
         return []
     except pybtex.scanner.TokenRequired as e:
-        print(f"BL0000: {e}")
+        print(f"E00: {e}")
         return []
     except Error as e:
         print(f"Error: {e}")
