@@ -34,7 +34,10 @@ def find_match_line_number(text: str, pattern: str, group: int) -> (int, int):
     specified match, offset of the first occurrence of the match in the line
     """
     regex = re.compile(pattern)
-    match = next(regex.finditer(text))
+    try:
+        match = next(regex.finditer(text))
+    except StopIteration:
+        return 0, 0
     start = match.start(group)
     lineno = text.count('\n', 0, start)
     if lineno:
