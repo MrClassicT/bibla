@@ -103,7 +103,7 @@ def _apply_text_rules(bibliography: str, bib_text: str,
         for rule in text_rules:
             result = rule(line_number, line, bib_text)
             if not result:
-                warnings.appen(LintWarning(bibliography, line_number, rule))
+                warnings.append(LintWarning(bibliography, line_number, rule))
     return warnings
 
 
