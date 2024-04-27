@@ -18,36 +18,54 @@ def authors_present(key, entry, database):
     return bool(list(itertools.chain(*entry.persons.values())))
 
 
+def register_variant_rule(entry_type, field, variant):
+    rule_id = 'E10{}{}'.format(entry_type.capitalize(), field.capitalize())
+    message = "Entry type {} - use {} instead of {}!".format(entry_type, variant, field)
+
+    @register_entry_rule(rule_id, message)
+    def check_variant_field(key, entry, database, entry_type=entry_type, field=field, variant=variant):
+        """Raise a linter warning when a specific field is used instead of its variant.
+
+        This function checks if the variant field is required and if the specific field is present.
+        If these conditions are met, it suggests to use the variant field instead of the specific field.
+
+        :param key: The key of the current bibliography entry
+        :param entry: The current bibliography entry
+        :param database: All bibliography entries
+        :param entry_type: Anchor variable to pass the local variable `entry_type` from outer scope
+        :param field: The field that is being checked
+        :param variant: The field that should be used instead
+        :return: False if the specific field is used instead of its variant, True otherwise
+        """
+        if entry.type == entry_type and field in entry.fields:
+            return False
+        else:
+            return True
+
 for entry_type, spec in get_config()['type_spec'].items():
     for req_field in spec['required']:
-        rule_id = 'M01{}{}'.format(entry_type.capitalize(),
-                                   req_field.capitalize())
-        message = 'Missing required field `{}` for entry type `{}`'
-        message = message.format(req_field, entry_type)
+        rule_id = 'M01{}{}'.format(entry_type.capitalize(), req_field.capitalize())
+        message = 'Missing required field `{}` for entry type `{}`'.format(req_field, entry_type)
 
         @register_entry_rule(rule_id, message)
-        def check_required_field_present(key, entry, database,
-                                         entry_type=entry_type,
-                                         req_field=req_field):
+        def check_required_field_present(key, entry, database, entry_type=entry_type, req_field=req_field):
             """Raise a linter warning when not all required fields are present.
 
             Required fields for an entry type are defined in the configuration
             with the `required` list of field types for a specific entry
             type  in the `type_spec` dictionary.
 
-
             :param key: The key of the current bibliography entry
             :param entry: The current bibliography entry
             :param database: All bibliography entries
-            :param entry_type: Anchor variable to pass the local
-            variable `entry_type` from outer scope
-            :param req_field: Anchor variable to pass the local variable
-            `req_field`
-            from outer scope
-            :return: True if the current entry contains all required fields,
-            False otherwise
+            :param entry_type: Anchor variable to pass the local variable `entry_type` from outer scope
+            :param req_field: Anchor variable to pass the local variable `req_field` from outer scope
+            :return: True if the current entry contains all required fields, False otherwise
             """
             if entry.type == entry_type:
                 return req_field in entry.fields
             else:
                 return True
+
+        if req_field == 'date':
+            register_variant_rule(entry_type, 'year', 'date')
