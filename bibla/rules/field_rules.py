@@ -67,5 +67,7 @@ for entry_type, spec in get_config()['type_spec'].items():
             else:
                 return True
 
-        if req_field == 'date':
-            register_variant_rule(entry_type, 'year', 'date')
+        alternate_fields = get_config()['alternate_fields']
+        if req_field in alternate_fields:
+            for alt_field in alternate_fields[req_field]:
+                register_variant_rule(entry_type, alt_field, req_field)

@@ -11,45 +11,9 @@ abbreviation_dot: True  # abbreviate middle names with dot (John F. Kennedy) as 
 # This specification is used to generate M01 and U01 rules
 # These have been further adapted to work with BibLaTeX entry types.
 type_spec:
-  # article: # An article from a journal or magazine.
-  #   required: [ title, journal, year, volume ]
-  #   optional: [ number, pages, month, doi, key, file ]
-  # book: # A book with an explicit publisher.
-  #   required: [ title, publisher, year ]
-  #   optional: [ volume, number, series, address, edition, month, key, url, file, isbn ]
-  # booklet: # A work that is printed and bound, but without a named publisher or sponsoring institution.
-  #   required: [ title ]
-  #   optional: [ howpublished, address, month, year, key, file ]
-  # conference: # The same as inproceedings, included for Scribe compatibility.
-  #   required: [ title, booktitle, year ]
-  #   optional: [ volume, number, series, pages, address, month, organization, publisher, key, file ]
-  # inbook: # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
-  #   required: [ title, chapter, pages, publisher, year ]
-  #   optional: [ volume, number, series, type, address, edition, month, key, file ]
   incollection: # A part of a book having its own title.
     required: [ title, booktitle, publisher, year ]
     optional: [ volume, number, series, type, chapter, pages, address, edition, month, key, file ]
-  # inproceedings: # An article in a conference proceedings.
-  #   required: [ title, booktitle, year ]
-  #   optional: [ volume, number, series, pages, address, month, organization, publisher, key, file, doi ]
-  # manual: # Technical documentation.
-  #   required: [ title ]
-  #   optional: [ organization, address, edition, month, year, key, file ]
-  # mastersthesis: # A Master's thesis.
-  #   required: [ title, school, year ]
-  #   optional: [ type, address, month, key, file ]
-  # misc: # For use when nothing else fits.
-  #   required: [ ]
-  #   optional: [ title, howpublished, month, year, key, file ]
-  # phdthesis: # A Ph.D. thesis.
-  #   required: [ title, school, year ]
-  #   optional: [ type, address, month, key, file ]
-  # proceedings: # The proceedings of a conference.
-  #   required: [ title, year ]
-  #   optional: [ volume, number, series, address, month, publisher, organization, key, file ]
-  # techreport: # A report published by a school or other institution, usually numbered within a series.
-  #   required: [ title, institution, year ]
-  #   optional: [ type, number, address, month, key, file ]
   unpublished: # A document having an author and title, but not formally published.
     required: [title]
     optional: [month, year, key, file]
@@ -109,3 +73,8 @@ type_spec:
   phdthesis:
     required: [title, date, type, institution]
     optional: [url]
+
+
+alternate_fields:
+  date: [year] # Month and day will not be used alone, so when we just check for the year, that'll be fine.
+  
