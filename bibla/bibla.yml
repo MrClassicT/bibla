@@ -74,7 +74,12 @@ type_spec:
     required: [title, date, type, institution]
     optional: [url]
 
+alias_entry_types:
+    misc: [software]
+    online: [electronic, www]
+    inproceedings: [conference]
+    report: [techreport]
+    thesis: [mastersthesis, phdthesis]
 
 alternate_fields:
   date: [year] # Month and day will not be used alone, so when we just check for the year, that'll be fine.
-  

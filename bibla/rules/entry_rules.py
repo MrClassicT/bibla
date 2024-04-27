@@ -269,3 +269,32 @@ def month_format(key, entry, database):
     if 'month' not in entry.fields:
         return True
     return entry.fields['month'] in MONTH_NAMES.keys()
+
+
+def register_alternate_entry_type_rule(entry_type, alt_entry_type):
+    rule_id = 'E11{}{}'.format(entry_type.capitalize(), alt_entry_type.capitalize())
+    message = "{} is an alias, please use the original type {} instead for this entry.".format(alt_entry_type, entry_type)
+
+    @register_entry_rule(rule_id, message)
+    def check_alias_entry_type(key, entry, database, entry_type=entry_type, alt_entry_type=alt_entry_type):
+        """Raise a linter warning when an alias entry type is used instead of the original one.
+
+        This function checks if the entry type is an alias entry type.
+        If it is, it suggests to use the preferred/original entry type instead.
+
+        :param key: The key of the current bibliography entry
+        :param entry: The current bibliography entry
+        :param database: All bibliography entries
+        :param entry_type: The preferred/original entry type
+        :param alt_entry_type: The alias entry type
+        :return: False if the alias entry type is used, True otherwise
+        """
+        if entry.type == alt_entry_type:
+            return False
+        else:
+            return True
+
+alias_entry_types = get_config().get('alias_entry_types', {})
+for entry_type, alt_entry_types in alias_entry_types.items():
+    for alt_entry_type in alt_entry_types:
+        register_alternate_entry_type_rule(entry_type, alt_entry_type)
