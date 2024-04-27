@@ -212,9 +212,9 @@ def isbn_format(key, entry, database):
 
 @register_entry_rule(
     'E08',
-    'End page larger than start page. Page numbers in '
-    'aaaa--bb should be written as aaaa--aabb')
-def page_format_ascending(key, entry, database):
+    '`pages` field formatting is incorrect. Please use the following format: 123--456. '
+    'In ascending order seperated with two dashes.')
+def page_format(key, entry, database):
     """Raise a linter warning when large page numbers are abbreviated.
 
     Page numbers where only the changing digit of the ending page are displayed
@@ -228,13 +228,13 @@ def page_format_ascending(key, entry, database):
     when the page field is abbreviated or the ending page number is larger than
     the starting page number.
     """
-    if 'page' not in entry.fields:
+    if 'pages' not in entry.fields:
         return True
     page_regex = r'^\d+--\d+$'
     regex = re.compile(page_regex)
-    if not regex.match(entry.fields['page']):
-        return True
-    groups = entry.fields['page'].split('--')
+    if not regex.match(entry.fields['pages']):
+        return False
+    groups = entry.fields['pages'].split('--')
     if len(groups) <= 1:
         return True
     return int(groups[1]) >= int(groups[0])
@@ -273,7 +273,7 @@ def month_format(key, entry, database):
 
 def register_alternate_entry_type_rule(entry_type, alt_entry_type):
     rule_id = 'E11{}{}'.format(entry_type.capitalize(), alt_entry_type.capitalize())
-    message = "{} is an alias, please use the original type {} instead for this entry.".format(alt_entry_type, entry_type)
+    message = "`{}` is an alias, please use the original type `{}` instead.".format(alt_entry_type, entry_type)
 
     @register_entry_rule(rule_id, message)
     def check_alias_entry_type(key, entry, database, entry_type=entry_type, alt_entry_type=alt_entry_type):
