@@ -313,3 +313,19 @@ def check_homepage_in_url(key, entry, database):
     if regex.match(url):
         return False
     return True
+
+@register_entry_rule('E13', 'URLs should only include the critical parts and nothing more')
+def check_url_directive_parts(key, entry, database):
+    """Raise a linter warning when a URL field contains text highlighting directive parts.
+
+    :param key: The key of the current bibliography entry
+    :param entry: The current bibliography entry
+    :param database: All bibliography entries
+    :return: True if the URL field does not contain any text highlighting directive parts, False otherwise.
+    """
+    if 'url' not in entry.fields:
+        return True
+    url = entry.fields['url']
+    if '#' or '?' or '%' in url:
+        return False
+    return True
