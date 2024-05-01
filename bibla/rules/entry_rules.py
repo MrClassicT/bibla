@@ -32,7 +32,6 @@ def key_format(key, entry, database):
     if 'date' not in entry.fields or list(
             itertools.chain(*entry.persons.values())).count == 0:
         return True
-    
     author = entry.persons['author'][0]
     names = author.rich_prelast_names + author.rich_last_names
     date = entry.fields['date']
@@ -239,32 +238,31 @@ def page_format(key, entry, database):
 # TODO - Rework date checking so it checks if the date is:
 # 1. Present
 # 2. Contains either year, month, day or just the year.
-@register_entry_rule('E09', 'Month should be in 3-letter lowercase format')
-def month_format(key, entry, database):
-    """Raise a linter warning when the month name is incorrectly abbreviated.
+@register_entry_rule('E09', 'Entry should use correct date format: YYYY-MM-DD!')
+def correct_date_format(key, entry, database):
+    """Raise a linter warning when the date field does not have the correct format.
 
-    Following month codes are accepted:
-        jan
-        feb
-        mar
-        apr
-        may
-        jun
-        jul
-        aug
-        sep
-        oct
-        nof
+    Format must equal to: YYYY-MM-DD
 
     :param key: The key of the current bibliography entry
     :param entry: The current bibliography entry
     :param database: All bibliography entries
-    :return: True if no month is present or the month is correctly abbreviated,
+    :return: True if no date is present or the date is correctly formatted,
     False otherwise.
     """
-    if 'month' not in entry.fields:
+    if 'date' not in entry.fields:
         return True
-    return entry.fields['month'] in MONTH_NAMES.keys()
+    date = entry.fields['date']
+    regex = re.compile(r'^(\d{4})-(\d{2})-(\d{2})$')
+    match = regex.match(date)
+    if not match:
+        return False
+    year, month, day = map(int, match.groups())
+    if not (1 <= month <= 12):
+        return False
+    if not (1 <= day <= 31):
+        return False
+    return True
 
 
 def register_alternate_entry_type_rule(entry_type, alt_entry_type):
