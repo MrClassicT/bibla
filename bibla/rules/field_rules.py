@@ -71,3 +71,20 @@ for entry_type, spec in get_config()['type_spec'].items():
         if req_field in alternate_fields:
             for alt_field in alternate_fields[req_field]:
                 register_variant_rule(entry_type, alt_field, req_field)
+                
+                
+@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them (e.g. %, &, $, ...)')
+def check_special_characters(key, entry, database):
+    """Raise a linter warning when a field contains special characters that should be replaced.
+
+    :param key: The key of the current bibliography entry
+    :param entry: The current bibliography entry
+    :param database: All bibliography entries
+    :return: True if no field contains special characters, False otherwise.
+    """
+    special_chars = ['%', '&', '$','#','_','{','}','\\','~','^','|']
+    
+    for field in entry.fields.values():
+        if any(char in field for char in special_chars):
+            return False
+    return True
