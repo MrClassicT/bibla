@@ -73,7 +73,7 @@ for entry_type, spec in get_config()['type_spec'].items():
                 register_variant_rule(entry_type, alt_field, req_field)
                 
                 
-@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them (e.g. %, &, $, ...)')
+@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them: %, &, $, #, _, \, {, }, \, ~, ^, |')
 def check_special_characters(key, entry, database):
     """Raise a linter warning when a field contains special characters that should be replaced.
 
