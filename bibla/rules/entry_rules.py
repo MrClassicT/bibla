@@ -9,39 +9,35 @@ from bibla.config import get_config
 from bibla.rule import register_entry_rule
 from bibla.text_utils import MONTH_NAMES
 
-
-# TODO: use of undefined string
-
-
-@register_entry_rule(
-    'E00',
-    'Keys of published works should have format `AuthorYEARa`')
-def key_format(key, entry, database): # TODO - Change so it uses date field instead of year!
+@register_entry_rule('E00','Keys of published works should have format `AuthorYEARa`')
+def key_format(key, entry, database):
     """Raise a linter warning when entry key is not of format `AuthorYEARa`.
 
     E.g. an entry with values
     ```
     author = {Arthur B Cummings and David Eftekhary and Frank G House},
-    year   = {2003}
+    date   = {2003-02-02}
     ```
     should have key `Cummings2003`.
     If another entry with the same year and main author is present,
     their keys should have formats `Cummings2003a` and `Cummings2003b`.
-    This rule only applies when `year` and at least one author are set.
+    This rule only applies when `date` and at least one author are set.
 
     :param key: The key of the current bibliography entry
     :param entry: The current bibliography entry
     :param database: All bibliography entries
     :return: True if the current entry's key has the specified format or
     year or author are not specified, False otherwise.
-    """
-    if 'year' not in entry.fields or list(
-            itertools.chain(*entry.persons.values())):
+    """   
+    if 'date' not in entry.fields or list(
+            itertools.chain(*entry.persons.values())).count == 0:
         return True
+    
     author = entry.persons['author'][0]
     names = author.rich_prelast_names + author.rich_last_names
-    correct_key_unicode = "".join([str(name) for name in names]) + \
-                          entry.fields['year']
+    date = entry.fields['date']
+    year = re.search(r'\d{4}', date).group()
+    correct_key_unicode = "".join([str(name) for name in names]) + year
     correct_key_ascii = unidecode(correct_key_unicode)
     regex = re.compile(correct_key_ascii + r'[a-zA-Z]?')
     return bool(regex.match(key))
@@ -84,10 +80,10 @@ def author_middle_name_abbr(key, entry, database):
     :param entry: The current bibliography entry
     :param database: All bibliography entries
     :return: If `abbreviation_dot` is True:
-        True if all middle names of persons in the current entry are
+        True if all middle names of people in the current entry are
         abbreviated with a period, False otherwise.
     If `abbreviation_dot` is False:
-        True if all middle names of persons in the current entry are
+        True if all middle names of people in the current entry are
         abbreviated without a period, False otherwise.
     """
     for person in itertools.chain(*entry.persons.values()):
