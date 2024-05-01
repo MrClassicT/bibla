@@ -238,7 +238,7 @@ def page_format(key, entry, database):
 # TODO - Rework date checking so it checks if the date is:
 # 1. Present
 # 2. Contains either year, month, day or just the year.
-@register_entry_rule('E09', 'Entry should use correct date format: YYYY-MM-DD!')
+@register_entry_rule('E09', 'Entry should use correct date format: YYYY-MM-DD! If either MM or DD are unknown, use YYYY only.')
 def correct_date_format(key, entry, database):
     """Raise a linter warning when the date field does not have the correct format.
 
@@ -256,7 +256,11 @@ def correct_date_format(key, entry, database):
     regex = re.compile(r'^(\d{4})-(\d{2})-(\d{2})$')
     match = regex.match(date)
     if not match:
-        return False
+        regex = re.compile(r'^(\d{4})$')
+        match = regex.match(date)
+        if not match:
+            return False
+        return True
     year, month, day = map(int, match.groups())
     if not (1 <= month <= 12):
         return False
