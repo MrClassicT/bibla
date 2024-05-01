@@ -296,3 +296,20 @@ alias_entry_types = get_config().get('alias_entry_types', {})
 for entry_type, alt_entry_types in alias_entry_types.items():
     for alt_entry_type in alt_entry_types:
         register_alternate_entry_type_rule(entry_type, alt_entry_type)
+        
+@register_entry_rule('E12', 'Homepages should not be used as a source')
+def check_homepage_in_url(key, entry, database):
+    """Raise a linter warning when a URL field contains a homepage.
+
+    :param key: The key of the current bibliography entry
+    :param entry: The current bibliography entry
+    :param database: All bibliography entries
+    :return: True if the URL field does not contain a homepage, False otherwise.
+    """
+    if 'url' not in entry.fields:
+        return True
+    url = entry.fields['url']
+    regex = re.compile(r'^(https?://)?[^/]+/?$')
+    if regex.match(url):
+        return False
+    return True
