@@ -45,6 +45,8 @@ setup(
             'anybadge',
             'markdown',
             'check-manifest',
+            'setuptools',
+            'wheel',
             'twine',
         ]
     },
