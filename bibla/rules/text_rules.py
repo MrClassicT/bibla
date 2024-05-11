@@ -2,8 +2,8 @@
 
 import re
 
-from bibl.config import get_config
-from bibl.rule import register_text_rule
+from bibla.config import get_config
+from bibla.rule import register_text_rule
 
 
 @register_text_rule('T00', 'Non-ascii character')

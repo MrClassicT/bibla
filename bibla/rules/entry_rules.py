@@ -5,43 +5,38 @@ import os
 import re
 from unidecode import unidecode
 
-from bibl.config import get_config
-from bibl.rule import register_entry_rule
-from bibl.text_utils import MONTH_NAMES
+from bibla.config import get_config
+from bibla.rule import register_entry_rule
+from bibla.text_utils import MONTH_NAMES
 
-
-# TODO: use of undefined string
-
-
-@register_entry_rule(
-    'E00',
-    'Keys of published works should have format `AuthorYEARa`')
+@register_entry_rule('E00','Keys of published works should have format `AuthorYEARa`')
 def key_format(key, entry, database):
     """Raise a linter warning when entry key is not of format `AuthorYEARa`.
 
     E.g. an entry with values
     ```
     author = {Arthur B Cummings and David Eftekhary and Frank G House},
-    year   = {2003}
+    date   = {2003-02-02}
     ```
     should have key `Cummings2003`.
     If another entry with the same year and main author is present,
     their keys should have formats `Cummings2003a` and `Cummings2003b`.
-    This rule only applies when `year` and at least one author are set.
+    This rule only applies when `date` and at least one author are set.
 
     :param key: The key of the current bibliography entry
     :param entry: The current bibliography entry
     :param database: All bibliography entries
     :return: True if the current entry's key has the specified format or
     year or author are not specified, False otherwise.
-    """
-    if 'year' not in entry.fields or list(
-            itertools.chain(*entry.persons.values())):
+    """   
+    if 'date' not in entry.fields or list(
+            itertools.chain(*entry.persons.values())).count == 0:
         return True
     author = entry.persons['author'][0]
     names = author.rich_prelast_names + author.rich_last_names
-    correct_key_unicode = "".join([str(name) for name in names]) + \
-                          entry.fields['year']
+    date = entry.fields['date']
+    year = re.search(r'\d{4}', date).group()
+    correct_key_unicode = "".join([str(name) for name in names]) + year
     correct_key_ascii = unidecode(correct_key_unicode)
     regex = re.compile(correct_key_ascii + r'[a-zA-Z]?')
     return bool(regex.match(key))
@@ -84,10 +79,10 @@ def author_middle_name_abbr(key, entry, database):
     :param entry: The current bibliography entry
     :param database: All bibliography entries
     :return: If `abbreviation_dot` is True:
-        True if all middle names of persons in the current entry are
+        True if all middle names of people in the current entry are
         abbreviated with a period, False otherwise.
     If `abbreviation_dot` is False:
-        True if all middle names of persons in the current entry are
+        True if all middle names of people in the current entry are
         abbreviated without a period, False otherwise.
     """
     for person in itertools.chain(*entry.persons.values()):
@@ -212,9 +207,9 @@ def isbn_format(key, entry, database):
 
 @register_entry_rule(
     'E08',
-    'End page larger than start page. Page numbers in '
-    'aaaa--bb should be written as aaaa--aabb')
-def page_format_ascending(key, entry, database):
+    '`pages` field formatting is incorrect. Please use the following format: 123--456. '
+    'In ascending order seperated with two dashes.')
+def page_format(key, entry, database):
     """Raise a linter warning when large page numbers are abbreviated.
 
     Page numbers where only the changing digit of the ending page are displayed
@@ -228,41 +223,109 @@ def page_format_ascending(key, entry, database):
     when the page field is abbreviated or the ending page number is larger than
     the starting page number.
     """
-    if 'page' not in entry.fields:
+    if 'pages' not in entry.fields:
         return True
     page_regex = r'^\d+--\d+$'
     regex = re.compile(page_regex)
-    if not regex.match(entry.fields['page']):
-        return True
-    groups = entry.fields['page'].split('--')
+    if not regex.match(entry.fields['pages']):
+        return False
+    groups = entry.fields['pages'].split('--')
     if len(groups) <= 1:
         return True
     return int(groups[1]) >= int(groups[0])
 
 
-@register_entry_rule('E09', 'Month should be in 3-letter lowercase format')
-def month_format(key, entry, database):
-    """Raise a linter warning when the month name is incorrectly abbreviated.
+@register_entry_rule('E09', 'Entry should use correct date format: YYYY-MM-DD or YYYY-MM!')
+def correct_date_format(key, entry, database):
+    """Raise a linter warning when the date field does not have the correct format.
 
-    Following month codes are accepted:
-        jan
-        feb
-        mar
-        apr
-        may
-        jun
-        jul
-        aug
-        sep
-        oct
-        nof
+    Format must equal to: YYYY-MM-DD
 
     :param key: The key of the current bibliography entry
     :param entry: The current bibliography entry
     :param database: All bibliography entries
-    :return: True if no month is present or the month is correctly abbreviated,
+    :return: True if no date is present or the date is correctly formatted,
     False otherwise.
     """
-    if 'month' not in entry.fields:
+    if 'date' not in entry.fields:
         return True
-    return entry.fields['month'] in MONTH_NAMES.keys()
+    date = entry.fields['date']
+    regex = re.compile(r'^(\d{4})-(\d{2})-(\d{2})$')
+    match = regex.match(date)
+    if not match:
+        regex = re.compile(r'^(\d{4})-(\d{2})$')
+        match = regex.match(date)
+        if not match:
+            return False
+        year, month = map(int, match.groups())
+        if not (1 <= month <= 12):
+            return False
+        return True
+    year, month, day = map(int, match.groups())
+    if not (1 <= month <= 12):
+        return False
+    if not (1 <= day <= 31):
+        return False
+    return True
+
+
+def register_alternate_entry_type_rule(entry_type, alt_entry_type):
+    rule_id = 'E11{}{}'.format(entry_type.capitalize(), alt_entry_type.capitalize())
+    message = "`{}` is an alias, please use the original type `{}` instead.".format(alt_entry_type, entry_type)
+
+    @register_entry_rule(rule_id, message)
+    def check_alias_entry_type(key, entry, database, entry_type=entry_type, alt_entry_type=alt_entry_type):
+        """Raise a linter warning when an alias entry type is used instead of the original one.
+
+        This function checks if the entry type is an alias entry type.
+        If it is, it suggests to use the preferred/original entry type instead.
+
+        :param key: The key of the current bibliography entry
+        :param entry: The current bibliography entry
+        :param database: All bibliography entries
+        :param entry_type: The preferred/original entry type
+        :param alt_entry_type: The alias entry type
+        :return: False if the alias entry type is used, True otherwise
+        """
+        if entry.type == alt_entry_type:
+            return False
+        else:
+            return True
+
+alias_entry_types = get_config().get('alias_entry_types', {})
+for entry_type, alt_entry_types in alias_entry_types.items():
+    for alt_entry_type in alt_entry_types:
+        register_alternate_entry_type_rule(entry_type, alt_entry_type)
+        
+@register_entry_rule('E12', 'Homepages should not be used as a source')
+def check_homepage_in_url(key, entry, database):
+    """Raise a linter warning when a URL field contains a homepage.
+
+    :param key: The key of the current bibliography entry
+    :param entry: The current bibliography entry
+    :param database: All bibliography entries
+    :return: True if the URL field does not contain a homepage, False otherwise.
+    """
+    if 'url' not in entry.fields:
+        return True
+    url = entry.fields['url']
+    regex = re.compile(r'^(https?://)?[^/]+/?$')
+    if regex.match(url):
+        return False
+    return True
+
+@register_entry_rule('E13', 'URLs should only include the critical parts and nothing more')
+def check_url_directive_parts(key, entry, database):
+    """Raise a linter warning when a URL field contains text highlighting directive parts.
+
+    :param key: The key of the current bibliography entry
+    :param entry: The current bibliography entry
+    :param database: All bibliography entries
+    :return: True if the URL field does not contain any text highlighting directive parts, False otherwise.
+    """
+    if 'url' not in entry.fields:
+        return True
+    url = entry.fields['url']
+    if ('#' or '?' or '%') in url:
+        return False
+    return True

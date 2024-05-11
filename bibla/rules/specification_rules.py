@@ -1,7 +1,7 @@
 """Linter rules checking consistency with entry and field type spec."""
 
-from bibl.config import get_config
-from bibl.rule import register_entry_rule
+from bibla.config import get_config
+from bibla.rule import register_entry_rule
 
 
 @register_entry_rule('U00', 'Unrecognized entry type')

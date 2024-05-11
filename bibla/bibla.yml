@@ -1,0 +1,85 @@
+---
+## DEFAULT bibla CONFIG
+select: [ ]             # List of enabled rules, all other rules will be disabled
+ignore: [ D00, T00, T02, T03, U01* ]  # List of disabled rules, all other rules will be enabled -  The disabled rules from bibl just seem to make less sense for Bibla. Personal choices may apply.
+# Specify max 1 of the two options above. If none are specified, all rules will be enabled
+indent_spaces: 2        # number of trailing whitespaces for indented line, used by TO1
+max_line_length: 120    # max line length before wrap optional, used by T03
+abbreviation_dot: True  # abbreviate middle names with dot (John F. Kennedy) as opposed to without (John F Kennedy), used by E02
+
+# Specification from https://en.wikipedia.org/wiki/bibtex extended with fields used in JabRef.
+# This specification is used to generate M01 and U01 rules
+# These have been further adapted to work with BibLaTeX entry types.
+type_spec:
+  incollection: # A part of a book having its own title.
+    required: [ title, booktitle, publisher, year ]
+    optional: [ volume, number, series, type, chapter, pages, address, edition, month, key, file ]
+  unpublished: # A document having an author and title, but not formally published.
+    required: [title]
+    optional: [month, year, key, file]
+  
+ # For HOGENT students. - previously used ones have been disabled above.
+  article:
+    required: [title, journaltitle, date]
+    optional: [doi, volume, number, pages]
+  book:
+    required: [title, date, publisher]
+    optional: [isbn]
+  inbook:
+    required: [title, booktitle, date, publisher]
+    optional: [isbn ,doi, pages]
+  booklet:
+    required: [title, date, publisher]
+    optional: [isbn , doi, url, howpublished]
+  dataset:
+    required: [title, date, url, urldate]
+    optional: []
+  manual:
+    required: [ title, date]
+    optional: [organization, publisher, isbn, doi, url ]
+  software:
+    required: [ title, date]
+    optional: []
+  misc:
+    required: [ title, date]
+    optional: []
+  online:
+    required: [ title, date, url, urldate]
+    optional: []
+  electronic:
+    required: [ title, date, url, urldate]
+    optional: []
+  www:
+    required: [ title, date, url, urldate]
+    optional: []
+  inproceedings:
+    required: [title, booktitle, date]
+    optional: [ eventtitle, isbn, doi, url]
+  conference:
+    required: [title, booktitle, date]
+    optional: [ eventtitle, isbn, doi, url]
+  report:
+    required: [title, date, type, institution]
+    optional: [doi, url]
+  techreport:
+    required: [title, date, type, institution]
+    optional: [doi, url]
+  thesis:
+    required: [title, date, type, institution]
+    optional: [url]
+  mastersthesis:
+    required: [title, date, type, institution]
+    optional: [url]
+  phdthesis:
+    required: [title, date, type, institution]
+    optional: [url]
+
+alias_entry_types:
+    misc: [software]
+    online: [electronic, www]
+    inproceedings: [conference]
+    report: [techreport]
+    thesis: [mastersthesis, phdthesis]
+
+alternate_fields:
+  date: [year] # Month and day will not be used alone, so when we just check for the year, that'll be fine.

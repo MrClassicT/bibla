@@ -3,11 +3,13 @@ import logging
 import sys
 from dataclasses import dataclass
 from typing import List, Iterable
+from pybtex.database import BibliographyDataError
+import re
 
 import pybtex
 from pybtex.database import parse_file
-from bibl.rule import load_rules, Rule, EntryRule, TextRule
-from bibl.text_utils import find_entry_line_number, MONTH_NAMES
+from bibla.rule import load_rules, Rule, EntryRule, TextRule
+from bibla.text_utils import find_entry_line_number, MONTH_NAMES
 
 logger = logging.getLogger()
 logger.setLevel(logging.WARNING)
@@ -46,7 +48,24 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
     :return: a list of LintWarning objects representing the linter violations
     found while running
     """
-    bib_data = parse_file(bibliography, macros=MONTH_NAMES)
+    try:
+        bib_data = parse_file(bibliography, macros=MONTH_NAMES)
+    except BibliographyDataError as e:
+        # Extract the key from the error message
+        match = re.search(r'repeated bibliograhpy entry: (.*)', str(e))
+        if match:
+            duplicate_key = match.group(1)
+            print(f"{bibliography} D03: Duplicate entry with key '{duplicate_key}'")
+        else:
+            print(f"Warning: {e}")
+        return []
+    except pybtex.scanner.TokenRequired as e:
+        print(f"E00: {e}")
+        return []
+    except Error as e:
+        print(f"Error: {e}")
+        return []
+    
     bib_data.file = bibliography
     with open(bibliography, 'r') as bib_file:
         bib_text = bib_file.read()

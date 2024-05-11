@@ -1,26 +1,26 @@
-# bibl
+# bibla
 
-`bibl` is a minimalistic linter (style checker) for [BibTeX](http://www.bibtex.org/) files with support for libraries
+`bibla` is a minimalistic linter (style checker) for [biblatex](http://www.biblatex.org/) files with support for libraries
 managed by [JabRef](https://www.jabref.org/).
-`bibl` does not come with its own BibTeX parser, but leverages the [pybtex](https://pybtex.org/) parser.
+`bibla` does not come with its own biblatex parser, but leverages the [pybtex](https://pybtex.org/) parser.
 
 ## Installation
 
 ```shell script
-pip install bibl
+pip install bibla
 ```
 ## Usage
 
-Run bibl on your BibTeX files with the following command
+Run bibla on your biblatex files with the following command
 ```shell script
-bibl lint bibliography1.bib bibliography2.bib ... 
+bibla lint bibliography1.bib bibliography2.bib ... 
 ```
 or as a python module with
 ```shell script
-python -m bibl lint bibliography1.bib bibliography2.bib ... 
+python -m bibla lint bibliography1.bib bibliography2.bib ... 
 ```
 
-bibl will check these files for a variety of style issues and deviations from the BibTeX spec (http://www.bibtex.org/Format/, https://en.wikipedia.org/wiki/BibTeX).
+bibla will check these files for a variety of style issues and deviations from the biblatex spec (http://www.biblatex.org/Format/, https://en.wikipedia.org/wiki/biblatex).
 Each possible type of issue is formulated as a rule. Each rule is identified by a unique code. Some examples of rules are 
 
 Rule ID|Rule description
@@ -33,7 +33,7 @@ Rule ID|Rule description
 `M01ArticleYear`|Missing required field `year` for entry type `article`
 ...|...
 
-This link provides a [list of all available rules](http://gitlab.com/arne.vandenkerchove/bibl/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+This link provides a [list of all available rules](http://gitlab.com/arne.vandenkerchove/bibla/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
 generated with the default configuration (see Configuration section below).
 
 
@@ -43,11 +43,11 @@ You can specify which rules to check by using `--select` or `--ignore`. Wildcard
 enable the specified rules, disabling all other rules, while `--ignore` will disable all rules except the ones specified.
 `--select` and `--ignore` may not be specified simultaneously.
 ```shell script
-bibl --select "D*,E06,T01" lint bibliography.bib
+bibla --select "D*,E06,T01" lint bibliography.bib
 ```
 will only check all rules starting with D, rule E06 and rule T01
 ```
-bibl --ignore "D*,E06,T01" lint bibliography.bib
+bibla --ignore "D*,E06,T01" lint bibliography.bib
 ```
 will check all rules except all rules starting with D, rule E06 and rule T01
 
@@ -57,10 +57,10 @@ Aside from `--select` and `--ignore`, other configuration options can be provide
 to specify the line length for which an issue should be reported if exceeded. See below for a full list.
 
 Configuration can also be specified in a yaml format configuration file, provided by the `--config` option.
-If no configuration file is provided and a `bibl.yml` or `.bibl.yml` file is present in the current working directory,
+If no configuration file is provided and a `bibla.yml` or `.bibla.yml` file is present in the current working directory,
 this file will be used as a configuration file.
 Command line option configuration will override configuration provided by a file.
-See the default configuration [bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/bibl/bibl.yml) for
+See the default configuration [bibla.yml](https://gitlab.com/arne.vandenkerchove/bibla/-/tree/master/bibla/bibla.yml) for
 all values that can be overwritten in a configuration file.
 
 Some rules, like the various `M01*`, `M02*` and `U01*` rules, are procedurally generated based on the `type_spec` setting.
@@ -70,7 +70,7 @@ while linting.
 
 ## CLI
 ```shell script
-Usage: bibl [OPTIONS] COMMAND [ARGS]...
+Usage: bibla [OPTIONS] COMMAND [ARGS]...
 
 Options:
   -c, --config TEXT          Custom configuration file path.
@@ -90,21 +90,21 @@ Options:
   --help                     Show this message and exit.
 
 Commands:
-  lint          Lint a BibTeX bibliography file.
+  lint          Lint a biblatex bibliography file.
   list-all      Show all available rules.
   list-enabled  Show all rules enabled by the configuration.
   version       Show the package version.
 ```
 ```shell script
-Usage: bibl lint [OPTIONS] [BIBLIOGRAPHY]...
+Usage: bibla lint [OPTIONS] [BIBLIOGRAPHY]...
 
-  Lint a BibTeX bibliography file.
+  Lint a biblatex bibliography file.
 
 Options:
   --help  Show this message and exit.
 ```
 ```shell script
-Usage: bibl list-all [OPTIONS]
+Usage: bibla list-all [OPTIONS]
 
   Show all available rules.
 
@@ -113,7 +113,7 @@ Options:
   --help  Show this message and exit.
 ```
 ```shell script
-Usage: bibl list-enabled [OPTIONS]
+Usage: bibla list-enabled [OPTIONS]
 
   Show all rules enabled by the configuration.
 

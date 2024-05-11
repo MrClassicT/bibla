@@ -1,4 +1,4 @@
-"""Text processing helper functions for linter rules and bibl commands."""
+"""Text processing helper functions for linter rules and bibla commands."""
 
 import re
 from typing import List
@@ -6,7 +6,7 @@ from typing import List
 import markdown_table
 
 # Month name dictionary for pybtex
-from bibl.rule import Rule
+from bibla.rule import Rule
 
 MONTH_NAMES = {
     'jan': 'jan',
@@ -34,7 +34,10 @@ def find_match_line_number(text: str, pattern: str, group: int) -> (int, int):
     specified match, offset of the first occurrence of the match in the line
     """
     regex = re.compile(pattern)
-    match = next(regex.finditer(text))
+    try:
+        match = next(regex.finditer(text))
+    except StopIteration:
+        return 0, 0
     start = match.start(group)
     lineno = text.count('\n', 0, start)
     if lineno:
@@ -47,7 +50,7 @@ def find_match_line_number(text: str, pattern: str, group: int) -> (int, int):
 def find_entry_line_number(text: str, key: str) -> (int, int):
     r"""Find the file line number of a pybtex entry.
 
-    :param text: BibTeX file string
+    :param text: biblatex file string
     :param key: Entry key
     :return: Line number (based on \n characters) of first occurrence of the
     entry key, offset of the first occurrence of the key in the line
@@ -57,12 +60,12 @@ def find_entry_line_number(text: str, key: str) -> (int, int):
 
 
 def format_rules_markdown_tables(rules: List[Rule]) -> str:
-    """Format a list of bibl rules as a Markdown table.
+    """Format a list of bibla rules as a Markdown table.
 
     :param: rules: a list of Rule instances
     :return: A string containing a markdown table of human readable rules
     """
-    result = "# bibl rules\n"
+    result = "# bibla rules\n"
     headers = ["Rule ID", "Rule description"]
     matrix = []
     for i, rule in enumerate(rules):
