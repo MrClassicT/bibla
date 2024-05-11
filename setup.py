@@ -39,9 +39,6 @@ setup(
     ],
     extras_require={
         'dev': [
-            'flake8',
-            'pep8-naming',
-            'flake8-docstrings',
             'anybadge',
             'markdown',
             'check-manifest',
