@@ -82,9 +82,11 @@ def check_special_characters(key, entry, database):
     :param database: All bibliography entries
     :return: True if no field contains special characters, False otherwise.
     """
-    special_chars = ['%', '&', '$','#','_','{','}','\\','~','^','|']
+    special_chars = ['%', '&', '$','#','_','\\','~','^','|']
     
     for field in entry.fields.values():
         if any(char in field for char in special_chars):
-            return False
+            for char in special_chars:
+                if char in field and field[field.index(char) - 1] != '\\':
+                    return False
     return True
