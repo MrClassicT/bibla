@@ -1,6 +1,6 @@
-"""`bibla` is a minimalistic linter (style checker) for BibLaTeX files. This is a fork of the original `bibla` by Arne Van Den Kerchove.
+"""`bibla` is a minimalistic linter (style checker) for BibLaTeX files. This is a fork of the original `bibl` from Arne Van Den Kerchove, by Tristan Cuvelier.
 
-More information about bibla at https://gitlab.com/arne.vandenkerchove/bibla
+More information about bibl at https://gitlab.com/arne.vandenkerchove/bibla
 """
 
 from setuptools import setup
@@ -13,7 +13,7 @@ from bibla import __version__
 setup(
     name='bibla',
     version=__version__,
-    description='A minimalistic bibLaTeX linter based on bibla by Tristan Cuvelier.',
+    description='A minimalistic bibLaTeX linter based by Tristan Cuvelier.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/MrClassicT/bibla',
@@ -30,7 +30,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'click>=7,<8',
+        'click>=7',
         'fuzzywuzzy>=0.10,<1',
         'markdown-table',
         'pybtex==0.23.0',
