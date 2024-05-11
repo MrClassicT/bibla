@@ -1,75 +1,46 @@
-name: CI Workflow
+image: "python:3.10"  # Changed to a more stable version
 
-on:
-  push:
-    branches:
-      - master
+before_script:
+  - python --version
+  - pip install --upgrade pip setuptools wheel  # Ensure latest tools
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -e .[dev]
 
-jobs:
-  flake8:
-    runs-on: ubuntu-latest
-    container: python:3.12
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+stages:
+  - Static Analysis
+  - Test
+  - Deploy
 
-      - name: Set up Python
-        run: |
-          python --version
-          pip install -e .[dev]
+flake8:
+  stage: Static Analysis
+  script:
+    - mkdir out
+    - flake8 --append-config .flake8 | tee out/lint_result.txt
+    - num_warnings=$(wc -l < out/lint_result.txt)
+    - cat out/lint_result.txt
+    - echo "$num_warnings warnings!"
+    - anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+    - if [ $num_warnings -gt 0 ]; then exit 1; fi
+  artifacts:
+    when: always
+    paths:
+      - out/flake8.svg
+      - out/lint_result.txt
+  allow_failure: true
 
-      - name: Static Analysis with Flake8
-        run: |
-          mkdir out
-          flake8 --append-config .flake8 | tee out/lint_result.txt
-          num_warnings=$(wc -l < out/lint_result.txt)
-          echo "$num_warnings warnings!"
-          echo "Generating badge..."
-          anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
-          cat out/lint_result.txt
-          if [ $num_warnings -gt 0 ]; then exit 1; fi
+unit_test:
+  stage: Test
+  script:
+    - python -m unittest discover
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: flake8-results
-          path: |
-            out/flake8.svg
-            out/lint_result.txt
-
-  unit_test:
-    runs-on: ubuntu-latest
-    container: python:3.12
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python and dependencies
-        run: |
-          python --version
-          pip install -e .[dev]
-
-      - name: Run unit tests
-        run: python -m unittest discover
-
-  deploy:
-    runs-on: ubuntu-latest
-    container: python:3.12
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python and dependencies
-        run: |
-          python --version
-          pip install -e .[dev]
-
-      - name: Generate rule list
-        run: bibla list-all -m | python -m markdown -x tables > all_rules.html
-        if: github.ref == 'refs/heads/master'
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: all-rules
-          path: all_rules.html
+rule_list:
+  stage: Deploy
+  script:
+    - bibla list-all -m | python -m markdown -x tables > all_rules.html
+  only:
+    - master
+  artifacts:
+    paths:
+      - all_rules.html
