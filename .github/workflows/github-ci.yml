@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install git+https://$BIBLA_GITHUB_TOKEN@github.com/mrclassict/bibla.git
+        pip install git+https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
         pip install -e .[dev]
         pip install pylint
     - name: Analysing the code with pylint
@@ -38,7 +38,7 @@ jobs:
       - name: Set up Python and dependencies
         run: |
           python --version
-          pip install git+https://$BIBLA_GITHUB_TOKEN@github.com/mrclassict/bibla.git
+          pip install git+https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
           pip install -e .[dev]
 
       - name: Run unit tests
@@ -54,7 +54,7 @@ jobs:
       - name: Set up Python and dependencies
         run: |
           python --version
-          pip install git+https://$BIBLA_GITHUB_TOKEN@github.com/mrclassict/bibla.git
+          pip install git+https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
           pip install -e .[dev]
 
       - name: Generate rule list
