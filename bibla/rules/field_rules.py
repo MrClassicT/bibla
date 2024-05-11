@@ -22,7 +22,6 @@ def register_variant_rule(entry_type, field, variant):
     rule_id = 'E10{}{}'.format(entry_type.capitalize(), field.capitalize())
     message = "Use `{}` instead of `{}`!".format(variant, field)
 
-
     @register_entry_rule(rule_id, message)
     def check_variant_field(key, entry, database, entry_type=entry_type, field=field, variant=variant):
         """Raise a linter warning when a specific field is used instead of its variant.
