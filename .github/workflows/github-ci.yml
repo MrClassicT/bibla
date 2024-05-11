@@ -23,10 +23,25 @@ jobs:
         pip install git+https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
         pip install --upgrade setuptools wheel
         pip install -e .[dev]
-        pip install pylint
-    - name: Analysing the code with pylint
+        pip install flake8
+      - name: Static Analysis with Flake8
       run: |
-        pylint $(git ls-files '*.py')
+        mkdir out
+        flake8 --append-config .flake8 | tee out/lint_result.txt
+        num_warnings=$(wc -l < out/lint_result.txt)
+        echo "$num_warnings warnings!"
+        echo "Generating badge..."
+        anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+        cat out/lint_result.txt
+        if [ $num_warnings -gt 0 ]; then exit 1; fi
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: flake8-results
+        path: |
+          out/flake8.svg
+          out/lint_result.txt
 
 
   unit_test:
