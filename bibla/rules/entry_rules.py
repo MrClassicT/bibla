@@ -273,7 +273,6 @@ def register_alternate_entry_type_rule(entry_type, alt_entry_type):
     rule_id = 'E11{}{}'.format(entry_type.capitalize(), alt_entry_type.capitalize())
     message = "`{}` is an alias, please use the original type `{}` instead.".format(alt_entry_type, entry_type)
 
-
     @register_entry_rule(rule_id, message)
     def check_alias_entry_type(key, entry, database, entry_type=entry_type, alt_entry_type=alt_entry_type):
         """Raise a linter warning when an alias entry type is used instead of the original one.
@@ -293,12 +292,13 @@ def register_alternate_entry_type_rule(entry_type, alt_entry_type):
         else:
             return True
 
+
 alias_entry_types = get_config().get('alias_entry_types', {})
 for entry_type, alt_entry_types in alias_entry_types.items():
     for alt_entry_type in alt_entry_types:
         register_alternate_entry_type_rule(entry_type, alt_entry_type)
 
-        
+
 @register_entry_rule('E12', 'Homepages should not be used as a source')
 def check_homepage_in_url(key, entry, database):
     """Raise a linter warning when a URL field contains a homepage.

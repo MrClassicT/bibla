@@ -43,11 +43,11 @@ def register_variant_rule(entry_type, field, variant):
         else:
             return True
 
+
 for entry_type, spec in get_config()['type_spec'].items():
     for req_field in spec['required']:
         rule_id = 'M01{}{}'.format(entry_type.capitalize(), req_field.capitalize())
         message = 'Missing required field `{}` for entry type `{}`'.format(req_field, entry_type)
-
 
         @register_entry_rule(rule_id, message)
         def check_required_field_present(key, entry, database, entry_type=entry_type, req_field=req_field):
@@ -75,7 +75,7 @@ for entry_type, spec in get_config()['type_spec'].items():
                 register_variant_rule(entry_type, alt_field, req_field)
 
 
-@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them: %, &, $, #, _, \, {, }, \, ~, ^, |')
+@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them: %, &, $, #, _, \\, ~, ^, |')
 def check_special_characters(key, entry, database):
     """Raise a linter warning when a field contains special characters that should be replaced.
 
