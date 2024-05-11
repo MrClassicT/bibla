@@ -31,17 +31,14 @@ setup(
     ],
     install_requires=[
         'click>=7',
-        'fuzzywuzzy>=0.10,<1',
+        'fuzzywuzzy>=0.10',
         'markdown-table',
         'pybtex==0.23.0',
-        'pyyaml>=5,<6',
+        'pyyaml>=5',
         'unidecode>=1,<2',
     ],
     extras_require={
         'dev': [
-            'flake8',
-            'pep8-naming',
-            'flake8-docstrings',
             'anybadge',
             'markdown',
             'check-manifest',
