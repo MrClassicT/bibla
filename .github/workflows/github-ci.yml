@@ -1,46 +1,64 @@
-image: "python:3.10"  # Changed to a more stable version
+name: Python CI
 
-before_script:
-  - python --version
-  - pip install --upgrade pip setuptools wheel  # Ensure latest tools
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
-  - pip install -e .[dev]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
-stages:
-  - Static Analysis
-  - Test
-  - Deploy
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: python:3.10
 
-flake8:
-  stage: Static Analysis
-  script:
-    - mkdir out
-    - flake8 --append-config .flake8 | tee out/lint_result.txt
-    - num_warnings=$(wc -l < out/lint_result.txt)
-    - cat out/lint_result.txt
-    - echo "$num_warnings warnings!"
-    - anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
-    - if [ $num_warnings -gt 0 ]; then exit 1; fi
-  artifacts:
-    when: always
-    paths:
-      - out/flake8.svg
-      - out/lint_result.txt
-  allow_failure: true
+    steps:
+    - uses: actions/checkout@v2
 
-unit_test:
-  stage: Test
-  script:
-    - python -m unittest discover
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
 
-rule_list:
-  stage: Deploy
-  script:
-    - bibla list-all -m | python -m markdown -x tables > all_rules.html
-  only:
-    - master
-  artifacts:
-    paths:
-      - all_rules.html
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        python -m pip install virtualenv
+        virtualenv venv
+        source venv/bin/activate
+        pip install -e .[dev]
+
+    - name: Lint with Flake8
+      run: |
+        mkdir out
+        flake8 --append-config .flake8 | tee out/lint_result.txt
+        num_warnings=$(wc -l < out/lint_result.txt)
+        echo "$num_warnings warnings!"
+        echo "Generating badge..."
+        anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+        cat out/lint_result.txt
+        if [ $num_warnings -gt 0 ]; then exit 1; fi
+      continue-on-error: true
+
+    - name: Upload Flake8 Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: flake8-results
+        path: out/
+
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        python -m unittest discover
+
+    - name: Deploy
+      if: github.ref == 'refs/heads/master'
+      run: |
+        source venv/bin/activate
+        bibla list-all -m | python -m markdown -x tables > all_rules.html
+      continue-on-error: true
+
+    - name: Upload Deployment Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: deployment-artifact
+        path: all_rules.html
