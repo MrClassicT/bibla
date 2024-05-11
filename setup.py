@@ -13,10 +13,10 @@ from bibla import __version__
 setup(
     name='bibla',
     version=__version__,
-    description='A minimalistic bibLaTeX linter based on bibla by Arne Van Den Kerchove.',
+    description='A minimalistic bibLaTeX linter based on bibla by Tristan Cuvelier.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://gitlab.com/arnevdk/biblint',
+    url='https://github.com/MrClassicT/bibla',
     author='Tristan Cuvelier',
     author_email='tristan.cuvelier@student.hogent.be',
     packages=['bibla', 'bibla.rules'],

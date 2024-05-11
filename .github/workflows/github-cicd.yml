@@ -1,4 +1,4 @@
-image: "python:3.7"
+image: "python:3.12"
 
 before_script:
   - python --version
@@ -41,6 +41,3 @@ rule_list:
   artifacts:
     paths:
       - all_rules.html
-
-
-
