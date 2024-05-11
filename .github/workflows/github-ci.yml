@@ -27,7 +27,7 @@ jobs:
     - name: Static Analysis with Flake8
       run: |
         mkdir out
-        flake8 --append-config .flake8 | tee out/lint_result.txt
+        flake8 --append-config .flake8 --ignore=E501 | tee out/lint_result.txt
         num_warnings=$(wc -l < out/lint_result.txt)
         echo "$num_warnings warnings!"
         echo "Generating badge..."

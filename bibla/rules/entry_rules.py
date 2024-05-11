@@ -28,7 +28,7 @@ def key_format(key, entry, database):
     :param database: All bibliography entries
     :return: True if the current entry's key has the specified format or
     year or author are not specified, False otherwise.
-    """   
+    """
     if 'date' not in entry.fields or list(
             itertools.chain(*entry.persons.values())).count == 0:
         return True

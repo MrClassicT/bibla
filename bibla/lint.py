@@ -65,7 +65,7 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
     except Error as e:
         print(f"Error: {e}")
         return []
-    
+
     bib_data.file = bibliography
     with open(bibliography, 'r') as bib_file:
         bib_text = bib_file.read()
