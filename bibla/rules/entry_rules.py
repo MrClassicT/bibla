@@ -7,9 +7,9 @@ from unidecode import unidecode
 
 from bibla.config import get_config
 from bibla.rule import register_entry_rule
-from bibla.text_utils import MONTH_NAMES
 
-@register_entry_rule('E00','Keys of published works should have format `AuthorYEARa`')
+
+@register_entry_rule('E00', 'Keys of published works should have format `AuthorYEARa`')
 def key_format(key, entry, database):
     """Raise a linter warning when entry key is not of format `AuthorYEARa`.
 
@@ -28,7 +28,7 @@ def key_format(key, entry, database):
     :param database: All bibliography entries
     :return: True if the current entry's key has the specified format or
     year or author are not specified, False otherwise.
-    """   
+    """
     if 'date' not in entry.fields or list(
             itertools.chain(*entry.persons.values())).count == 0:
         return True
@@ -292,11 +292,13 @@ def register_alternate_entry_type_rule(entry_type, alt_entry_type):
         else:
             return True
 
+
 alias_entry_types = get_config().get('alias_entry_types', {})
 for entry_type, alt_entry_types in alias_entry_types.items():
     for alt_entry_type in alt_entry_types:
         register_alternate_entry_type_rule(entry_type, alt_entry_type)
-        
+
+
 @register_entry_rule('E12', 'Homepages should not be used as a source')
 def check_homepage_in_url(key, entry, database):
     """Raise a linter warning when a URL field contains a homepage.
@@ -313,6 +315,7 @@ def check_homepage_in_url(key, entry, database):
     if regex.match(url):
         return False
     return True
+
 
 @register_entry_rule('E13', 'URLs should only include the critical parts and nothing more')
 def check_url_directive_parts(key, entry, database):

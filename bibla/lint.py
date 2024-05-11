@@ -62,10 +62,10 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
     except pybtex.scanner.TokenRequired as e:
         print(f"E00: {e}")
         return []
-    except Error as e:
+    except Exception as e:
         print(f"Error: {e}")
         return []
-    
+
     bib_data.file = bibliography
     with open(bibliography, 'r') as bib_file:
         bib_text = bib_file.read()

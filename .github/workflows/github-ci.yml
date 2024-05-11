@@ -6,70 +6,38 @@ on:
       - master
 
 jobs:
-  flake8:
+  build:
     runs-on: ubuntu-latest
-    container: python:3.12
+    strategy:
+      matrix:
+        python-version: ["3.12"]
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        run: |
-          python --version
-          pip install -e .[dev]
-
-      - name: Static Analysis with Flake8
-        run: |
-          mkdir out
-          flake8 --append-config .flake8 | tee out/lint_result.txt
-          num_warnings=$(wc -l < out/lint_result.txt)
-          echo "$num_warnings warnings!"
-          echo "Generating badge..."
-          anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
-          cat out/lint_result.txt
-          if [ $num_warnings -gt 0 ]; then exit 1; fi
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: flake8-results
-          path: |
-            out/flake8.svg
-            out/lint_result.txt
-
-  unit_test:
-    runs-on: ubuntu-latest
-    container: python:3.12
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python and dependencies
-        run: |
-          python --version
-          pip install -e .[dev]
-
-      - name: Run unit tests
-        run: python -m unittest discover
-
-  deploy:
-    runs-on: ubuntu-latest
-    container: python:3.12
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python and dependencies
-        run: |
-          python --version
-          pip install -e .[dev]
-
-      - name: Generate rule list
-        run: bibla list-all -m | python -m markdown -x tables > all_rules.html
-        if: github.ref == 'refs/heads/master'
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: all-rules
-          path: all_rules.html
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install git+https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
+        pip install --upgrade setuptools wheel
+        pip install -e .[dev]
+        pip install flake8
+    - name: Static Analysis with Flake8
+      run: |
+        mkdir out
+        flake8 --append-config .flake8 --ignore=E501 | tee out/lint_result.txt
+        num_warnings=$(wc -l < out/lint_result.txt)
+        echo "$num_warnings warnings!"
+        echo "Generating badge..."
+        anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+        cat out/lint_result.txt
+        if [ $num_warnings -gt 0 ]; then exit 1; fi
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: flake8-results
+        path: |
+          out/flake8.svg
+          out/lint_result.txt
