@@ -12,7 +12,7 @@ class TestBase(unittest.TestCase):
         lint("test_data/syntax.bib", verbose=False)
         
     def test_correct_bibLaTex(self):
-        lint("test_data/bibLaTex.bib", verbose=False)
+        lint("test_data/bibLaTeX.bib", verbose=False)
 
 
 if __name__ == '__main__':
