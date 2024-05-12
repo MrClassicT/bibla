@@ -46,12 +46,3 @@ jobs:
         path: |
           out/flake8.svg
           out/lint_result.txt
-
-    - name: Generate rule list
-      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: all-rules
-        path: all_rules.html
