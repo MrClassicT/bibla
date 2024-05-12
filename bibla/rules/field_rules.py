@@ -73,8 +73,32 @@ for entry_type, spec in get_config()['type_spec'].items():
             for alt_field in alternate_fields[req_field]:
                 register_variant_rule(entry_type, alt_field, req_field)
 
+    for opt_field in spec['optional']:
+        rule_id = 'M02{}{}'.format(entry_type.capitalize(), opt_field.capitalize())
+        message = 'Missing optional field `{}` for entry type `{}`'.format(opt_field, entry_type)
 
-@register_entry_rule('M02', 'Special characters should be replaced by the command to generate them: %, &, $, #, _, \\, ~, ^, |')
+        @register_entry_rule(rule_id, message)
+        def check_optional_field_present(key, entry, database, entry_type=entry_type, opt_field=opt_field):
+            """Raise a linter warning when not all optional fields are present.
+
+            Optional fields for an entry type are defined in the configuration
+            with the `optional` list of field types for a specific entry
+            type  in the `type_spec` dictionary.
+
+            :param key: The key of the current bibliography entry
+            :param entry: The current bibliography entry
+            :param database: All bibliography entries
+            :param entry_type: Anchor variable to pass the local variable `entry_type` from outer scope
+            :param opt_field: Anchor variable to pass the local variable `opt_field` from outer scope
+            :return: True if the current entry contains all optional fields, False otherwise
+            """
+            if entry.type == entry_type:
+                return opt_field in entry.fields
+            else:
+                return True
+
+
+@register_entry_rule('M03', 'Special characters should be replaced by the command to generate them: %, &, $, #, _, \\, ~, ^, |')
 def check_special_characters(key, entry, database):
     """Raise a linter warning when a field contains special characters that should be replaced.
 
