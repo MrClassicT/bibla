@@ -13,7 +13,7 @@ from bibla import __version__
 setup(
     name='bibla',
     version=__version__,
-    description='A minimalistic bibLaTeX linter based by Tristan Cuvelier.',
+    description='A minimalistic bibLaTeX linter by Tristan Cuvelier.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/MrClassicT/bibla',
