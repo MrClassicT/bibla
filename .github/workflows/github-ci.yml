@@ -13,10 +13,12 @@ jobs:
         python-version: ["3.12"]
     steps:
     - uses: actions/checkout@v4
+    
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -24,6 +26,7 @@ jobs:
         pip install --upgrade setuptools wheel
         pip install -e .[dev]
         pip install flake8
+
     - name: Static Analysis with Flake8
       run: |
         mkdir out
@@ -34,6 +37,7 @@ jobs:
         anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
         cat out/lint_result.txt
         if [ $num_warnings -gt 0 ]; then exit 1; fi
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
