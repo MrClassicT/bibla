@@ -2,14 +2,17 @@
 
 `bibla` is a minimalistic linter (style checker) for [biblatex](http://www.biblatex.org/) files with support for libraries
 managed by [JabRef](https://www.jabref.org/).
+
 `bibla` does not come with its own biblatex parser, but leverages the [pybtex](https://pybtex.org/) parser.
+
+Bibla is an extension of bibl, which was made by Arne Van Den Kerckhove. The original Bibl can be found [here](https://gitlab.com/arnevdk/bibl). I do not claim any form of ownership over the original Bibl, I have only made some changes to it. Those changes I do claim ownership over. Just like the original Bibl, this will also be licensed under the MIT license.
 
 ## Installation
 
 ```shell script
 pip install bibla
 ```
-## Usage
+## Usage - This still needs to receive an update!
 
 Run bibla on your biblatex files with the following command
 ```shell script
@@ -33,7 +36,7 @@ Rule ID|Rule description
 `M01ArticleYear`|Missing required field `year` for entry type `article`
 ...|...
 
-This link provides a [list of all available rules](http://gitlab.com/arne.vandenkerchove/bibla/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+This link provides a [list of all available rules]() \[TODO\]
 generated with the default configuration (see Configuration section below).
 
 
@@ -60,7 +63,7 @@ Configuration can also be specified in a yaml format configuration file, provide
 If no configuration file is provided and a `bibla.yml` or `.bibla.yml` file is present in the current working directory,
 this file will be used as a configuration file.
 Command line option configuration will override configuration provided by a file.
-See the default configuration [bibla.yml](https://gitlab.com/arne.vandenkerchove/bibla/-/tree/master/bibla/bibla.yml) for
+See the default configuration [bibla.yml]() \[TODO\]  for
 all values that can be overwritten in a configuration file.
 
 Some rules, like the various `M01*`, `M02*` and `U01*` rules, are procedurally generated based on the `type_spec` setting.
