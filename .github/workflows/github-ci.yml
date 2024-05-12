@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - Bibla
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
         python-version: ["3.12"]
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -45,3 +46,12 @@ jobs:
         path: |
           out/flake8.svg
           out/lint_result.txt
+
+    - name: Generate rule list
+      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-rules
+        path: all_rules.html
