@@ -43,10 +43,9 @@ jobs:
 
     - name: Generate rule list
       run: bibla list-all -m | python -m markdown -x tables > all_rules.html
-      if: github.ref == 'refs/heads/master'
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: all-rules
-        path: all_rules.html
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-rules
+          path: all_rules.html
