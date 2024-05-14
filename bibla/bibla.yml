@@ -83,3 +83,4 @@ alias_entry_types:
 
 alternate_fields:
   date: [year] # Month and day will not be used alone, so when we just check for the year, that'll be fine.
+  journaltitle: [journal]
