@@ -29,15 +29,29 @@ def key_format(key, entry, database):
     :return: True if the current entry's key has the specified format or
     year or author are not specified, False otherwise.
     """
-    if 'date' not in entry.fields or list(
-            itertools.chain(*entry.persons.values())).count == 0:
+    if 'date' not in entry.fields or len(entry.persons.get('author', [])) == 0:
         return True
-    author = entry.persons['author'][0]
-    names = author.rich_prelast_names + author.rich_last_names
+    try:
+        author = entry.persons['author'][0]
+    except KeyError:
+        try:
+            author = entry.persons['editor'][0]
+        except KeyError:
+            return True
+    names = author.rich_prelast_names + [name for last_name in author.rich_last_names for name in last_name.split('-')]
     date = entry.fields['date']
     year = re.search(r'\d{4}', date).group()
-    correct_key_unicode = "".join([str(name) for name in names]) + year
-    correct_key_ascii = unidecode(correct_key_unicode)
+
+    # Check for 'EtAl' in the key when there are more than 3 authors
+    if len(entry.persons.get('author', [])) >= 3 and 'EtAl' in key.lower():
+        correct_key_unicode = names[0] + 'EtAl' + year
+    # Check for two names in the key when there are exactly 2 authors
+    elif len(entry.persons.get('author', [])) == 2:
+        correct_key_unicode = "".join([str(name) for name in names[:2]]) + year
+    else:
+        correct_key_unicode = "".join([str(name) for name in names]) + year
+
+    correct_key_ascii = unidecode(str(correct_key_unicode))
     regex = re.compile(correct_key_ascii + r'[a-zA-Z]?')
     return bool(regex.match(key))
 
