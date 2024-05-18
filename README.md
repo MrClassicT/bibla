@@ -16,6 +16,10 @@ pip install bibla
 
 Run bibla on your biblatex files with the following command
 ```shell script
+bibla lint bibliography1.bib
+```
+or
+```shell script
 bibla lint bibliography1.bib bibliography2.bib ... 
 ```
 or as a python module with
@@ -26,6 +30,7 @@ python -m bibla lint bibliography1.bib bibliography2.bib ...
 bibla will check these files for a variety of style issues and deviations from the biblatex spec (http://www.biblatex.org/Format/, https://en.wikipedia.org/wiki/biblatex).
 Each possible type of issue is formulated as a rule. Each rule is identified by a unique code. Some examples of rules are 
 
+Everything below this line is mostly a copy/paste of the original and still has to be reviewed/changed!
 Rule ID|Rule description
 -|-
 `D00`|Entry not in alphabetical order by ke
@@ -42,6 +47,7 @@ generated with the default configuration (see Configuration section below).
 
 The first character of a rule id refers to a rules category, e.g. `E` for issues with entry values, `T` for textual
 issues with the `.bib` file, etc.
+**NOTE: The following does not work yet due to having a fixed set ignore in the general config, this will be fixed!** - May 18th, 2024
 You can specify which rules to check by using `--select` or `--ignore`. Wildcards are allowed. `--select` will only
 enable the specified rules, disabling all other rules, while `--ignore` will disable all rules except the ones specified.
 `--select` and `--ignore` may not be specified simultaneously.
