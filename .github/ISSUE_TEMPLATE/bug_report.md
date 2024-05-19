@@ -10,7 +10,7 @@ bibla lint <bestandsnaam.bib>
 ```
 
 **Foutmelding**
-Voeg hier de volledige foutmelding toe die je hebt ontvangen:
+Voeg hier de *volledige* foutmelding toe die je hebt ontvangen:
 ```
 bijvoorbeeld:
 Error: Unexpected field 'journl' in entry 'voorbeeld2024'
