@@ -1,3 +1,7 @@
+---
+title: 'Bugreport: '
+labels: 'bug'
+---
 **Beschrijving van het probleem**
 ```
 Geef een duidelijke en beknopte beschrijving van het probleem.
