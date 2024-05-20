@@ -242,7 +242,7 @@ def page_format(key, entry, database):
     page_regex = r'^\d+--\d+$'
     regex = re.compile(page_regex)
     if not regex.match(entry.fields['pages']):
-        return False
+        return True
     groups = entry.fields['pages'].split('--')
     if len(groups) <= 1:
         return True
