@@ -75,11 +75,11 @@ type_spec:
     optional: [url]
 
 alias_entry_types:
-    misc: [software]
-    online: [electronic, www]
-    inproceedings: [conference]
-    report: [techreport]
-    thesis: [mastersthesis, phdthesis]
+  misc: [software]
+  online: [electronic, www]
+  inproceedings: [conference]
+  report: [techreport]
+  thesis: [mastersthesis, phdthesis]
 
 alternate_fields:
   # preferred: [other]
