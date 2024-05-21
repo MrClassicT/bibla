@@ -1,7 +1,7 @@
 ---
 ## DEFAULT bibla CONFIG
 select: [ ]             # List of enabled rules, all other rules will be disabled
-ignore: [ D00, T00, T02, T03, U01* ]  # List of disabled rules, all other rules will be enabled -  The disabled rules from bibl just seem to make less sense for Bibla. Personal choices may apply.
+ignore: [ D00, T02, T03, U01* ]  # List of disabled rules, all other rules will be enabled -  The disabled rules from bibl just seem to make less sense for Bibla. Personal choices may apply.
 # Specify max 1 of the two options above. If none are specified, all rules will be enabled
 indent_spaces: 2        # number of trailing whitespaces for indented line, used by TO1
 max_line_length: 120    # max line length before wrap optional, used by T03
