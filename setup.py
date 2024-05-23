@@ -36,6 +36,7 @@ setup(
         'pybtex==0.23.0',
         'pyyaml>=5',
         'unidecode>=1,<2',
+        'setuptools>= 69.0.0'
     ],
     extras_require={
         'dev': [
