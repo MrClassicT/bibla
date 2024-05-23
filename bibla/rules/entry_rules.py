@@ -59,7 +59,6 @@ def key_format(key, entry, database):
     return bool(regex.match(key))
 
 
-
 @register_entry_rule('E01', 'Author first names should not be abbreviated')
 def author_first_name_abbr(key, entry, database):
     """Raise a linter warning when an author/editor first name is abbreviated.
