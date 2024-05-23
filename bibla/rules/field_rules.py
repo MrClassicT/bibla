@@ -109,9 +109,12 @@ def check_special_characters(key, entry, database):
     """
     special_chars = ['%', '&', '$', '#', '_', '\\', '~', '^', '|']
 
-    for field in entry.fields.values():
-        if any(char in field for char in special_chars):
+    for field_name, field_value in entry.fields.items():
+        if field_name == 'url':
+            return True
+        if any(char in field_value for char in special_chars):
             for char in special_chars:
-                if char in field and field[field.index(char) - 1] != '\\':
+                if char in field_value and field_value[field_value.index(char) - 1] != '\\':
                     return False
     return True
+
