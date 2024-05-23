@@ -40,7 +40,10 @@ def key_format(key, entry, database):
             return True
     names = author.rich_prelast_names + [name for last_name in author.rich_last_names for name in last_name.split('-')]
     date = entry.fields['date']
-    year = re.search(r'\d{4}', date).group()
+    year_match = re.search(r'\d{4}', date)
+    if not year_match:
+        return True  # Safely handle cases where no year is found, another error is responsible for this
+    year = year_match.group()
 
     # Check for 'EtAl' in the key when there are more than 3 authors
     if len(entry.persons.get('author', [])) >= 3 and 'EtAl' in key.lower():
@@ -54,6 +57,7 @@ def key_format(key, entry, database):
     correct_key_ascii = unidecode(str(correct_key_unicode))
     regex = re.compile(correct_key_ascii + r'[a-zA-Z]?')
     return bool(regex.match(key))
+
 
 
 @register_entry_rule('E01', 'Author first names should not be abbreviated')
