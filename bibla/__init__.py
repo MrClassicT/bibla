@@ -3,4 +3,4 @@
 bibla with support for libraries managed by JabRef.
 bibla does not come with its own biblatex parser, but leverages the pybtex parser.
 """
-__version__ = "2.0.6"
+__version__ = "2.0.7"
