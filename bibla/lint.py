@@ -67,7 +67,7 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
         return []
 
     bib_data.file = bibliography
-    with open(bibliography, 'r') as bib_file:
+    with open(bibliography, 'r', encoding='utf-8') as bib_file:
         bib_text = bib_file.read()
 
     rules = load_rules()
