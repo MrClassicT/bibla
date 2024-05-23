@@ -117,4 +117,3 @@ def check_special_characters(key, entry, database):
                 if char in field_value and field_value[field_value.index(char) - 1] != '\\':
                     return False
     return True
-
