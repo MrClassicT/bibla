@@ -30,4 +30,4 @@ In case you're interested in the source code, you can find it on [GitLab](https:
 
 Enjoy using `bibla`!
 
-For those wondering about the reason why I created this tool, this is a proof of concept for my bachelor's thesis. If you're interested in reading it, you can find it [here](/bibla/thesis). *(**Please note** that it's written in Dutch and not available in English!)*
+For those wondering about the reason why I created this tool, this is a proof of concept for my bachelor's thesis. If you're interested in reading it, you can find it [here](/bibla/thesis). **Please note**: it's written in Dutch and not available in English!
