@@ -37,11 +37,12 @@ jobs:
           pip install build
           pip install markdown
 
-      - name: Install built package
-        run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
 
       - name: Build package
         run: python -m build
+
+      - name: Install built package
+        run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
 
       - name: Publish package to pip
         if: github.event_name == 'release'
@@ -52,7 +53,6 @@ jobs:
 
       - name: Generate rule list
         run: |
-          pip install bibla
           bibla list-all -m | python -m markdown -x tables > all_rules.html
       # - name: Setup Pages
       #   uses: actions/configure-pages@v4
