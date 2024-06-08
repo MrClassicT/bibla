@@ -24,7 +24,7 @@ permalink: /thesis/
 </head>
 <body>
   <h1>Embedded PDF</h1>
-  <embed src="./files/1322_202181595_PBA-TIN_scriptie.pdf" type="application/pdf" class="pdf-container">
-  <p>If you cannot view the PDF, <a href="./files/1322_202181595_PBA-TIN_scriptie.pdf">click here to download it.</a></p>
+  <embed src="files/thesis.pdf" type="application/pdf" class="pdf-container">
+  <p>If you cannot view the PDF, <a href="files/thesis.pdf">click here to download it.</a></p>
 </body>
 </html>
