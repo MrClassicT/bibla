@@ -1,1 +1,40 @@
+title: bibla - minimalistic BibLaTeX linter
+description: A minimalistic BibLaTeX linter by Tristan Cuvelier.
 theme: minima
+
+# Social Links
+github_username: MrClassicT
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Minima theme settings
+minima:
+  # Enable dark mode
+  skin: dark
+  # Customize the navigation links
+  navigation:
+    - title: "Home"
+      url: "/"
+    - title: "About"
+      url: "/about"
+    - title: "Contact"
+      url: "/contact"
+    - title: "Thesis"
+      url: "/thesis"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
