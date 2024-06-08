@@ -60,9 +60,10 @@ jobs:
           git config --global user.email "pipeline@no.one"
           git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
           git pull 
-          mv all_rules.html docs/rules/index.html
+          ls -a
+          mv all_rules.html bibla/docs/rules/index.html
           cd pages
-          git add docs/rules/index.html
+          git add bibla/docs/rules/index.html
           git commit -m "Add generated all_rules.html"
           git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
 
@@ -70,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: all-rules
-          path: docs/rules/index.html
+          path: bibla/docs/rules/index.html
