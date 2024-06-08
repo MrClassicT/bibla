@@ -37,6 +37,9 @@ jobs:
           pip install build
           pip install markdown
     
+      - name: List dist directory
+        run: ls -la dist/
+
       - name: Install built package
         run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
 
