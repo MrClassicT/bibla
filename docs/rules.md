@@ -4,6 +4,7 @@ title: Rules
 permalink: /rules/
 ---
 
+# It should really be working tho?
 <div class="container">
 <h1>bibla rules</h1>
 <h2>D</h2>
