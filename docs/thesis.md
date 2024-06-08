@@ -6,10 +6,6 @@ permalink: /thesis/
 
 # Embedded PDF
 
-<iframe src="files/thesis.pdf" style="width:100%; height:800px;"></iframe>
+<embed src="/bibla/files/thesis.pdf" type="application/pdf" width="100%" height="800px" />
 
-<p>If you cannot view the PDF, <a href="files/thesis.pdf" download>click here to download it.</a></p>
-
-<div class="download-link">
-  <a href="/files/thesis.pdf" download>Download PDF</a>
-</div>
+<p>Alternatively, you can <a href="/bibla/files/thesis.pdf" download>click here to download it.</a></p>
