@@ -38,7 +38,7 @@ jobs:
           pip install markdown
     
       - name: Install built package
-        run: pip install dist/*  # Install all built distribution files in the dist/ directory
+        run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
 
       - name: Build package
         run: python -m build
