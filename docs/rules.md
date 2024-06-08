@@ -3,7 +3,7 @@ layout: page
 title: Rules
 permalink: /rules/
 ---
-
+<div class="container">
 <h1>bibla rules</h1>
 <h2>D</h2>
 <table>
@@ -803,4 +803,4 @@ permalink: /rules/
 <td>Unrecognized field type for entry type <code>www</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>

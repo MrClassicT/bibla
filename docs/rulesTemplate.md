@@ -4,3 +4,4 @@ title: Rules
 permalink: /rules/
 ---
 
+<div class="container">
