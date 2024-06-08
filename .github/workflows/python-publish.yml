@@ -40,29 +40,44 @@ jobs:
     - name: Build package
       run: python -m build
 
-    - name: Publish package
+    - name: Generate rule list
+      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
+
+    # - name: Setup Pages
+    #   uses: actions/configure-pages@v4
+    
+    # - name: Upload artifact
+    #   uses: actions/upload-pages-artifact@v3
+    #   with:
+    #     # Upload the gh-pages directory
+    #     path: 'docs/'
+
+    # Attempt
+
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
+        mkdir -p pages/bibla/rules
+        mv all_rules.html pages/bibla/rules/index.html
+        cd pages
+        git add bibla/rules/index.html
+        git commit -m "Add generated all_rules.html"
+        git push
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-rules
+        path: pages/bibla/rules/index.html
+
+
+    # End attempt
+
+    - name: Publish package to pip
       if: github.event_name == 'release'
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
-
-    - name: Generate rule list
-      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
-
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-    
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        # Upload the gh-pages directory
-        path: 'docs/'
-    
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-      with:
-        token: ${{ secrets.BIBLA_GITHUB_TOKEN }}
-      env:
-        DEBUG: true
