@@ -3,6 +3,7 @@ layout: page
 title: Rules
 permalink: /rules/
 ---
+
 <div class="container">
 <h1>bibla rules</h1>
 <h2>D</h2>
