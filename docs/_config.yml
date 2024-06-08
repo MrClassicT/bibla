@@ -1,10 +1,6 @@
 title: bibla
 description: A minimalistic BibLaTeX linter by Tristan Cuvelier.
 theme: minima
-# Author details
-author:
-  name: "Tristan Cuvelier"
-  url: "https://www.linkedin.com/in/tristancuvelier/"
 
 # Social Links
 github_username: MrClassicT
