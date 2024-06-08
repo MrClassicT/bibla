@@ -8,7 +8,7 @@ permalink: /
 
 `bibla` is a simple, lightweight, and fast bibliography linter. It is designed to help you keep your bibliography files clean and consistent. bibla is written in Python and is available as a command-line tool. It's based on [`bibl`](https://gitlab.com/arnevdk/bibl) by Arne Van Den Kerckhove, but with the adaptations and extensions to work for BibLaTeX files.
 
-To get started, simply use the following pip command:
+To get started, make sure you have Python installed and pip. Simply use the following pip command to install `bibla`:
 
 ```bash
 pip install bibla

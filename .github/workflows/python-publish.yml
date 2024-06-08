@@ -11,6 +11,9 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  # push:
+  #   branches:
+  #     - master
 
 permissions:
   contents: write
@@ -34,12 +37,11 @@ jobs:
           pip install build
           pip install markdown
 
-
       - name: Build package
         run: python -m build
 
       - name: Install built package
-        run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
+        run: pip install dist/*.whl 
 
       - name: Publish package to pip
         if: github.event_name == 'release'
@@ -51,32 +53,20 @@ jobs:
       - name: Generate rule list
         run: |
           bibla list-all -m | python -m markdown -x tables > all_rules.html
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v4
-
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     # Upload the gh-pages directory
-      #     path: 'docs/'
-
-      # Attempt
 
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.name "Pipeline"
           git config --global user.email "pipeline@no.one"
           git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
-          mkdir -p docs/rules
-          mv all_rules.html /docs/rules
-          git add bibla/rules/index.html
-          git commit -m "Add generated all_rules.html"
+          cat docs/rulesTemplate.md all_rules.html > docs/rules.md
+          echo "</div>" >> docs/rules.md
+          git add docs/rules.md
+          git commit -m "Add/update rules.md page"
           git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: all-rules
-          path: pages/bibla/rules/index.html
-
-      # End attempt
+          path: docs/rules.md
