@@ -36,9 +36,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install build
           pip install markdown
-    
-      - name: List dist directory
-        run: ls -la dist/
 
       - name: Install built package
         run: pip install dist/*.whl  # Install all built distribution files in the dist/ directory
@@ -54,7 +51,9 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Generate rule list
-        run: bibla list-all -m | python -m markdown -x tables > all_rules.html
+        run: |
+          pip install bibla
+          bibla list-all -m | python -m markdown -x tables > all_rules.html
       # - name: Setup Pages
       #   uses: actions/configure-pages@v4
 
