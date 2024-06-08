@@ -53,9 +53,9 @@ jobs:
     #     path: 'docs/'
 
     # Attempt
-
-   - name: Deploy to GitHub Pages
-     run: |
+    
+    - name: Deploy to GitHub Pages
+      run: |
         git config --global user.name "Pipeline"
         git config --global user.email "pipeline@no.one"
         git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
