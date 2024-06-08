@@ -59,9 +59,9 @@ jobs:
           git config --global user.name "Pipeline"
           git config --global user.email "pipeline@no.one"
           git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
-          mkdir -p bibla/docs/rules
-          mv all_rules.html bibla/docs/rules/index.html
-          git add bibla/docs/rules/index.html
+          mkdir -p docs/rules
+          mv all_rules.html docs/rules/index.html
+          git add docs/rules/index.html
           git commit -m "Add generated all_rules.html as index page for rules."
           git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
 
@@ -69,4 +69,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: all-rules
-          path: bibla/docs/rules/index.html
+          path: docs/rules/index.html
