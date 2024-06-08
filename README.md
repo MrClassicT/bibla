@@ -1,5 +1,6 @@
 # bibla
-
+https://github.com/MrClassicT/bibla/actions/runs/9430255754/artifacts/1581991547
+![flake8](https://github.com/MrClassicT/bibla/actions/workflows/github-ci.yml/flake8-results/flake8.svg)
 `bibla` is a minimalistic linter (style checker) for [biblatex](http://www.biblatex.org/) files with support for libraries
 managed by [JabRef](https://www.jabref.org/).
 

@@ -11,13 +11,17 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - master
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +41,7 @@ jobs:
       run: python -m build
 
     - name: Publish package
+      if: github.event_name == 'release'
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
         user: __token__
@@ -45,8 +50,15 @@ jobs:
     - name: Generate rule list
       run: bibla list-all -m | python -m markdown -x tables > all_rules.html
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        name: all-rules
-        path: all_rules.html
+        # Upload the gh-pages directory
+        path: 'docs/'
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
