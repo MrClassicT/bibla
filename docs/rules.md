@@ -3,806 +3,209 @@ layout: page
 title: Rules
 permalink: /rules/
 ---
+# bibla rules
+## D
+Rule ID|Rule description
+-|-
+`D00`|Entry not in alphabetical order by key
+`D01`|Preamble should begin at first line of document
+`D02`|Possible duplicate entry based on similar titles
 
-# It should really be working tho?
-<div class="container">
-<h1>bibla rules</h1>
-<h2>D</h2>
-<table>
-<thead>
-<tr>
-<th>Rule ID</th>
-<th>Rule description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>D00</code></td>
-<td>Entry not in alphabetical order by key</td>
-</tr>
-<tr>
-<td><code>D01</code></td>
-<td>Preamble should begin at first line of document</td>
-</tr>
-<tr>
-<td><code>D02</code></td>
-<td>Possible duplicate entry based on similar titles</td>
-</tr>
-</tbody>
-</table>
-<h2>E</h2>
-<table>
-<thead>
-<tr>
-<th>Rule ID</th>
-<th>Rule description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>E00</code></td>
-<td>Keys of published works should have format <code>AuthorYEARa</code></td>
-</tr>
-<tr>
-<td><code>E01</code></td>
-<td>Author first names should not be abbreviated</td>
-</tr>
-<tr>
-<td><code>E02</code></td>
-<td>Author middle names should be abbreviated with .</td>
-</tr>
-<tr>
-<td><code>E03</code></td>
-<td>The usage of <code>et al.</code> in the author field should be replaced by a list of all authors</td>
-</tr>
-<tr>
-<td><code>E04</code></td>
-<td>Files should be linked with relative path</td>
-</tr>
-<tr>
-<td><code>E05</code></td>
-<td>Linked file is not present</td>
-</tr>
-<tr>
-<td><code>E06</code></td>
-<td>Incorrect doi format</td>
-</tr>
-<tr>
-<td><code>E07</code></td>
-<td>Incorrect ISBN format</td>
-</tr>
-<tr>
-<td><code>E08</code></td>
-<td><code>pages</code> field formatting is incorrect. Please use the following format: 123--456. In ascending order seperated with two dashes.</td>
-</tr>
-<tr>
-<td><code>E09</code></td>
-<td>Entry should use correct date format: YYYY-MM-DD, YYYY-MM or YYYY!</td>
-</tr>
-<tr>
-<td><code>E10ArticleJournal</code></td>
-<td>Use <code>journaltitle</code> instead of <code>journal</code>!</td>
-</tr>
-<tr>
-<td><code>E10ArticleYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10BookYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10BookletYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10ConferenceYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10DatasetYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10ElectronicYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10InbookYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10InproceedingsYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10ManualYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10MastersthesisSchool</code></td>
-<td>Use <code>institution</code> instead of <code>school</code>!</td>
-</tr>
-<tr>
-<td><code>E10MastersthesisYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10MiscYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10OnlineYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10PhdthesisSchool</code></td>
-<td>Use <code>institution</code> instead of <code>school</code>!</td>
-</tr>
-<tr>
-<td><code>E10PhdthesisYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10ReportSchool</code></td>
-<td>Use <code>institution</code> instead of <code>school</code>!</td>
-</tr>
-<tr>
-<td><code>E10ReportYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10SoftwareYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10TechreportSchool</code></td>
-<td>Use <code>institution</code> instead of <code>school</code>!</td>
-</tr>
-<tr>
-<td><code>E10TechreportYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10ThesisSchool</code></td>
-<td>Use <code>institution</code> instead of <code>school</code>!</td>
-</tr>
-<tr>
-<td><code>E10ThesisYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E10WwwYear</code></td>
-<td>Use <code>date</code> instead of <code>year</code>!</td>
-</tr>
-<tr>
-<td><code>E11InproceedingsConference</code></td>
-<td><code>conference</code> is an alias, please use the original type <code>inproceedings</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11MiscSoftware</code></td>
-<td><code>software</code> is an alias, please use the original type <code>misc</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11OnlineElectronic</code></td>
-<td><code>electronic</code> is an alias, please use the original type <code>online</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11OnlineWww</code></td>
-<td><code>www</code> is an alias, please use the original type <code>online</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11ReportTechreport</code></td>
-<td><code>techreport</code> is an alias, please use the original type <code>report</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11ThesisMastersthesis</code></td>
-<td><code>mastersthesis</code> is an alias, please use the original type <code>thesis</code> instead.</td>
-</tr>
-<tr>
-<td><code>E11ThesisPhdthesis</code></td>
-<td><code>phdthesis</code> is an alias, please use the original type <code>thesis</code> instead.</td>
-</tr>
-<tr>
-<td><code>E12</code></td>
-<td>Homepages should not be used as a source</td>
-</tr>
-<tr>
-<td><code>E13</code></td>
-<td>URLs should only include the critical parts and nothing more</td>
-</tr>
-</tbody>
-</table>
-<h2>M</h2>
-<table>
-<thead>
-<tr>
-<th>Rule ID</th>
-<th>Rule description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>M00</code></td>
-<td>No authors or editors found</td>
-</tr>
-<tr>
-<td><code>M01ArticleDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M01ArticleJournaltitle</code></td>
-<td>Missing required field <code>journaltitle</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M01ArticleTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M01BookDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>book</code></td>
-</tr>
-<tr>
-<td><code>M01BookPublisher</code></td>
-<td>Missing required field <code>publisher</code> for entry type <code>book</code></td>
-</tr>
-<tr>
-<td><code>M01BookTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>book</code></td>
-</tr>
-<tr>
-<td><code>M01BookletDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M01BookletPublisher</code></td>
-<td>Missing required field <code>publisher</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M01BookletTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M01ConferenceBooktitle</code></td>
-<td>Missing required field <code>booktitle</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M01ConferenceDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M01ConferenceTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M01DatasetDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>dataset</code></td>
-</tr>
-<tr>
-<td><code>M01DatasetTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>dataset</code></td>
-</tr>
-<tr>
-<td><code>M01DatasetUrl</code></td>
-<td>Missing required field <code>url</code> for entry type <code>dataset</code></td>
-</tr>
-<tr>
-<td><code>M01DatasetUrldate</code></td>
-<td>Missing required field <code>urldate</code> for entry type <code>dataset</code></td>
-</tr>
-<tr>
-<td><code>M01ElectronicDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>electronic</code></td>
-</tr>
-<tr>
-<td><code>M01ElectronicTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>electronic</code></td>
-</tr>
-<tr>
-<td><code>M01ElectronicUrl</code></td>
-<td>Missing required field <code>url</code> for entry type <code>electronic</code></td>
-</tr>
-<tr>
-<td><code>M01ElectronicUrldate</code></td>
-<td>Missing required field <code>urldate</code> for entry type <code>electronic</code></td>
-</tr>
-<tr>
-<td><code>M01InbookBooktitle</code></td>
-<td>Missing required field <code>booktitle</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M01InbookDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M01InbookPublisher</code></td>
-<td>Missing required field <code>publisher</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M01InbookTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M01IncollectionBooktitle</code></td>
-<td>Missing required field <code>booktitle</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M01IncollectionPublisher</code></td>
-<td>Missing required field <code>publisher</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M01IncollectionTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M01IncollectionYear</code></td>
-<td>Missing required field <code>year</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M01InproceedingsBooktitle</code></td>
-<td>Missing required field <code>booktitle</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M01InproceedingsDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M01InproceedingsTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M01ManualDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M01ManualTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M01MastersthesisDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>M01MastersthesisInstitution</code></td>
-<td>Missing required field <code>institution</code> for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>M01MastersthesisTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>M01MastersthesisType</code></td>
-<td>Missing required field <code>type</code> for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>M01MiscDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>misc</code></td>
-</tr>
-<tr>
-<td><code>M01MiscTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>misc</code></td>
-</tr>
-<tr>
-<td><code>M01OnlineDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>online</code></td>
-</tr>
-<tr>
-<td><code>M01OnlineTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>online</code></td>
-</tr>
-<tr>
-<td><code>M01OnlineUrl</code></td>
-<td>Missing required field <code>url</code> for entry type <code>online</code></td>
-</tr>
-<tr>
-<td><code>M01OnlineUrldate</code></td>
-<td>Missing required field <code>urldate</code> for entry type <code>online</code></td>
-</tr>
-<tr>
-<td><code>M01PhdthesisDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>M01PhdthesisInstitution</code></td>
-<td>Missing required field <code>institution</code> for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>M01PhdthesisTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>M01PhdthesisType</code></td>
-<td>Missing required field <code>type</code> for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>M01ReportDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M01ReportInstitution</code></td>
-<td>Missing required field <code>institution</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M01ReportTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M01ReportType</code></td>
-<td>Missing required field <code>type</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M01SoftwareDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>software</code></td>
-</tr>
-<tr>
-<td><code>M01SoftwareTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>software</code></td>
-</tr>
-<tr>
-<td><code>M01TechreportDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M01TechreportInstitution</code></td>
-<td>Missing required field <code>institution</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M01TechreportTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M01TechreportType</code></td>
-<td>Missing required field <code>type</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M01ThesisDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>M01ThesisInstitution</code></td>
-<td>Missing required field <code>institution</code> for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>M01ThesisTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>M01ThesisType</code></td>
-<td>Missing required field <code>type</code> for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>M01UnpublishedTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>M01WwwDate</code></td>
-<td>Missing required field <code>date</code> for entry type <code>www</code></td>
-</tr>
-<tr>
-<td><code>M01WwwTitle</code></td>
-<td>Missing required field <code>title</code> for entry type <code>www</code></td>
-</tr>
-<tr>
-<td><code>M01WwwUrl</code></td>
-<td>Missing required field <code>url</code> for entry type <code>www</code></td>
-</tr>
-<tr>
-<td><code>M01WwwUrldate</code></td>
-<td>Missing required field <code>urldate</code> for entry type <code>www</code></td>
-</tr>
-<tr>
-<td><code>M02ArticleDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M02ArticleNumber</code></td>
-<td>Missing optional field <code>number</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M02ArticlePages</code></td>
-<td>Missing optional field <code>pages</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M02ArticleVolume</code></td>
-<td>Missing optional field <code>volume</code> for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>M02BookIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>book</code></td>
-</tr>
-<tr>
-<td><code>M02BookletDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M02BookletHowpublished</code></td>
-<td>Missing optional field <code>howpublished</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M02BookletIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M02BookletUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>M02ConferenceDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M02ConferenceEventtitle</code></td>
-<td>Missing optional field <code>eventtitle</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M02ConferenceIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M02ConferenceUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>M02InbookDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M02InbookIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M02InbookPages</code></td>
-<td>Missing optional field <code>pages</code> for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionAddress</code></td>
-<td>Missing optional field <code>address</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionChapter</code></td>
-<td>Missing optional field <code>chapter</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionEdition</code></td>
-<td>Missing optional field <code>edition</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionFile</code></td>
-<td>Missing optional field <code>file</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionKey</code></td>
-<td>Missing optional field <code>key</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionMonth</code></td>
-<td>Missing optional field <code>month</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionNumber</code></td>
-<td>Missing optional field <code>number</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionPages</code></td>
-<td>Missing optional field <code>pages</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionSeries</code></td>
-<td>Missing optional field <code>series</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionType</code></td>
-<td>Missing optional field <code>type</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02IncollectionVolume</code></td>
-<td>Missing optional field <code>volume</code> for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>M02InproceedingsDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M02InproceedingsEventtitle</code></td>
-<td>Missing optional field <code>eventtitle</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M02InproceedingsIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M02InproceedingsUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>M02ManualDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M02ManualIsbn</code></td>
-<td>Missing optional field <code>isbn</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M02ManualOrganization</code></td>
-<td>Missing optional field <code>organization</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M02ManualPublisher</code></td>
-<td>Missing optional field <code>publisher</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M02ManualUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>M02MastersthesisUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>M02PhdthesisUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>M02ReportDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M02ReportUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>M02TechreportDoi</code></td>
-<td>Missing optional field <code>doi</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M02TechreportUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>M02ThesisUrl</code></td>
-<td>Missing optional field <code>url</code> for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>M02UnpublishedFile</code></td>
-<td>Missing optional field <code>file</code> for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>M02UnpublishedKey</code></td>
-<td>Missing optional field <code>key</code> for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>M02UnpublishedMonth</code></td>
-<td>Missing optional field <code>month</code> for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>M02UnpublishedYear</code></td>
-<td>Missing optional field <code>year</code> for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>M03</code></td>
-<td>Special characters should be replaced by the command to generate them: %, &amp;, $, #, _, \, ~, ^,</td>
-</tr>
-</tbody>
-</table>
-<h2>T</h2>
-<table>
-<thead>
-<tr>
-<th>Rule ID</th>
-<th>Rule description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>T00</code></td>
-<td>Non-ascii character</td>
-</tr>
-<tr>
-<td><code>T01</code></td>
-<td>Non-standard whitespace at beginning of line (indents should be 2 spaces)</td>
-</tr>
-<tr>
-<td><code>T02</code></td>
-<td>Whitespace at end of line</td>
-</tr>
-<tr>
-<td><code>T03</code></td>
-<td>Line length exceeds 120 characters</td>
-</tr>
-</tbody>
-</table>
-<h2>U</h2>
-<table>
-<thead>
-<tr>
-<th>Rule ID</th>
-<th>Rule description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>U00</code></td>
-<td>Unrecognized entry type</td>
-</tr>
-<tr>
-<td><code>U01Article</code></td>
-<td>Unrecognized field type for entry type <code>article</code></td>
-</tr>
-<tr>
-<td><code>U01Book</code></td>
-<td>Unrecognized field type for entry type <code>book</code></td>
-</tr>
-<tr>
-<td><code>U01Booklet</code></td>
-<td>Unrecognized field type for entry type <code>booklet</code></td>
-</tr>
-<tr>
-<td><code>U01Conference</code></td>
-<td>Unrecognized field type for entry type <code>conference</code></td>
-</tr>
-<tr>
-<td><code>U01Dataset</code></td>
-<td>Unrecognized field type for entry type <code>dataset</code></td>
-</tr>
-<tr>
-<td><code>U01Electronic</code></td>
-<td>Unrecognized field type for entry type <code>electronic</code></td>
-</tr>
-<tr>
-<td><code>U01Inbook</code></td>
-<td>Unrecognized field type for entry type <code>inbook</code></td>
-</tr>
-<tr>
-<td><code>U01Incollection</code></td>
-<td>Unrecognized field type for entry type <code>incollection</code></td>
-</tr>
-<tr>
-<td><code>U01Inproceedings</code></td>
-<td>Unrecognized field type for entry type <code>inproceedings</code></td>
-</tr>
-<tr>
-<td><code>U01Manual</code></td>
-<td>Unrecognized field type for entry type <code>manual</code></td>
-</tr>
-<tr>
-<td><code>U01Mastersthesis</code></td>
-<td>Unrecognized field type for entry type <code>mastersthesis</code></td>
-</tr>
-<tr>
-<td><code>U01Misc</code></td>
-<td>Unrecognized field type for entry type <code>misc</code></td>
-</tr>
-<tr>
-<td><code>U01Online</code></td>
-<td>Unrecognized field type for entry type <code>online</code></td>
-</tr>
-<tr>
-<td><code>U01Phdthesis</code></td>
-<td>Unrecognized field type for entry type <code>phdthesis</code></td>
-</tr>
-<tr>
-<td><code>U01Report</code></td>
-<td>Unrecognized field type for entry type <code>report</code></td>
-</tr>
-<tr>
-<td><code>U01Software</code></td>
-<td>Unrecognized field type for entry type <code>software</code></td>
-</tr>
-<tr>
-<td><code>U01Techreport</code></td>
-<td>Unrecognized field type for entry type <code>techreport</code></td>
-</tr>
-<tr>
-<td><code>U01Thesis</code></td>
-<td>Unrecognized field type for entry type <code>thesis</code></td>
-</tr>
-<tr>
-<td><code>U01Unpublished</code></td>
-<td>Unrecognized field type for entry type <code>unpublished</code></td>
-</tr>
-<tr>
-<td><code>U01Www</code></td>
-<td>Unrecognized field type for entry type <code>www</code></td>
-</tr>
-</tbody>
-</table></div>
+## E
+Rule ID|Rule description
+-|-
+`E00`|Keys of published works should have format `AuthorYEARa`
+`E01`|Author first names should not be abbreviated
+`E02`|Author middle names should be abbreviated with .
+`E03`|The usage of `et al.` in the author field should be replaced by a list of all authors
+`E04`|Files should be linked with relative path
+`E05`|Linked file is not present
+`E06`|Incorrect doi format
+`E07`|Incorrect ISBN format
+`E08`|`pages` field formatting is incorrect. Please use the following format: 123--456. In ascending order seperated with two dashes.
+`E09`|Entry should use correct date format: YYYY-MM-DD, YYYY-MM or YYYY!
+`E10ArticleJournal`|Use `journaltitle` instead of `journal`!
+`E10ArticleYear`|Use `date` instead of `year`!
+`E10BookYear`|Use `date` instead of `year`!
+`E10BookletYear`|Use `date` instead of `year`!
+`E10ConferenceYear`|Use `date` instead of `year`!
+`E10DatasetYear`|Use `date` instead of `year`!
+`E10ElectronicYear`|Use `date` instead of `year`!
+`E10InbookYear`|Use `date` instead of `year`!
+`E10InproceedingsYear`|Use `date` instead of `year`!
+`E10ManualYear`|Use `date` instead of `year`!
+`E10MastersthesisSchool`|Use `institution` instead of `school`!
+`E10MastersthesisYear`|Use `date` instead of `year`!
+`E10MiscYear`|Use `date` instead of `year`!
+`E10OnlineYear`|Use `date` instead of `year`!
+`E10PhdthesisSchool`|Use `institution` instead of `school`!
+`E10PhdthesisYear`|Use `date` instead of `year`!
+`E10ReportSchool`|Use `institution` instead of `school`!
+`E10ReportYear`|Use `date` instead of `year`!
+`E10SoftwareYear`|Use `date` instead of `year`!
+`E10TechreportSchool`|Use `institution` instead of `school`!
+`E10TechreportYear`|Use `date` instead of `year`!
+`E10ThesisSchool`|Use `institution` instead of `school`!
+`E10ThesisYear`|Use `date` instead of `year`!
+`E10WwwYear`|Use `date` instead of `year`!
+`E11InproceedingsConference`|`conference` is an alias, please use the original type `inproceedings` instead.
+`E11MiscSoftware`|`software` is an alias, please use the original type `misc` instead.
+`E11OnlineElectronic`|`electronic` is an alias, please use the original type `online` instead.
+`E11OnlineWww`|`www` is an alias, please use the original type `online` instead.
+`E11ReportTechreport`|`techreport` is an alias, please use the original type `report` instead.
+`E11ThesisMastersthesis`|`mastersthesis` is an alias, please use the original type `thesis` instead.
+`E11ThesisPhdthesis`|`phdthesis` is an alias, please use the original type `thesis` instead.
+`E12`|Homepages should not be used as a source
+`E13`|URLs should only include the critical parts and nothing more
+
+## M
+Rule ID|Rule description
+-|-
+`M00`|No authors or editors found
+`M01ArticleDate`|Missing required field `date` for entry type `article`
+`M01ArticleJournaltitle`|Missing required field `journaltitle` for entry type `article`
+`M01ArticleTitle`|Missing required field `title` for entry type `article`
+`M01BookDate`|Missing required field `date` for entry type `book`
+`M01BookPublisher`|Missing required field `publisher` for entry type `book`
+`M01BookTitle`|Missing required field `title` for entry type `book`
+`M01BookletDate`|Missing required field `date` for entry type `booklet`
+`M01BookletPublisher`|Missing required field `publisher` for entry type `booklet`
+`M01BookletTitle`|Missing required field `title` for entry type `booklet`
+`M01ConferenceBooktitle`|Missing required field `booktitle` for entry type `conference`
+`M01ConferenceDate`|Missing required field `date` for entry type `conference`
+`M01ConferenceTitle`|Missing required field `title` for entry type `conference`
+`M01DatasetDate`|Missing required field `date` for entry type `dataset`
+`M01DatasetTitle`|Missing required field `title` for entry type `dataset`
+`M01DatasetUrl`|Missing required field `url` for entry type `dataset`
+`M01DatasetUrldate`|Missing required field `urldate` for entry type `dataset`
+`M01ElectronicDate`|Missing required field `date` for entry type `electronic`
+`M01ElectronicTitle`|Missing required field `title` for entry type `electronic`
+`M01ElectronicUrl`|Missing required field `url` for entry type `electronic`
+`M01ElectronicUrldate`|Missing required field `urldate` for entry type `electronic`
+`M01InbookBooktitle`|Missing required field `booktitle` for entry type `inbook`
+`M01InbookDate`|Missing required field `date` for entry type `inbook`
+`M01InbookPublisher`|Missing required field `publisher` for entry type `inbook`
+`M01InbookTitle`|Missing required field `title` for entry type `inbook`
+`M01IncollectionBooktitle`|Missing required field `booktitle` for entry type `incollection`
+`M01IncollectionPublisher`|Missing required field `publisher` for entry type `incollection`
+`M01IncollectionTitle`|Missing required field `title` for entry type `incollection`
+`M01IncollectionYear`|Missing required field `year` for entry type `incollection`
+`M01InproceedingsBooktitle`|Missing required field `booktitle` for entry type `inproceedings`
+`M01InproceedingsDate`|Missing required field `date` for entry type `inproceedings`
+`M01InproceedingsTitle`|Missing required field `title` for entry type `inproceedings`
+`M01ManualDate`|Missing required field `date` for entry type `manual`
+`M01ManualTitle`|Missing required field `title` for entry type `manual`
+`M01MastersthesisDate`|Missing required field `date` for entry type `mastersthesis`
+`M01MastersthesisInstitution`|Missing required field `institution` for entry type `mastersthesis`
+`M01MastersthesisTitle`|Missing required field `title` for entry type `mastersthesis`
+`M01MastersthesisType`|Missing required field `type` for entry type `mastersthesis`
+`M01MiscDate`|Missing required field `date` for entry type `misc`
+`M01MiscTitle`|Missing required field `title` for entry type `misc`
+`M01OnlineDate`|Missing required field `date` for entry type `online`
+`M01OnlineTitle`|Missing required field `title` for entry type `online`
+`M01OnlineUrl`|Missing required field `url` for entry type `online`
+`M01OnlineUrldate`|Missing required field `urldate` for entry type `online`
+`M01PhdthesisDate`|Missing required field `date` for entry type `phdthesis`
+`M01PhdthesisInstitution`|Missing required field `institution` for entry type `phdthesis`
+`M01PhdthesisTitle`|Missing required field `title` for entry type `phdthesis`
+`M01PhdthesisType`|Missing required field `type` for entry type `phdthesis`
+`M01ReportDate`|Missing required field `date` for entry type `report`
+`M01ReportInstitution`|Missing required field `institution` for entry type `report`
+`M01ReportTitle`|Missing required field `title` for entry type `report`
+`M01ReportType`|Missing required field `type` for entry type `report`
+`M01SoftwareDate`|Missing required field `date` for entry type `software`
+`M01SoftwareTitle`|Missing required field `title` for entry type `software`
+`M01TechreportDate`|Missing required field `date` for entry type `techreport`
+`M01TechreportInstitution`|Missing required field `institution` for entry type `techreport`
+`M01TechreportTitle`|Missing required field `title` for entry type `techreport`
+`M01TechreportType`|Missing required field `type` for entry type `techreport`
+`M01ThesisDate`|Missing required field `date` for entry type `thesis`
+`M01ThesisInstitution`|Missing required field `institution` for entry type `thesis`
+`M01ThesisTitle`|Missing required field `title` for entry type `thesis`
+`M01ThesisType`|Missing required field `type` for entry type `thesis`
+`M01UnpublishedTitle`|Missing required field `title` for entry type `unpublished`
+`M01WwwDate`|Missing required field `date` for entry type `www`
+`M01WwwTitle`|Missing required field `title` for entry type `www`
+`M01WwwUrl`|Missing required field `url` for entry type `www`
+`M01WwwUrldate`|Missing required field `urldate` for entry type `www`
+`M02ArticleDoi`|Missing optional field `doi` for entry type `article`
+`M02ArticleNumber`|Missing optional field `number` for entry type `article`
+`M02ArticlePages`|Missing optional field `pages` for entry type `article`
+`M02ArticleVolume`|Missing optional field `volume` for entry type `article`
+`M02BookIsbn`|Missing optional field `isbn` for entry type `book`
+`M02BookletDoi`|Missing optional field `doi` for entry type `booklet`
+`M02BookletHowpublished`|Missing optional field `howpublished` for entry type `booklet`
+`M02BookletIsbn`|Missing optional field `isbn` for entry type `booklet`
+`M02BookletUrl`|Missing optional field `url` for entry type `booklet`
+`M02ConferenceDoi`|Missing optional field `doi` for entry type `conference`
+`M02ConferenceEventtitle`|Missing optional field `eventtitle` for entry type `conference`
+`M02ConferenceIsbn`|Missing optional field `isbn` for entry type `conference`
+`M02ConferenceUrl`|Missing optional field `url` for entry type `conference`
+`M02InbookDoi`|Missing optional field `doi` for entry type `inbook`
+`M02InbookIsbn`|Missing optional field `isbn` for entry type `inbook`
+`M02InbookPages`|Missing optional field `pages` for entry type `inbook`
+`M02IncollectionAddress`|Missing optional field `address` for entry type `incollection`
+`M02IncollectionChapter`|Missing optional field `chapter` for entry type `incollection`
+`M02IncollectionEdition`|Missing optional field `edition` for entry type `incollection`
+`M02IncollectionFile`|Missing optional field `file` for entry type `incollection`
+`M02IncollectionKey`|Missing optional field `key` for entry type `incollection`
+`M02IncollectionMonth`|Missing optional field `month` for entry type `incollection`
+`M02IncollectionNumber`|Missing optional field `number` for entry type `incollection`
+`M02IncollectionPages`|Missing optional field `pages` for entry type `incollection`
+`M02IncollectionSeries`|Missing optional field `series` for entry type `incollection`
+`M02IncollectionType`|Missing optional field `type` for entry type `incollection`
+`M02IncollectionVolume`|Missing optional field `volume` for entry type `incollection`
+`M02InproceedingsDoi`|Missing optional field `doi` for entry type `inproceedings`
+`M02InproceedingsEventtitle`|Missing optional field `eventtitle` for entry type `inproceedings`
+`M02InproceedingsIsbn`|Missing optional field `isbn` for entry type `inproceedings`
+`M02InproceedingsUrl`|Missing optional field `url` for entry type `inproceedings`
+`M02ManualDoi`|Missing optional field `doi` for entry type `manual`
+`M02ManualIsbn`|Missing optional field `isbn` for entry type `manual`
+`M02ManualOrganization`|Missing optional field `organization` for entry type `manual`
+`M02ManualPublisher`|Missing optional field `publisher` for entry type `manual`
+`M02ManualUrl`|Missing optional field `url` for entry type `manual`
+`M02MastersthesisUrl`|Missing optional field `url` for entry type `mastersthesis`
+`M02PhdthesisUrl`|Missing optional field `url` for entry type `phdthesis`
+`M02ReportDoi`|Missing optional field `doi` for entry type `report`
+`M02ReportUrl`|Missing optional field `url` for entry type `report`
+`M02TechreportDoi`|Missing optional field `doi` for entry type `techreport`
+`M02TechreportUrl`|Missing optional field `url` for entry type `techreport`
+`M02ThesisUrl`|Missing optional field `url` for entry type `thesis`
+`M02UnpublishedFile`|Missing optional field `file` for entry type `unpublished`
+`M02UnpublishedKey`|Missing optional field `key` for entry type `unpublished`
+`M02UnpublishedMonth`|Missing optional field `month` for entry type `unpublished`
+`M02UnpublishedYear`|Missing optional field `year` for entry type `unpublished`
+`M03`|Special characters should be replaced by the command to generate them: %, &, $, #, _, \, ~, ^, |
+
+## T
+Rule ID|Rule description
+-|-
+`T00`|Non-ascii character
+`T01`|Non-standard whitespace at beginning of line (indents should be 2 spaces)
+`T02`|Whitespace at end of line
+`T03`|Line length exceeds 120 characters
+
+## U
+Rule ID|Rule description
+-|-
+`U00`|Unrecognized entry type
+`U01Article`|Unrecognized field type for entry type `article`
+`U01Book`|Unrecognized field type for entry type `book`
+`U01Booklet`|Unrecognized field type for entry type `booklet`
+`U01Conference`|Unrecognized field type for entry type `conference`
+`U01Dataset`|Unrecognized field type for entry type `dataset`
+`U01Electronic`|Unrecognized field type for entry type `electronic`
+`U01Inbook`|Unrecognized field type for entry type `inbook`
+`U01Incollection`|Unrecognized field type for entry type `incollection`
+`U01Inproceedings`|Unrecognized field type for entry type `inproceedings`
+`U01Manual`|Unrecognized field type for entry type `manual`
+`U01Mastersthesis`|Unrecognized field type for entry type `mastersthesis`
+`U01Misc`|Unrecognized field type for entry type `misc`
+`U01Online`|Unrecognized field type for entry type `online`
+`U01Phdthesis`|Unrecognized field type for entry type `phdthesis`
+`U01Report`|Unrecognized field type for entry type `report`
+`U01Software`|Unrecognized field type for entry type `software`
+`U01Techreport`|Unrecognized field type for entry type `techreport`
+`U01Thesis`|Unrecognized field type for entry type `thesis`
+`U01Unpublished`|Unrecognized field type for entry type `unpublished`
+`U01Www`|Unrecognized field type for entry type `www`
