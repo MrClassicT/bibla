@@ -25,59 +25,58 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
-        pip install markdown
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+          pip install markdown
 
-    - name: Build package
-      run: python -m build
+      - name: Build package
+        run: python -m build
 
-    - name: Generate rule list
-      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
+      - name: Generate rule list
+        run: bibla list-all -m | python -m markdown -x tables > all_rules.html
 
-    # - name: Setup Pages
-    #   uses: actions/configure-pages@v4
-    
-    # - name: Upload artifact
-    #   uses: actions/upload-pages-artifact@v3
-    #   with:
-    #     # Upload the gh-pages directory
-    #     path: 'docs/'
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v4
 
-    # Attempt
-    
-    - name: Deploy to GitHub Pages
-      run: |
-        git config --global user.name "Pipeline"
-        git config --global user.email "pipeline@no.one"
-        git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
-        mkdir -p pages/bibla/rules
-        mv all_rules.html pages/bibla/rules/index.html
-        cd pages
-        git add bibla/rules/index.html
-        git commit -m "Add generated all_rules.html"
-        git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     # Upload the gh-pages directory
+      #     path: 'docs/'
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: all-rules
-        path: pages/bibla/rules/index.html
+      # Attempt
 
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "Pipeline"
+          git config --global user.email "pipeline@no.one"
+          git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
+          mkdir -p pages/bibla/rules
+          mv all_rules.html pages/bibla/rules/index.html
+          cd pages
+          git add bibla/rules/index.html
+          git commit -m "Add generated all_rules.html"
+          git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
 
-    # End attempt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-rules
+          path: pages/bibla/rules/index.html
 
-    - name: Publish package to pip
-      if: github.event_name == 'release'
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      # End attempt
+
+      - name: Publish package to pip
+        if: github.event_name == 'release'
+        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
