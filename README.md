@@ -31,18 +31,19 @@ python -m bibla lint bibliography1.bib bibliography2.bib ...
 bibla will check these files for a variety of style issues and deviations from the biblatex spec (http://www.biblatex.org/Format/, https://en.wikipedia.org/wiki/biblatex).
 Each possible type of issue is formulated as a rule. Each rule is identified by a unique code. Some examples of rules are 
 
-Everything below this line is mostly a copy/paste of the original and still has to be reviewed/changed!
 Rule ID|Rule description
 -|-
-`D00`|Entry not in alphabetical order by ke
-`T00`|Non-ascii character
-`E00`|Keys of published works should have format AuthorYEARa
-`E06`|Incorrect doi format
-`T01`|Non-standard whitespace at beginning of line (indents should be 4 spaces)
-`M01ArticleYear`|Missing required field `year` for entry type `article`
+`U00`|Unrecognized entry type
+`T01`|Non-standard whitespace at beginning of line (indents should be 2 spaces)
+`T02`|Whitespace at end of line
+`M01OnlineUrl`|Missing required field `url` for entry type `online`
+`M02InbookPages`|Missing optional field `pages` for entry type `inbook`
+`E08`|`pages` field formatting is incorrect. Please use the following format: 123--456. In ascending order seperated with two dashes.
+`E09`|Entry should use correct date format: YYYY-MM-DD, YYYY-MM or YYYY!
+`E10ArticleJournal`|Use `journaltitle` instead of `journal`!
 ...|...
 
-This link provides a [list of all available rules]() \[TODO\]
+This link provides a [list of all available rules](https://mrclassict.github.io/bibla/rules)
 generated with the default configuration (see Configuration section below).
 
 
@@ -70,8 +71,7 @@ Configuration can also be specified in a yaml format configuration file, provide
 If no configuration file is provided and a `bibla.yml` or `.bibla.yml` file is present in the current working directory,
 this file will be used as a configuration file.
 Command line option configuration will override configuration provided by a file.
-See the default configuration [bibla.yml]() \[TODO\]  for
-all values that can be overwritten in a configuration file.
+See the default configuration [bibla.yml](https://github.com/MrClassicT/bibla/blob/master/bibla/bibla.yml) for all values that can be overwritten in a configuration file.
 
 Some rules, like the various `M01*`, `M02*` and `U01*` rules, are procedurally generated based on the `type_spec` setting.
 This setting specifies which entry and field types should be present and can be modified to more easily ignore generated
