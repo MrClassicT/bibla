@@ -59,7 +59,7 @@ jobs:
           git config --global user.name "Pipeline"
           git config --global user.email "pipeline@no.one"
           git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
-          cat docs/rulesTemplate.md ../all_rules.html > docs/rules.md
+          cat docs/rulesTemplate.md all_rules.html > docs/rules.md
           git add docs/rules.md
           git commit -m "Add/update rules.md page"
           git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
