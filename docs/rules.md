@@ -7,14 +7,14 @@ permalink: /rules/
 # bibla rules
 ## D
 Rule ID|Rule description
--|-
+|-|-|
 `D00`|Entry not in alphabetical order by key
 `D01`|Preamble should begin at first line of document
 `D02`|Possible duplicate entry based on similar titles
 
 ## E
 Rule ID|Rule description
--|-
+|-|-|
 `E00`|Keys of published works should have format `AuthorYEARa`
 `E01`|Author first names should not be abbreviated
 `E02`|Author middle names should be abbreviated with .
@@ -61,7 +61,7 @@ Rule ID|Rule description
 
 ## M
 Rule ID|Rule description
--|-
+|-|-|
 `M00`|No authors or editors found
 `M01ArticleDate`|Missing required field `date` for entry type `article`
 `M01ArticleJournaltitle`|Missing required field `journaltitle` for entry type `article`
@@ -180,7 +180,7 @@ Rule ID|Rule description
 
 ## T
 Rule ID|Rule description
--|-
+|-|-|
 `T00`|Non-ascii character
 `T01`|Non-standard whitespace at beginning of line (indents should be 2 spaces)
 `T02`|Whitespace at end of line
@@ -188,7 +188,7 @@ Rule ID|Rule description
 
 ## U
 Rule ID|Rule description
--|-
+|-|-|
 `U00`|Unrecognized entry type
 `U01Article`|Unrecognized field type for entry type `article`
 `U01Book`|Unrecognized field type for entry type `book`
