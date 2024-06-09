@@ -41,7 +41,7 @@ jobs:
         run: python -m build
 
       - name: Install built package
-        run: pip install dist/*.whl 
+        run: pip install dist/*.whl
 
       - name: Publish package to pip
         if: github.event_name == 'release'
@@ -59,7 +59,7 @@ jobs:
           git config --global user.name "Pipeline"
           git config --global user.email "pipeline@no.one"
           git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
-          cat docs/rulesTemplate.md all_rules.html > docs/rules.md
+          cat docs/rulesTemplate.txt all_rules.html > docs/rules.md
           echo "</div>" >> docs/rules.md
           git add docs/rules.md
           git commit -m "Add/update rules.md page"
