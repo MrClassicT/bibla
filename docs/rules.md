@@ -3,7 +3,8 @@ layout: page
 title: Rules
 permalink: /rules/
 ---
-# the default bibla rules
+
+# The default bibla rules
 ## D
 Rule ID|Rule description
 -|-
