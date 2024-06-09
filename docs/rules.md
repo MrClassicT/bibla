@@ -4,7 +4,7 @@ title: Rules
 permalink: /rules/
 ---
 
-# The default bibla rules
+# bibla rules
 ## D
 Rule ID|Rule description
 -|-
