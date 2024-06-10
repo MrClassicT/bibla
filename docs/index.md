@@ -20,7 +20,7 @@ After installing bibla, you can lint your bibliography files by running the foll
 bibla lint <path-to-your-file.bib>
 ```
 
-If you wish to view an overview of all the implemented rules, you can either use the `bibla --help` command or visit the [documentation](/bibla/docs/overview/).
+If you wish to view an overview of all the implemented rules, you can either use the `bibla --help` command or visit the [documentation](/bibla/rules/).
 
 It's good to note that the rules are slightly oppinionated towards the likings of HOGENT lecturers, since the request for this tool came from them. Due to the open source nature of the project, you can always fork and adapt rules to your own liking.
 
