@@ -11,42 +11,61 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  # push:
+  #   branches:
+  #     - master
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
-        pip install markdown
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+          pip install markdown
 
-    - name: Build package
-      run: python -m build
+      - name: Build package
+        run: python -m build
 
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Install built package
+        run: pip install dist/*.whl
 
-    - name: Generate rule list
-      run: bibla list-all -m | python -m markdown -x tables > all_rules.html
+      - name: Publish package to pip
+        if: github.event_name == 'release'
+        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: all-rules
-        path: all_rules.html
+      - name: Generate rule list
+        run: |
+          bibla list-all -m > all_rules.txt
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "Pipeline"
+          git config --global user.email "pipeline@no.one"
+          git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
+          cat docs/files/rulesTemplate.txt all_rules.txt > docs/rules.md
+          git add docs/rules.md
+          git commit -m "Add/update rules.md page"
+          git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-rules
+          path: docs/rules.md
