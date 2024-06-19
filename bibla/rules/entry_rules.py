@@ -242,14 +242,19 @@ def page_format(key, entry, database):
     """
     if 'pages' not in entry.fields:
         return True
-    page_regex = r'^\d+--\d+$'
+    page_regex = r'^(\d+--\d+|\d+)(,(\d+--\d+|\d+))*$'
     regex = re.compile(page_regex)
     if not regex.match(entry.fields['pages']):
-        return True
-    groups = entry.fields['pages'].split('--')
-    if len(groups) <= 1:
-        return True
-    return int(groups[1]) >= int(groups[0])
+        return False
+    
+    pages = entry.fields['pages']
+    page_numbers = re.findall(r'\d+', pages)
+    page_numbers = [int(num) for num in page_numbers]
+    
+    if page_numbers != sorted(page_numbers):
+        return False
+    
+    return True
 
 
 @register_entry_rule('E09', 'Entry should use correct date format: YYYY-MM-DD, YYYY-MM or YYYY!')
