@@ -108,7 +108,7 @@ def check_special_characters(key, entry, database):
     :return: True if no field contains special characters, False otherwise.
     """
     special_chars = ['%', '&', '$', '#', '_', '\\', '~', '^', '|']
-    fields_to_ignore = ['url', 'doi']
+    fields_to_ignore = ['url', 'doi', 'file', 'eprint', 'issn', 'isbn', 'note', 'abstract', 'keywords']
 
     for field_name, field_value in entry.fields.items():
         if field_name in fields_to_ignore: 
