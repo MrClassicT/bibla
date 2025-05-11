@@ -5,6 +5,7 @@ import re
 from bibla.config import get_config
 from bibla.rule import register_text_rule
 
+
 @register_text_rule('T01',
                     'Non-standard whitespace at beginning of line (indents '
                     'should be {} spaces)'
