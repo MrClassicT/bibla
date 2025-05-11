@@ -5,20 +5,6 @@ import re
 from bibla.config import get_config
 from bibla.rule import register_text_rule
 
-
-@register_text_rule('T00', 'Non-ascii character')
-def ascii_chars(line_number, line, text):
-    """Raise a linter warning when a line contains a non-ascii character.
-
-    :param line_number: The number of the current line in the bibliography
-    :param line: The content of the current line in the bibliography
-    :param text: The entire bibliography
-    :return: True if all characters in the current line are ascii
-    characters, False otherwise.
-    """
-    return line.isascii()
-
-
 @register_text_rule('T01',
                     'Non-standard whitespace at beginning of line (indents '
                     'should be {} spaces)'
