@@ -111,7 +111,7 @@ def check_special_characters(key, entry, database):
     fields_to_ignore = ['url', 'doi', 'file', 'eprint', 'issn', 'isbn', 'note', 'abstract', 'keywords']
 
     for field_name, field_value in entry.fields.items():
-        if field_name in fields_to_ignore: 
+        if field_name in fields_to_ignore:
             return True
         if any(char in field_value for char in special_chars):
             for char in special_chars:
