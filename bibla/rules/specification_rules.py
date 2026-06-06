@@ -3,6 +3,8 @@
 from bibla.config import get_config
 from bibla.rule import register_entry_rule
 
+GLOBAL_ENTRY_FIELDS = {'crossref'}
+
 
 @register_entry_rule('U00', 'Unrecognized entry type')
 def recognized_entry_type(key, entry, database):
@@ -49,6 +51,6 @@ for entry_type, spec in get_config()['type_spec'].items():
             optional_fields = type_spec[entry.type]['optional']
             required_fields = type_spec[entry.type]['required']
             for field_type in entry.fields.keys():
-                if field_type not in optional_fields + required_fields + ['crossref']:
+                if field_type not in optional_fields + required_fields and field_type not in GLOBAL_ENTRY_FIELDS:
                     return False
         return True

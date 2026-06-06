@@ -4,6 +4,9 @@ import tempfile
 
 from bibla.lint import lint
 
+UNKNOWN_ENTRY_TYPE_RULE_ID = 'U00'
+UNRECOGNIZED_INPROCEEDINGS_FIELD_RULE_ID = 'U01Inproceedings'
+
 
 class TestBase(unittest.TestCase):
 
@@ -30,7 +33,7 @@ class TestBase(unittest.TestCase):
         finally:
             os.unlink(bibliography)
 
-        self.assertNotIn('U00', [warning.rule.rule_id for warning in warnings])
+        self.assertNotIn(UNKNOWN_ENTRY_TYPE_RULE_ID, [warning.rule.rule_id for warning in warnings])
 
     def test_crossref_field_is_recognized(self):
         with tempfile.NamedTemporaryFile('w', suffix='.bib', delete=False) as bib_file:
@@ -53,7 +56,7 @@ class TestBase(unittest.TestCase):
         finally:
             os.unlink(bibliography)
 
-        self.assertNotIn('U01Inproceedings', [warning.rule.rule_id for warning in warnings])
+        self.assertNotIn(UNRECOGNIZED_INPROCEEDINGS_FIELD_RULE_ID, [warning.rule.rule_id for warning in warnings])
 
 
 if __name__ == '__main__':
