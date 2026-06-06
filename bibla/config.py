@@ -1,7 +1,7 @@
 """Linter configuration logic."""
+import sys
 from typing import Dict, Any
 
-import pkg_resources
 import yaml
 
 _config = dict()
@@ -46,8 +46,13 @@ def load_config_file(file):
 def _load_default_config():
     global _read_default
     _read_default = True
-    with open(pkg_resources.resource_filename(__name__,
-                                              _DEFAULT_CONFIG_FILE)) as \
+    if sys.version_info >= (3, 9):
+        from importlib.resources import files
+        config_path = files('bibla') / _DEFAULT_CONFIG_FILE
+    else:
+        from pathlib import Path
+        config_path = Path(__file__).parent / _DEFAULT_CONFIG_FILE
+    with open(config_path) as \
             default_config_file:
         default_config = yaml.load(default_config_file, Loader=yaml.FullLoader)
         for k, v in default_config.items():
