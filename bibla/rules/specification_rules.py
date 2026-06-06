@@ -49,6 +49,6 @@ for entry_type, spec in get_config()['type_spec'].items():
             optional_fields = type_spec[entry.type]['optional']
             required_fields = type_spec[entry.type]['required']
             for field_type in entry.fields.keys():
-                if field_type not in optional_fields + required_fields:
+                if field_type not in optional_fields + required_fields + ['crossref']:
                     return False
         return True
