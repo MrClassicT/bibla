@@ -10,6 +10,17 @@ UNRECOGNIZED_INPROCEEDINGS_FIELD_RULE_ID = 'U01Inproceedings'
 
 class TestBase(unittest.TestCase):
 
+    def lint_temporary_bibliography(self, content):
+        descriptor, bibliography = tempfile.mkstemp(suffix='.bib')
+        os.close(descriptor)
+
+        try:
+            with open(bibliography, 'w') as bib_file:
+                bib_file.write(content)
+            return lint(bibliography, verbose=False)
+        finally:
+            os.unlink(bibliography)
+
     def test_run(self):
         lint("test_data/mit.bib", verbose=False)
 
@@ -20,24 +31,16 @@ class TestBase(unittest.TestCase):
         lint("test_data/bibLaTeX.bib", verbose=False)
 
     def test_proceedings_entry_type_is_recognized(self):
-        with tempfile.NamedTemporaryFile('w', suffix='.bib', delete=False) as bib_file:
-            bib_file.write("""@proceedings{proceedings-key,
+        warnings = self.lint_temporary_bibliography("""@proceedings{proceedings-key,
   title = {Proceedings of the Test Conference},
   date = {2024},
 }
 """)
-            bibliography = bib_file.name
-
-        try:
-            warnings = lint(bibliography, verbose=False)
-        finally:
-            os.unlink(bibliography)
 
         self.assertNotIn(UNKNOWN_ENTRY_TYPE_RULE_ID, [warning.rule.rule_id for warning in warnings])
 
     def test_crossref_field_is_recognized(self):
-        with tempfile.NamedTemporaryFile('w', suffix='.bib', delete=False) as bib_file:
-            bib_file.write("""@proceedings{proceedings-key,
+        warnings = self.lint_temporary_bibliography("""@proceedings{proceedings-key,
   title = {Proceedings of the Test Conference},
   date = {2024},
 }
@@ -49,12 +52,6 @@ class TestBase(unittest.TestCase):
   crossref = {proceedings-key},
 }
 """)
-            bibliography = bib_file.name
-
-        try:
-            warnings = lint(bibliography, verbose=False)
-        finally:
-            os.unlink(bibliography)
 
         self.assertNotIn(UNRECOGNIZED_INPROCEEDINGS_FIELD_RULE_ID, [warning.rule.rule_id for warning in warnings])
 
