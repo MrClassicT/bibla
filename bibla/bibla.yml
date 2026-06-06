@@ -71,6 +71,9 @@ type_spec:
   conference:
     required: [title, booktitle, date]
     optional: [eventtitle, isbn, doi, url]
+  proceedings:
+    required: [title, date]
+    optional: [editor, volume, number, series, address, month, publisher, organization, note, key]
   report:
     required: [title, date, type, institution]
     optional: [doi, url]
