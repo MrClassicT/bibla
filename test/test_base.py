@@ -11,11 +11,11 @@ UNRECOGNIZED_INPROCEEDINGS_FIELD_RULE_ID = 'U01Inproceedings'
 class TestBase(unittest.TestCase):
 
     def lint_temporary_bibliography(self, content):
-        descriptor, bibliography = tempfile.mkstemp(suffix='.bib')
-        os.close(descriptor)
+        bib_file = tempfile.NamedTemporaryFile('w', suffix='.bib', delete=False)
+        bibliography = bib_file.name
 
         try:
-            with open(bibliography, 'w') as bib_file:
+            with bib_file:
                 bib_file.write(content)
             return lint(bibliography, verbose=False)
         finally:
