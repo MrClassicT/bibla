@@ -17,14 +17,6 @@ minima:
   navigation:
     - title: "Home"
       url: "/"
-    - title: "About"
-      url: "/about"
-    - title: "Contact"
-      url: "/contact"
-    - title: "Thesis"
-      url: "/thesis"
-    - title: "All rules"
-      url: "/rules"
 
 # Exclude from processing
 exclude:
