@@ -56,13 +56,14 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.name "Pipeline"
-          git config --global user.email "pipeline@no.one"
-          git clone --single-branch --branch pages https://github.com/mrclassict/bibla pages
+          git config user.name "Pipeline"
+          git config user.email "pipeline@no.one"
+          git fetch origin master
+          git switch --force-create master origin/master
           cat docs/files/rulesTemplate.txt all_rules.txt > docs/rules.md
           git add docs/rules.md
-          git commit -m "Add/update rules.md page"
-          git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git
+          git diff --cached --quiet || git commit -m "Add/update rules.md page"
+          git push https://${{secrets.BIBLA_GITHUB_TOKEN}}@github.com/mrclassict/bibla.git HEAD:master
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
